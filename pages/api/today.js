@@ -1,5 +1,5 @@
 
-const apikey = process.env.REACT_APP_API_KEY_1;
+const apikey = process.env.API_KEY_1;
 const url = `https://api.openweathermap.org/data/2.5/weather?q=Bhopal&appid=${apikey}`;
 
 const fecthInfo = async() => {

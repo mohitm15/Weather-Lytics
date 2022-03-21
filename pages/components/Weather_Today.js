@@ -1,22 +1,34 @@
-import React from 'react'
+import React from "react";
 
-const Weather_Today = (props) => {
+const Weather_Today = ({ results }) => {
+  const { main, coord, weather, name, dt, sys } = results;
 
-    
   return (
     <>
-    <div>
-    Weather_Today
-          <br/>City name, state code and country code divided by comma, Please, refer
-          to ISO 3166 for the state codes or country codes. You can specify the
-          parameter not only in English. In this case, the API response should
-          be returned in the same language as the language of requested location
-          name if the mohit mihti mohit mohti mpohti
-          name if the location is in our predefined list of more than 200,000
-          locations.
-          </div>
+      <div className="p-3 h-full">
+        <h2 className="text-xl font-bold">Weather_Today</h2>
+        <ol className="list">
+          <li>
+            <strong>Temp : </strong>
+            {main.temp}
+          </li>
+          <li>
+            <strong>Date : </strong>
+            {dt}
+          </li>
+          <li>
+            <strong>Weather : </strong>
+            {weather[0].description}
+          </li>
+          <li>
+            <strong>Lat and Long : </strong>
+            {coord.lat} and {coord.lon}
+          </li>
+        </ol>
+        {name}, {sys.country}
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default Weather_Today;

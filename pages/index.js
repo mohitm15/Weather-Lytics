@@ -1,13 +1,23 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import {useState} from 'react';
+import Today_highlight from "./components/Today_highlight";
 import Weather_Today from "./components/Weather_Today";
-import Weather_Week from "./components/Weather_Week";
+import Weather_week from "./components/Weather_week";
 
-export default function Home() {
-  
-  const apikey = process.env.REACT_APP_API_KEY_1;
-  
-  
+export default function Home({ results, results1 }) {
+  //console.log("res1 = ",results1);
+  const [city, setCity] = useState('Bhopal');
+
+  const handleChange = (e) => {
+    setCity(e.target.value);  
+    //console.log(city)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getServerSideProps(city)
+  }
+
   return (
     <>
       <Head>
@@ -17,13 +27,52 @@ export default function Home() {
       </Head>
 
       <div className="min-h-full bg-red-400 flex flex-col lg:flex-row">
+        <label htmlFor="inputcity" className="w-15">Enter City</label>
+        <input
+          type="email"
+          className="form-control w-56 h-8"
+          id="inputcity"
+          value={city}
+          placeholder="Enter city"
+          onChange={handleChange}
+        />
+        <button className="p-1 bg-slate-600 m-auto p-auto" onSubmit={handleSubmit}> Click</button>
         <div className="bg-blue-300 w-full lg:w-1/4 lg:h-full">
-          <Weather_Today apikey={apikey}/>
+          <Weather_Today results={results} />
         </div>
         <div className="bg-green-500 w-full lg:h-full ">
-          < Weather_Week apikey={apikey}/>
+          <div className="min-h-full flex flex-col">
+            <div className="bg-yellow-400 w-full">
+              <Weather_week results1={results1} />
+            </div>
+            <div className="bg-orange-600 w-full">
+              <Today_highlight results={results} />
+            </div>
+          </div>
         </div>
       </div>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  
+  //api-1
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=Bhopal&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  //console.log(data);
+
+  //api-2
+  const url1 = `http://api.openweathermap.org/data/2.5/forecast?q=Bhopal&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+  const res1 = await fetch(url1);
+  const data1 = await res1.json();
+  //console.log(data1);
+
+  return {
+    props: {
+      results: data,
+      results1: data1,
+    },
+  };
 }
