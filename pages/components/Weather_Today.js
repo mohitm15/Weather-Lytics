@@ -3,6 +3,7 @@ import React from "react";
 const Weather_Today = ({ results }) => {
   const { main, coord, weather, name, dt, sys } = results;
 
+  if({results})
   return (
     <>
       <div className="p-3 h-full">
@@ -10,7 +11,7 @@ const Weather_Today = ({ results }) => {
         <ol className="list">
           <li>
             <strong>Temp : </strong>
-            {main.temp}
+            {main && main.temp}
           </li>
           <li>
             <strong>Date : </strong>
@@ -18,14 +19,14 @@ const Weather_Today = ({ results }) => {
           </li>
           <li>
             <strong>Weather : </strong>
-            {weather[0].description}
+            {weather && weather[0].description}
           </li>
           <li>
             <strong>Lat and Long : </strong>
-            {coord.lat} and {coord.lon}
+            {coord && coord.lat} and {coord && coord.lon}
           </li>
         </ol>
-        {name}, {sys.country}
+        {name}, {sys && sys.country}
       </div>
     </>
   );
