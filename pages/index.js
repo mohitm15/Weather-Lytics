@@ -6,7 +6,7 @@ import Weather_Today from "./components/Weather_Today";
 import Weather_week from "./components/Weather_week";
 
 export default function Home({ results, results1 }) {
-  //console.log("res1 = ",results1);
+  console.log("res1 = ",results1);
   const router = useRouter()
   const [city, setCity] = useState('');
 
@@ -18,6 +18,10 @@ export default function Home({ results, results1 }) {
   const handleSubmit = (e) => {
     //console.log("%c ClickSubmit","font-size:12px; color:green; padding:10px;")
     router.push(`/?term=${city}`);
+  }
+
+  const kelvinToCelcius = (temp) => {
+    return (temp - 273.15).toPrecision(4)+" °C";
   }
 
   return (
@@ -40,15 +44,15 @@ export default function Home({ results, results1 }) {
         />
         <button className="p-1 bg-slate-600 m-auto p-auto" onClick={()=>handleSubmit()}> Click Button</button>
         <div className="bg-blue-300 w-full lg:w-1/4 lg:h-full">
-          <Weather_Today results={results} />
+          <Weather_Today results={results} kelvinToCelcius={kelvinToCelcius}/>
         </div>
         <div className="bg-green-500 w-full lg:h-full ">
           <div className="min-h-full flex flex-col">
             <div className="bg-yellow-400 w-full">
-              <Weather_week results1={results1} />
+              <Weather_week results1={results1} kelvinToCelcius={kelvinToCelcius} />
             </div>
             <div className="bg-orange-600 w-full">
-              <Today_highlight results={results} />
+              <Today_highlight results={results} kelvinToCelcius={kelvinToCelcius} />
             </div>
           </div>
         </div>
@@ -70,7 +74,7 @@ export async function getServerSideProps({query}) {
   //console.log(data);
 
   //api-2
-  const url1 = `http://api.openweathermap.org/data/2.5/forecast?q=${query.term}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+  const url1 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${query.term}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
   const res1 = await fetch(url1);
   const data1 = await res1.json();
   //console.log(data1);
