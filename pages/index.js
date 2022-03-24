@@ -24,7 +24,7 @@ export default function Home({ results, results1 }) {
   };
 
   const kelvinToCelcius = (temp) => {
-    return (temp - 273.15).toPrecision(4) + " °C";
+    return (temp - 273.15).toPrecision(3) + "°";
   };
 
   //input of ant-design
@@ -39,25 +39,26 @@ export default function Home({ results, results1 }) {
       </Head>
 
       {/* input */}
-      <div className="p-10 flex flex-row justify-center items-center space-x-2 xl:space-x-5 bg-blue-900">
-        
+      <div className="p-3 xl:p-10 flex flex-row justify-center items-center space-x-2 xl:space-x-5 bg-blue-900">
         <div className="bg-lime-300 border-2 border-stone-700 rounded-full ">
-        <input
-          className="w-full rounded-full p-2 xl:p-4 text-base xl:text-3xl text-blue-800 font-bold active:rounded-full "
-          value={city}
-          placeholder="Enter city"
-          onChange={handleChange}
-        />
+          <input
+            className="w-full rounded-full p-2 xl:p-4 text-base xl:text-3xl text-blue-800 font-bold active:rounded-full "
+            value={city}
+            placeholder="Enter city"
+            onChange={handleChange}
+          />
         </div>
         <div>
-        <button
-          className="p-1 m-auto p-auto"
-          onClick={() => handleSubmit()}
-        >
-          <div className="w-13 h-13 xl:w-16 xl:h-16 p-2 rounded-full bg-pink-400 border-2 hover:bg-pink-600 border-white">
-          <Image src={searchimageurl} layout="responsive" alt="Search_icon" className=" rounded-full p-3 bg-blue-900 " />
-          </div>
-        </button>
+          <button className="p-1 m-auto p-auto" onClick={() => handleSubmit()}>
+            <div className="w-14 h-14 xl:w-16 xl:h-16 p-2 rounded-full bg-pink-400 border-2 hover:bg-pink-600 border-white">
+              <Image
+                src={searchimageurl}
+                layout="responsive"
+                alt="Search_icon"
+                className=" rounded-full p-3 bg-blue-900 "
+              />
+            </div>
+          </button>
         </div>
       </div>
 
