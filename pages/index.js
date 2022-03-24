@@ -1,28 +1,34 @@
 import Head from "next/head";
-import {useState} from 'react';
-import { useRouter } from 'next/router'
+import Image from "next/image";
+import { useState } from "react";
+import { useRouter } from "next/router";
 import Today_highlight from "./components/Today_highlight";
 import Weather_Today from "./components/Weather_Today";
 import Weather_week from "./components/Weather_week";
+import { Space, Input } from "antd";
+import searchimageurl from "../public/search.gif";
 
 export default function Home({ results, results1 }) {
-  console.log("res1 = ",results1);
-  const router = useRouter()
-  const [city, setCity] = useState('');
+  //console.log("res1 = ", results1);
+  const router = useRouter();
+  const [city, setCity] = useState("");
 
   const handleChange = (e) => {
-    setCity(e.target.value);  
+    setCity(e.target.value);
     //console.log(city)
-  }
+  };
 
   const handleSubmit = (e) => {
     //console.log("%c ClickSubmit","font-size:12px; color:green; padding:10px;")
     router.push(`/?term=${city}`);
-  }
+  };
 
   const kelvinToCelcius = (temp) => {
-    return (temp - 273.15).toPrecision(4)+" °C";
-  }
+    return (temp - 273.15).toPrecision(4) + " °C";
+  };
+
+  //input of ant-design
+  const { Search } = Input;
 
   return (
     <>
@@ -32,27 +38,46 @@ export default function Home({ results, results1 }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="min-h-full bg-red-400 flex flex-col lg:flex-row">
-        <label htmlFor="inputcity" className="w-15">Enter City</label>
+      {/* input */}
+      <div className="p-10 flex flex-row justify-center items-center space-x-2 xl:space-x-5 bg-blue-900">
+        
+        <div className="bg-lime-300 border-2 border-stone-700 rounded-full ">
         <input
-          type="email"
-          className="form-control w-56 h-8"
-          id="inputcity"
+          className="w-full rounded-full p-2 xl:p-4 text-base xl:text-3xl text-blue-800 font-bold active:rounded-full "
           value={city}
           placeholder="Enter city"
           onChange={handleChange}
         />
-        <button className="p-1 bg-slate-600 m-auto p-auto" onClick={()=>handleSubmit()}> Click Button</button>
+        </div>
+        <div>
+        <button
+          className="p-1 m-auto p-auto"
+          onClick={() => handleSubmit()}
+        >
+          <div className="w-13 h-13 xl:w-16 xl:h-16 p-2 rounded-full bg-pink-400 border-2 hover:bg-pink-600 border-white">
+          <Image src={searchimageurl} layout="responsive" alt="Search_icon" className=" rounded-full p-3 bg-blue-900 " />
+          </div>
+        </button>
+        </div>
+      </div>
+
+      <div className="min-h-full bg-red-400 flex flex-col lg:flex-row">
         <div className="bg-blue-300 w-full lg:w-1/4 lg:h-full">
-          <Weather_Today results={results} kelvinToCelcius={kelvinToCelcius}/>
+          <Weather_Today results={results} kelvinToCelcius={kelvinToCelcius} />
         </div>
         <div className="bg-green-500 w-full lg:h-full ">
           <div className="min-h-full flex flex-col">
             <div className="bg-yellow-400 w-full">
-              <Weather_week results1={results1} kelvinToCelcius={kelvinToCelcius} />
+              <Today_highlight
+                results={results}
+                kelvinToCelcius={kelvinToCelcius}
+              />
             </div>
             <div className="bg-orange-600 w-full">
-              <Today_highlight results={results} kelvinToCelcius={kelvinToCelcius} />
+              <Weather_week
+                results1={results1}
+                kelvinToCelcius={kelvinToCelcius}
+              />
             </div>
           </div>
         </div>
@@ -61,11 +86,9 @@ export default function Home({ results, results1 }) {
   );
 }
 
-export async function getServerSideProps({query}) {
-  
+export async function getServerSideProps({ query }) {
   // if there is no query
-  if(!query.term) 
-    query.term = 'Bhopal'
+  if (!query.term) query.term = "Bhopal";
 
   //api-1
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${query.term}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;

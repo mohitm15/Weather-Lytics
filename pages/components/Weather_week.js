@@ -1,9 +1,12 @@
 import React from "react";
+import Image from "next/image";
+import imgurl from "../../public/temperature.gif"
+import { Button, Space, DatePicker, Card } from 'antd';
 
 const Weather_week = ({ results1,kelvinToCelcius }) => {
   //console.log("res111 = ", results1);
   const { list } = results1;
-  console.log(results1.list);
+  //console.log(results1.list);
 
 
   //fn to return date from unix timestamp
@@ -26,15 +29,19 @@ const Weather_week = ({ results1,kelvinToCelcius }) => {
         {list && list.map((item) => {
           return (
             <li key={item.dt}>
-               <strong>Temp(Day) : </strong>{kelvinToCelcius(item.temp.day)}, <strong>Temp(Night) : </strong>{kelvinToCelcius(item.temp.night)} and <strong>Date :</strong> { dateprocessing(item.dt).date}
-               <strong>  Weather - </strong>{item.weather.map((child_item) => {
+               <strong>Temp(Day) : </strong>{kelvinToCelcius(item.temp.day)}, <strong>Temp(Night) : </strong>{kelvinToCelcius(item.temp.night)} and <strong> ,Date :</strong> { dateprocessing(item.dt).date}
+               <strong> ,  Weather - </strong>{item.weather.map((child_item) => {
                  return (
-                  <> Desc : {child_item.description}</>
+                  <><span key={child_item.description}> Desc : {child_item.description} </span></>
                  )
-               })} and <strong>Humdity :</strong> {item.humidity} %
+               })}  <strong> , Humdity :</strong> {item.humidity} %
+               <Image src={imgurl} height={80} width={80} alt="sunset"/>
             </li>
           );
         })}
+      </div>
+      <div>
+      
       </div>
     </>
   );
