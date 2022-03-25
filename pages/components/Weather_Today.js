@@ -4,7 +4,7 @@ import imgurl from "../../public/temperature.gif";
 import { Alert } from "antd";
 
 const Weather_Today = ({ results, kelvinToCelcius }) => {
-  const { main, clouds, weather, name, dt, sys } = results;
+  const { main, clouds, weather, name, dt, sys } = results || {};
 
   //fn to return date from unix timestamp
   const dateprocessing = (ts) => {
@@ -49,10 +49,10 @@ const Weather_Today = ({ results, kelvinToCelcius }) => {
       <>
         <div className="p-3 h-full">
           <div className="text-4xl text-center">
-            {name}, {sys && sys.country}
+            {name}, {sys && sys?.country}
           </div>
           <div className="text-base text-center ">
-            {dateprocessing(dt).day} , {dateprocessing(dt).date}
+            {dateprocessing(dt)?.day} , {dateprocessing(dt)?.date}
           </div>
           <div className="flex flex-row items-center py-5 ml-10 md:ml-0 md:justify-center">
             {/* weather icon */}
@@ -61,27 +61,27 @@ const Weather_Today = ({ results, kelvinToCelcius }) => {
             </div>
             {/* Temp big */}
             <div className="text-6xl font-semibold">
-              {main && kelvinToCelcius(main.temp)}
+              {main && kelvinToCelcius(main?.temp)}
             </div>
           </div>
 
           {/* below flex */}
           <div className="flex flex-col space-y-3">
             <div className="bg-gray-500 text-center">
-              {weather && weather[0].description}
+              {weather && weather[0]?.description}
             </div>
             <div className="bg-lime-200 flex flex-row justify-evenly   p-2 space-x-2">
               <div className="bg-white p-2">
                 <h3 className="text-center">Max.</h3>
-                <p>{kelvinToCelcius(main.temp_max)}</p>
+                <p>{kelvinToCelcius(main?.temp_max)}</p>
               </div>
               <div className="bg-white p-2 text-center  ">
                 <h3 className="text-center">Clouds</h3>
-                <p>{clouds.all} %</p>
+                <p>{clouds?.all} %</p>
               </div>
               <div className="bg-white p-2 text-center">
                 <h3 className="text-center">Min.</h3>
-                <p>{kelvinToCelcius(main.temp_min)}</p>
+                <p>{kelvinToCelcius(main?.temp_min)}</p>
               </div>
             </div>
           </div>

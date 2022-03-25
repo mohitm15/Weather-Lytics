@@ -1,7 +1,7 @@
 import React from "react";
 
 const Today_highlight = ({ results, kelvinToCelcius }) => {
-  const { main, sys, weather, wind, visibility } = results;
+  const { main, sys, weather, wind, visibility } = results || {};
 
   //fn to return time  from unix timestamp
   const dateprocessing = (ts) => {
@@ -39,16 +39,16 @@ const Today_highlight = ({ results, kelvinToCelcius }) => {
       <>
         <h2 className="text-xl font-bold">Todays Highlights</h2>
         <div className="p-4">
-          <li>Temp - {main && kelvinToCelcius(main.temp)} </li>
+          <li>Temp - {main && kelvinToCelcius(main?.temp)} </li>
           <li>
-            Sunrise - {dateprocessing(sys.sunrise).time} and Sunset -{" "}
-            {dateprocessing(sys.sunset).time}
+            Sunrise - {dateprocessing(sys?.sunrise).time} and Sunset -{" "}
+            {dateprocessing(sys?.sunset).time}
           </li>
           <li>
-            Wind - {wind && wind.speed} m/s, {wind && degTodirection(wind.deg)}
+            Wind - {wind && wind?.speed} m/s, {wind && degTodirection(wind?.deg)}
           </li>
-          <li>Humidity - {main && main.humidity} %</li>
-          <li>Pressure - {main && main.pressure} hPa</li>
+          <li>Humidity - {main && main?.humidity} %</li>
+          <li>Pressure - {main && main?.pressure} hPa</li>
           <li>Visibilty - {visibility} meters</li>
         </div>
       </>
