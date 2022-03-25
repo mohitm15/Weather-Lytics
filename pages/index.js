@@ -1,34 +1,69 @@
 import Head from "next/head";
+import {useEffect} from 'react';
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Today_highlight from "./components/Today_highlight";
 import Weather_Today from "./components/Weather_Today";
 import Weather_week from "./components/Weather_week";
-import { Space, Input } from "antd";
 import searchimageurl from "../public/search.gif";
 
-export default function Home({ results, results1 }) {
+
+
+export default function Home() {
   //console.log("res1 = ", results1);
   const router = useRouter();
   const [city, setCity] = useState("");
+  const [data, setData] = useState({
+    day:{},week:{}
+  });
+
+  // useEffect(() => {
+  
+  //   async function apiCallFunction() {
+  //     const url = `https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+  //     const res = await fetch(url);
+  //     const data1 = await res.json();
+  //     console.log(data1);
+  
+  //     //api-2
+  //     const url1 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=Delhi&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+  //     const res1 = await fetch(url1);
+  //     const data2 = await res1.json();
+  //     console.log(data2);
+  //     //return {data,data1}
+  //     setData({ day: data1, week: data2 });
+  //   }
+  // }, [])
+  
 
   const handleChange = (e) => {
     setCity(e.target.value);
     //console.log(city)
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     //console.log("%c ClickSubmit","font-size:12px; color:green; padding:10px;")
-    router.push(`/?term=${city}`);
+    console.log("city = ", city);
+    //router.push(`/?term=${city}`);
+
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+    const res = await fetch(url);
+    const data1 = await res.json();
+    console.log(data1);
+
+    //api-2
+    const url1 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+    const res1 = await fetch(url1);
+    const data2 = await res1.json();
+    console.log(data2);
+    //return {data,data1}
+    setData({ day: data1, week: data2 });
   };
 
   const kelvinToCelcius = (temp) => {
     return (temp - 273.15).toPrecision(3) + "°";
   };
-
-  //input of ant-design
-  const { Search } = Input;
 
   return (
     <>
@@ -64,19 +99,19 @@ export default function Home({ results, results1 }) {
 
       <div className="min-h-full bg-red-400 flex flex-col lg:flex-row">
         <div className="bg-blue-300 w-full lg:w-1/4 lg:h-full">
-          <Weather_Today results={results} kelvinToCelcius={kelvinToCelcius} />
+          <Weather_Today results={data.day} kelvinToCelcius={kelvinToCelcius} />
         </div>
         <div className="bg-green-500 w-full lg:h-full ">
           <div className="min-h-full flex flex-col">
             <div className="bg-yellow-400 w-full">
               <Today_highlight
-                results={results}
+                results={data.day}
                 kelvinToCelcius={kelvinToCelcius}
               />
             </div>
             <div className="bg-orange-600 w-full">
               <Weather_week
-                results1={results1}
+                results1={data.week}
                 kelvinToCelcius={kelvinToCelcius}
               />
             </div>
@@ -87,26 +122,26 @@ export default function Home({ results, results1 }) {
   );
 }
 
-export async function getServerSideProps({ query }) {
-  // if there is no query
-  if (!query.term) query.term = "Bhopal";
+// export async function getServerSideProps({ query }) {
+//   // if there is no query
+//   if (!query.term) query.term = "Bhopal";
 
-  //api-1
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${query.term}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
-  const res = await fetch(url);
-  const data = await res.json();
-  //console.log(data);
+//   //api-1
+//   const url = `https://api.openweathermap.org/data/2.5/weather?q=${query.term}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+//   const res = await fetch(url);
+//   const data = await res.json();
+//   //console.log(data);
 
-  //api-2
-  const url1 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${query.term}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
-  const res1 = await fetch(url1);
-  const data1 = await res1.json();
-  //console.log(data1);
+//   //api-2
+//   const url1 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${query.term}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+//   const res1 = await fetch(url1);
+//   const data1 = await res1.json();
+//   //console.log(data1);
 
-  return {
-    props: {
-      results: data,
-      results1: data1,
-    },
-  };
-}
+//   return {
+//     props: {
+//       results: data,
+//       results1: data1,
+//     },
+//   };
+// }
