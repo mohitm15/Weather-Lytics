@@ -45,7 +45,7 @@ const Weather_week = ({ results1, kelvinToCelcius }) => {
                 return (
                   <>
                     <div
-                      key={item?.speed}
+                      key={String(item?.speed)}
                       className="bg-pink-200 rounded-lg border border-gray-200 shadow-md "
                     >
                       <div className="flex flex-col w-32 items-center p-3 text-center">
