@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useEffect } from "react";
 import Image from "next/image";
 import { useState } from "react";
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
 import Today_highlight from "./components/Today_highlight";
 import Weather_Today from "./components/Weather_Today";
 import Weather_week from "./components/Weather_week";
@@ -10,7 +10,7 @@ import searchimageurl from "../public/search.gif";
 
 const Home = () => {
   //console.log("res1 = ", results1);
-  const router = useRouter();
+  //const router = useRouter();
   const [city, setCity] = useState("");
   const [data, setData] = useState({ day: {}, week: {} });
 
@@ -23,7 +23,7 @@ const Home = () => {
       //console.log("res1 = ",response1);
 
       //api-2
-      const url1 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=Delhi&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+      const url1 = `https://api.openweathermap.org/data/2.5/forecast/daily?q=Delhi&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
       const res2 = await fetch(url1);
       const response2 = await res2.json();
       //console.log("res2 = ",response2);
@@ -48,7 +48,7 @@ const Home = () => {
     //console.log(data1);
 
     //api-2
-    const url1 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+    const url1 = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
     const res1 = await fetch(url1);
     const data2 = await res1.json();
     //console.log(data2);

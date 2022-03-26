@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import imgurl from "../../public/temperature.gif";
-import { Button, Space, DatePicker, Card } from "antd";
+
 
 const Weather_week = ({ results1 }) => {
   //console.log("res111 = ", results1);

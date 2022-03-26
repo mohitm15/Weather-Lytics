@@ -1,7 +1,7 @@
 import React from "react";
 
 const Today_highlight = ({ results }) => {
-  const { main, sys, weather, wind, visibility } = results || {};
+  const { main, sys, wind, visibility } = results || {};
 
   //fn to convert temperature from kelvin to celcius
   const kelvinToCelcius = (temp) => {
