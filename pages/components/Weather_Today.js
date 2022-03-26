@@ -1,6 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import imgurl from "../../public/temperature.gif";
+import imgurl1 from "../../public/temperature.gif";
+import imgurl2 from "../../public/clouds.gif";
+import imgurl3 from "../../public/coldtemp.gif";
+import imgurl4 from "../../public/celsiusbold.gif";
+
 
 
 const Weather_Today = ({ results }) => {
@@ -59,13 +63,13 @@ const Weather_Today = ({ results }) => {
           {dateprocessing(dt)?.day} , {dateprocessing(dt)?.date}
         </div>
         <div className="flex flex-row items-center py-5 ml-10 md:ml-0 md:justify-center">
+                    {/* Temp big */}
+                    <div className="text-6xl font-semibold">
+            {main && kelvinToCelcius(main?.temp)}
+          </div>
           {/* weather icon */}
           <div className=" w-24 h-24 ">
-            <Image src={imgurl} alt="sunset" />
-          </div>
-          {/* Temp big */}
-          <div className="text-6xl font-semibold">
-            {main && kelvinToCelcius(main?.temp)}
+            <Image src={imgurl4} alt="sunset" />
           </div>
         </div>
 
@@ -76,15 +80,21 @@ const Weather_Today = ({ results }) => {
           </div>
           <div className="bg-lime-200 flex flex-row justify-evenly   p-2 space-x-2">
             <div className="bg-white p-2">
-              <h3 className="text-center">Max.</h3>
+            <div className="w-14 h-14 p-2">
+              <Image src={imgurl1} layout="responsive" alt="temp" />
+            </div>
               <p>{kelvinToCelcius(main?.temp_max)}</p>
             </div>
             <div className="bg-white p-2 text-center  ">
-              <h3 className="text-center">Clouds</h3>
+            <div className="w-14 h-14 p-2">
+              <Image src={imgurl2} layout="intrinsic" alt="temp" />
+            </div>
               <p>{clouds?.all} %</p>
             </div>
             <div className="bg-white p-2 text-center">
-              <h3 className="text-center">Min.</h3>
+            <div className="w-14 h-14 p-2">
+              <Image src={imgurl3} layout="responsive" alt="temp" />
+            </div>
               <p>{kelvinToCelcius(main?.temp_min)}</p>
             </div>
           </div>

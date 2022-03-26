@@ -51,16 +51,16 @@ const Weather_week = ({ results1 }) => {
                   >
                     <div className="flex flex-col w-32 items-center p-3 text-center">
                       <h5 className="mb-1 text-lg font-medium  text-gray-900 uppercase">
-                        {dateprocessing(item?.dt).day} <b>{item.speed}</b>
+                        {dateprocessing(item?.dt).day} 
                       </h5>
-                      <h6 className="mb-1 text-sm  text-gray-500 font-light">
+                      <h6 className="mb-1 text-sm  text-gray-600 font-light">
                         {dateprocessing(item?.dt).date}
                       </h6>
                       <Image src={imgurl} height={40} width={40} alt="sunset" />
                       <span className="text-base text-gray-800 ">
                         {kelvinToCelcius(item?.temp?.day)} C
                       </span>
-                      <span className="text-base text-gray-400 ">
+                      <span className="text-base text-gray-600 ">
                         {kelvinToCelcius(item?.temp?.night)} C
                       </span>
 
