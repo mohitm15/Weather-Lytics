@@ -1,5 +1,5 @@
 import Head from "next/head";
-import {useEffect} from 'react';
+import { useEffect } from "react";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -8,34 +8,28 @@ import Weather_Today from "./components/Weather_Today";
 import Weather_week from "./components/Weather_week";
 import searchimageurl from "../public/search.gif";
 
-
-
 export default function Home() {
   //console.log("res1 = ", results1);
   const router = useRouter();
   const [city, setCity] = useState("");
-  const [data, setData] = useState({
-    day:{},week:{}
-  });
+  const [data, setData] = useState({ day: {}, week: {} });
 
-  // useEffect(() => {
-  
-  //   async function apiCallFunction() {
-  //     const url = `https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
-  //     const res = await fetch(url);
-  //     const data1 = await res.json();
-  //     console.log(data1);
-  
-  //     //api-2
-  //     const url1 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=Delhi&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
-  //     const res1 = await fetch(url1);
-  //     const data2 = await res1.json();
-  //     console.log(data2);
-  //     //return {data,data1}
-  //     setData({ day: data1, week: data2 });
-  //   }
-  // }, [])
-  
+  useEffect(() => {
+    (async () => {
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+      const res1 = await fetch(url);
+      const response1 = await res1.json();
+      //console.log("res1 = ",response1);
+
+      //api-2
+      const url1 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=Delhi&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
+      const res2 = await fetch(url1);
+      const response2 = await res2.json();
+      //console.log("res2 = ",response2);
+
+      setData({ day: response1, week: response2 });
+    })();
+  }, []);
 
   const handleChange = (e) => {
     setCity(e.target.value);
@@ -44,20 +38,19 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     //console.log("%c ClickSubmit","font-size:12px; color:green; padding:10px;")
-    console.log("city = ", city);
+    //console.log("city = ", city);
     //router.push(`/?term=${city}`);
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
     const res = await fetch(url);
     const data1 = await res.json();
-    console.log(data1);
+    //console.log(data1);
 
     //api-2
     const url1 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
     const res1 = await fetch(url1);
     const data2 = await res1.json();
-    console.log(data2);
-    //return {data,data1}
+    //console.log(data2);
     setData({ day: data1, week: data2 });
   };
 
