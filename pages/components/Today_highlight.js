@@ -1,8 +1,12 @@
 import React from "react";
 
-const Today_highlight = ({ results, kelvinToCelcius }) => {
+const Today_highlight = ({ results }) => {
   const { main, sys, weather, wind, visibility } = results || {};
 
+  //fn to convert temperature from kelvin to celcius
+  const kelvinToCelcius = (temp) => {
+    return (temp - 273.15).toPrecision(3) + "°";
+  };
   //fn to return time  from unix timestamp
   const dateprocessing = (ts) => {
     let ress = new Date(ts * 1000);
@@ -34,7 +38,6 @@ const Today_highlight = ({ results, kelvinToCelcius }) => {
     return arr[val % 16];
   };
 
-  if ({ results })
     return (
       <>
         <h2 className="text-xl font-bold">Todays Highlights</h2>

@@ -3,8 +3,13 @@ import Image from "next/image";
 import imgurl from "../../public/temperature.gif";
 import { Alert } from "antd";
 
-const Weather_Today = ({ results, kelvinToCelcius }) => {
+const Weather_Today = ({ results }) => {
   const { main, clouds, weather, name, dt, sys } = results || {};
+
+  //fn to convert temperature from kelvin to celcius
+  const kelvinToCelcius = (temp) => {
+    return (temp - 273.15).toPrecision(3) + "°";
+  };
 
   //fn to return date from unix timestamp
   const dateprocessing = (ts) => {
@@ -44,48 +49,47 @@ const Weather_Today = ({ results, kelvinToCelcius }) => {
     };
   };
 
-  if ({ results })
-    return (
-      <>
-        <div className="p-3 h-full">
-          <div className="text-4xl text-center">
-            {name}, {sys && sys?.country}
+  return (
+    <>
+      <div className="p-3 h-full">
+        <div className="text-4xl text-center">
+          {name}, {sys && sys?.country}
+        </div>
+        <div className="text-base text-center ">
+          {dateprocessing(dt)?.day} , {dateprocessing(dt)?.date}
+        </div>
+        <div className="flex flex-row items-center py-5 ml-10 md:ml-0 md:justify-center">
+          {/* weather icon */}
+          <div className=" w-24 h-24 ">
+            <Image src={imgurl} alt="sunset" />
           </div>
-          <div className="text-base text-center ">
-            {dateprocessing(dt)?.day} , {dateprocessing(dt)?.date}
+          {/* Temp big */}
+          <div className="text-6xl font-semibold">
+            {main && kelvinToCelcius(main?.temp)}
           </div>
-          <div className="flex flex-row items-center py-5 ml-10 md:ml-0 md:justify-center">
-            {/* weather icon */}
-            <div className=" w-24 h-24 ">
-              <Image src={imgurl} alt="sunset" />
-            </div>
-            {/* Temp big */}
-            <div className="text-6xl font-semibold">
-              {main && kelvinToCelcius(main?.temp)}
-            </div>
-          </div>
+        </div>
 
-          {/* below flex */}
-          <div className="flex flex-col space-y-3">
-            <div className="bg-gray-500 text-center">
-              {weather && weather[0]?.description}
+        {/* below flex */}
+        <div className="flex flex-col space-y-3">
+          <div className="bg-gray-500 text-center">
+            {weather && weather[0]?.description}
+          </div>
+          <div className="bg-lime-200 flex flex-row justify-evenly   p-2 space-x-2">
+            <div className="bg-white p-2">
+              <h3 className="text-center">Max.</h3>
+              <p>{kelvinToCelcius(main?.temp_max)}</p>
             </div>
-            <div className="bg-lime-200 flex flex-row justify-evenly   p-2 space-x-2">
-              <div className="bg-white p-2">
-                <h3 className="text-center">Max.</h3>
-                <p>{kelvinToCelcius(main?.temp_max)}</p>
-              </div>
-              <div className="bg-white p-2 text-center  ">
-                <h3 className="text-center">Clouds</h3>
-                <p>{clouds?.all} %</p>
-              </div>
-              <div className="bg-white p-2 text-center">
-                <h3 className="text-center">Min.</h3>
-                <p>{kelvinToCelcius(main?.temp_min)}</p>
-              </div>
+            <div className="bg-white p-2 text-center  ">
+              <h3 className="text-center">Clouds</h3>
+              <p>{clouds?.all} %</p>
+            </div>
+            <div className="bg-white p-2 text-center">
+              <h3 className="text-center">Min.</h3>
+              <p>{kelvinToCelcius(main?.temp_min)}</p>
             </div>
           </div>
-          {/* <ol className="list">
+        </div>
+        {/* <ol className="list">
           <li>
             <strong>Temp : </strong>
             {main && kelvinToCelcius(main.temp) }
@@ -104,9 +108,9 @@ const Weather_Today = ({ results, kelvinToCelcius }) => {
           </li>
         </ol>
         {name}, {sys && sys.country} */}
-        </div>
-      </>
-    );
+      </div>
+    </>
+  );
 };
 
 export default Weather_Today;

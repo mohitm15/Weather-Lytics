@@ -8,12 +8,13 @@ import Weather_Today from "./components/Weather_Today";
 import Weather_week from "./components/Weather_week";
 import searchimageurl from "../public/search.gif";
 
-export default function Home() {
+const Home = () => {
   //console.log("res1 = ", results1);
   const router = useRouter();
   const [city, setCity] = useState("");
   const [data, setData] = useState({ day: {}, week: {} });
 
+  //for the first time
   useEffect(() => {
     (async () => {
       const url = `https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
@@ -54,10 +55,6 @@ export default function Home() {
     setData({ day: data1, week: data2 });
   };
 
-  const kelvinToCelcius = (temp) => {
-    return (temp - 273.15).toPrecision(3) + "°";
-  };
-
   return (
     <>
       <Head>
@@ -92,21 +89,15 @@ export default function Home() {
 
       <div className="min-h-full bg-red-400 flex flex-col lg:flex-row">
         <div className="bg-blue-300 w-full lg:w-1/4 lg:h-full">
-          <Weather_Today results={data.day} kelvinToCelcius={kelvinToCelcius} />
+          <Weather_Today results={data.day} />
         </div>
         <div className="bg-green-500 w-full lg:h-full ">
           <div className="min-h-full flex flex-col">
             <div className="bg-yellow-400 w-full">
-              <Today_highlight
-                results={data.day}
-                kelvinToCelcius={kelvinToCelcius}
-              />
+              <Today_highlight results={data.day} />
             </div>
             <div className="bg-orange-600 w-full">
-              <Weather_week
-                results1={data.week}
-                kelvinToCelcius={kelvinToCelcius}
-              />
+              <Weather_week results1={data.week} />
             </div>
           </div>
         </div>
@@ -138,3 +129,4 @@ export default function Home() {
 //     },
 //   };
 // }
+export default Home;
