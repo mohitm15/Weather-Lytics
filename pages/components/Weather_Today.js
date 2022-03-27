@@ -12,7 +12,7 @@ const Weather_Today = ({ results }) => {
 
   //fn to convert temperature from kelvin to celcius
   const kelvinToCelcius = (temp) => {
-    return (temp - 273.15).toPrecision(3) + "°";
+    return (temp - 273.15).toPrecision(3) ;
   };
 
   //fn to return date from unix timestamp
@@ -33,25 +33,27 @@ const Weather_Today = ({ results }) => {
       "Dec",
     ];
     let dayname = [
+      "Sunday",
       "Monday",
       "Tuesday",
       "Wednesday",
       "Thursday",
       "Friday",
-      "Saturday",
-      "Sunday",
+      "Saturday"
     ];
     let year = ress.getFullYear();
     let month = months[ress.getMonth()];
     let date = ress.getDate();
-    let dayofweek = dayname[ress.getDay() - 1];
+    let dayofweek = dayname[ress.getDay()];
     let time = ress.toLocaleTimeString("en-US");
     return {
       date: date + " " + month + " " + year,
       time: time,
       day: dayofweek,
     };
+    
   };
+
 
   return (
     <>
@@ -83,7 +85,7 @@ const Weather_Today = ({ results }) => {
             <div className="w-14 h-14 p-2">
               <Image src={imgurl1} layout="responsive" alt="temp" />
             </div>
-              <p>{kelvinToCelcius(main?.temp_max)}</p>
+              <p>{kelvinToCelcius(main?.temp_max)+ "°"}</p>
             </div>
             <div className="bg-white p-2 text-center  ">
             <div className="w-14 h-14 p-2">
@@ -95,7 +97,7 @@ const Weather_Today = ({ results }) => {
             <div className="w-14 h-14 p-2">
               <Image src={imgurl3} layout="responsive" alt="temp" />
             </div>
-              <p>{kelvinToCelcius(main?.temp_min)}</p>
+              <p>{kelvinToCelcius(main?.temp_min)+ "°"}</p>
             </div>
           </div>
         </div>

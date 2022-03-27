@@ -44,7 +44,7 @@ const Weather_week = ({ results1 }) => {
           {list &&
             list.map((item) => {
               return (
-                <>
+                
                   <div
                     key={String(item?.speed)}
                     className="bg-pink-200 rounded-lg border border-gray-200 shadow-md "
@@ -72,7 +72,7 @@ const Weather_week = ({ results1 }) => {
                       </div>
                     </div>
                   </div>
-                </>
+                
               );
             })}
         </div>
