@@ -40,7 +40,7 @@ const Weather_week = ({ results1 }) => {
   return (
     <>
       <div className="px-2">
-        <div className="p-4 flex flex-row overflow-x-scroll space-x-2">
+        <div className="p-4 flex flex-row overflow-x-scroll xl:overflow-x-hidden space-x-2">
           {list &&
             list.map((item) => {
               return (
@@ -56,7 +56,9 @@ const Weather_week = ({ results1 }) => {
                       <h6 className="mb-1 text-sm  text-gray-600 font-light">
                         {dateprocessing(item?.dt).date}
                       </h6>
-                      <Image src={imgurl} height={40} width={40} alt="sunset" />
+                      <div className="h-16 w-16 xl:h-20 xl:w-20">
+                      <Image src={imgurl} layout="responsive" alt="sunset" />
+                      </div>
                       <span className="text-base text-gray-800 ">
                         {kelvinToCelcius(item?.temp?.day)} C
                       </span>
@@ -64,10 +66,10 @@ const Weather_week = ({ results1 }) => {
                         {kelvinToCelcius(item?.temp?.night)} C
                       </span>
 
-                      <div className="flex mt-4 lg:mt-6">
-                        <a className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 ">
+                      <div className="flex mt-4 lg:mt-2">
+                        <a className="inline-flex items-center py-2 px-4 text-base font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 ">
                           {item.weather[0]?.description} and{" "}
-                          {item.weather[0]?.main}
+                          {/* {item.weather[0]?.main} */}
                         </a>
                       </div>
                     </div>

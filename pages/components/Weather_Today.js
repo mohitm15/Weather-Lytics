@@ -149,7 +149,7 @@ const Weather_Today = ({ results }) => {
           <div className="bg-lime-200 flex flex-row justify-evenly items-center p-2 space-x-2 text-center">
             <div className="bg-white p-2 h-full rounded-xl">
               <div className="text-gray-400 leading-tight ">
-                Max. Temp.
+                Max.<br/> Temp.
               </div>
               <div className="xl:w-20 xl:h-20 bg-green-300 m-auto">
                 <Image src={imgurl1} layout="responsive" alt="temp" />
@@ -158,7 +158,7 @@ const Weather_Today = ({ results }) => {
             </div>
             <div className="bg-white p-2 h-full rounded-xl">
               <div className="text-gray-400 leading-tight ">
-                Cloud Cover
+                Cloud <br/> Cover
               </div>
               <div className="xl:w-20 xl:h-20 bg-green-300 m-auto">
                 <Image src={imgurl2} layout="intrinsic" alt="temp" />
@@ -178,10 +178,18 @@ const Weather_Today = ({ results }) => {
         </div>
         <div className="flex flex-row py-3 w-full justify-evenly">
           <div className="bg-gradient-to-r from-blue-300 to-slate-300 p-3">
-            <span className="font-semibold text-base">Latitude : </span>  {coord.lat.toPrecision(3)}
+            <span className="font-semibold text-base">Latitude : </span>  {coord?.lat.toPrecision(3)}
           </div>
           <div className="bg-gradient-to-r from-blue-300 to-slate-300 p-3">
-            <span className="font-semibold text-base">Longitude : </span>  {coord.lon.toPrecision(3)}
+            <span className="font-semibold text-base">Longitude : </span>  {coord?.lon.toPrecision(3)}
+          </div>
+        </div>
+        <div className="flex flex-row py-3 w-full justify-center">
+          <div className="h-10 w-10 bg-green-200">
+            <Image src={imgurl3} alt="weathericon" layout="responsive" />
+          </div>
+          <div className="bg-gradient-to-r from-blue-300 to-slate-300 p-3">
+            <h3 className="font-light">Weather-Lytics</h3>
           </div>
         </div>
       </div>
