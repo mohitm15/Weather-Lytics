@@ -39,7 +39,7 @@ const Weather_week = ({ results1 }) => {
 
   return (
     <>
-      <div>
+      <div className="px-2">
         <div className="p-4 flex flex-row overflow-x-scroll space-x-2">
           {list &&
             list.map((item) => {

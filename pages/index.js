@@ -87,16 +87,16 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="min-h-full bg-red-400 flex flex-col lg:flex-row">
-        <div className="bg-blue-300 w-full lg:w-1/4 lg:h-full">
+      <div className="min-h-full bg-red-200 flex flex-col lg:flex-row ">
+        <div className="bg-blue-300 w-full lg:w-1/4 lg:h-full xl:m-4 xl:rounded-3xl">
           <Weather_Today results={data.day} />
         </div>
-        <div className="bg-green-500 w-full lg:h-full ">
+        <div className="bg-green-200 w-full lg:h-full ">
           <div className="min-h-full flex flex-col">
-            <div className="bg-yellow-400 w-full">
+            <div className="bg-yellow-400 w-full ">
               <Today_highlight results={data.day} />
             </div>
-            <div className="bg-orange-600 w-full">
+            <div className="bg-orange-600 xl:m-5">
               <Weather_week results1={data.week} />
             </div>
           </div>

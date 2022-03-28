@@ -4,15 +4,14 @@ import imgurl1 from "../../public/temperature.gif";
 import imgurl2 from "../../public/clouds.gif";
 import imgurl3 from "../../public/coldtemp.gif";
 import imgurl4 from "../../public/celsiusbold.gif";
-
-
+import imgurl5 from "../../public/compass.gif";
 
 const Weather_Today = ({ results }) => {
-  const { main, clouds, weather, name, dt, sys } = results || {};
+  const { main, clouds, weather, name, dt, sys,coord } = results || {};
 
   //fn to convert temperature from kelvin to celcius
   const kelvinToCelcius = (temp) => {
-    return (temp - 273.15).toPrecision(3) ;
+    return (temp - 273.15).toPrecision(3);
   };
 
   //fn to return date from unix timestamp
@@ -39,7 +38,7 @@ const Weather_Today = ({ results }) => {
       "Wednesday",
       "Thursday",
       "Friday",
-      "Saturday"
+      "Saturday",
     ];
     let year = ress.getFullYear();
     let month = months[ress.getMonth()];
@@ -51,22 +50,20 @@ const Weather_Today = ({ results }) => {
       time: time,
       day: dayofweek,
     };
-    
   };
-
 
   return (
     <>
-      <div className="p-3 h-full">
+      <div className="p-3 h-full xl:hidden">
         <div className="text-4xl text-center">
           {name}, {sys && sys?.country}
         </div>
         <div className="text-base text-center ">
           {dateprocessing(dt)?.day} , {dateprocessing(dt)?.date}
         </div>
-        <div className="flex flex-row items-center py-5 ml-10 md:ml-0 md:justify-center">
-                    {/* Temp big */}
-                    <div className="text-6xl font-semibold">
+        <div className="flex flex-row items-center py-5 justify-center">
+          {/* Temp big */}
+          <div className="text-6xl font-semibold">
             {main && kelvinToCelcius(main?.temp)}
           </div>
           {/* weather icon */}
@@ -77,27 +74,27 @@ const Weather_Today = ({ results }) => {
 
         {/* below flex */}
         <div className="flex flex-col space-y-3">
-          <div className="bg-gray-500 text-center">
+        <div className="bg-gray-300 py-2 text-xl rounded-lg capitalize text-center border-2 border-gray-400 px-3" >
             {weather && weather[0]?.description}
           </div>
           <div className="bg-lime-200 flex flex-row justify-evenly   p-2 space-x-2">
             <div className="bg-white p-2">
-            <div className="w-14 h-14 p-2">
-              <Image src={imgurl1} layout="responsive" alt="temp" />
-            </div>
-              <p>{kelvinToCelcius(main?.temp_max)+ "°"}</p>
+              <div className="w-14 h-14 p-2">
+                <Image src={imgurl1} layout="responsive" alt="temp" />
+              </div>
+              <p>{kelvinToCelcius(main?.temp_max) + "°"}</p>
             </div>
             <div className="bg-white p-2 text-center  ">
-            <div className="w-14 h-14 p-2">
-              <Image src={imgurl2} layout="intrinsic" alt="temp" />
-            </div>
+              <div className="w-14 h-14 p-2">
+                <Image src={imgurl2} layout="intrinsic" alt="temp" />
+              </div>
               <p>{clouds?.all} %</p>
             </div>
             <div className="bg-white p-2 text-center">
-            <div className="w-14 h-14 p-2">
-              <Image src={imgurl3} layout="responsive" alt="temp" />
-            </div>
-              <p>{kelvinToCelcius(main?.temp_min)+ "°"}</p>
+              <div className="w-14 h-14 p-2">
+                <Image src={imgurl3} layout="responsive" alt="temp" />
+              </div>
+              <p>{kelvinToCelcius(main?.temp_min) + "°"}</p>
             </div>
           </div>
         </div>
@@ -120,6 +117,73 @@ const Weather_Today = ({ results }) => {
           </li>
         </ol>
         {name}, {sys && sys.country} */}
+      </div>
+
+      {/* for desktop screen greather than lg breakpoint */}
+      <div className="px-8 py-5 h-full hidden xl:block">
+        <div className="text-5xl text-center pb-2">
+          {name}, {sys && sys?.country}
+        </div>
+        <div className="text-lg text-center ">
+          {dateprocessing(dt)?.day} , {dateprocessing(dt)?.date}
+        </div>
+        <div className="text-center">
+          <Image src={imgurl2} height={220} width={220} alt="mainicon" />
+        </div>
+        <div className="flex flex-row items-center py-5 xl:py-2 ml-10 md:ml-0 md:justify-center">
+          {/* Temp big */}
+          <div className="text-7xl font-semibold">
+            {main && kelvinToCelcius(main?.temp)}
+          </div>
+          {/* weather icon */}
+          <div className=" w-24 h-24 ">
+            <Image src={imgurl4} alt="sunset" />
+          </div>
+        </div>
+
+        {/* below flex */}
+        <div className="flex flex-col space-y-4 justify-center items-center">
+          <div className="bg-gray-300 py-2 text-xl rounded-lg capitalize text-center border-2 border-gray-400 px-3" >
+            {weather && weather[0]?.description}
+          </div>
+          <div className="bg-lime-200 flex flex-row justify-evenly items-center p-2 space-x-2 text-center">
+            <div className="bg-white p-2 h-full rounded-xl">
+              <div className="text-gray-400 leading-tight ">
+                Max. Temp.
+              </div>
+              <div className="xl:w-20 xl:h-20 bg-green-300 m-auto">
+                <Image src={imgurl1} layout="responsive" alt="temp" />
+              </div>
+              <p>{kelvinToCelcius(main?.temp_max) + "°"}</p>
+            </div>
+            <div className="bg-white p-2 h-full rounded-xl">
+              <div className="text-gray-400 leading-tight ">
+                Cloud Cover
+              </div>
+              <div className="xl:w-20 xl:h-20 bg-green-300 m-auto">
+                <Image src={imgurl2} layout="intrinsic" alt="temp" />
+              </div>
+              <p>{clouds?.all} %</p>
+            </div>
+            <div className="bg-white p-2 h-full rounded-xl">
+              <div className="text-gray-400 leading-tight ">
+                Min. <br/> Temp.
+              </div>
+              <div className="xl:w-20 xl:h-20 bg-green-300 m-auto">
+                <Image src={imgurl3} layout="responsive" alt="temp" />
+              </div>
+              <p>{kelvinToCelcius(main?.temp_min) + "°"}</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-row py-3 w-full justify-evenly">
+          <div className="bg-gradient-to-r from-blue-300 to-slate-300 p-3">
+            <span className="font-semibold text-base">Latitude : </span>  {coord.lat.toPrecision(3)}
+          </div>
+          <div className="bg-gradient-to-r from-blue-300 to-slate-300 p-3">
+            <span className="font-semibold text-base">Longitude : </span>  {coord.lon.toPrecision(3)}
+          </div>
+        </div>
       </div>
     </>
   );
