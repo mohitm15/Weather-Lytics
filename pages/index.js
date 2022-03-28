@@ -64,7 +64,7 @@ const Home = () => {
       </Head>
 
       {/* input */}
-      <div className="p-3 xl:p-10 flex flex-row justify-center items-center space-x-2 xl:space-x-5 bg-blue-900">
+      <div className="p-3 xl:p-5 flex flex-row justify-center items-center space-x-2 xl:space-x-5 bg-blue-900">
         <div className="bg-lime-300 border-2 border-stone-700 rounded-full ">
           <input
             className="w-full rounded-full p-2 xl:p-4 text-base xl:text-3xl text-blue-800 font-bold active:rounded-full "
@@ -91,9 +91,9 @@ const Home = () => {
         <div className="bg-blue-300 w-full lg:w-1/4 lg:h-full xl:m-4 xl:rounded-3xl">
           <Weather_Today results={data.day} />
         </div>
-        <div className="bg-green-200 w-full lg:h-full ">
+        <div className="bg-green-200 lg:h-full ">
           <div className="min-h-full flex flex-col">
-            <div className="bg-yellow-400 w-full ">
+            <div className="bg-yellow-400 xl:m-4 xl:rounded-3xl">
               <Today_highlight results={data.day} />
             </div>
             <div className="bg-orange-600 xl:m-5">
