@@ -1,10 +1,18 @@
 import React from "react";
 import Image from "next/image";
 import imgurl1 from "../../public/temperature.gif";
-import imgurl2 from "../../public/clouds.gif";
 import imgurl3 from "../../public/coldtemp.gif";
 import imgurl4 from "../../public/celsiusbold.gif";
-import imgurl5 from "../../public/compass.gif";
+import wimgurl1 from "../../public/sunfi.gif";
+import wimgurl2 from "../../public/cloudyday.gif";
+import wimgurl3 from "../../public/1-cloud.gif";
+import wimgurl4 from "../../public/clouds.gif";
+import wimgurl5 from "../../public/mildrain.gif";
+import wimgurl6 from "../../public/rain.gif";
+import wimgurl7 from "../../public/storm.gif";
+import wimgurl8 from "../../public/snow.gif";
+import wimgurl9 from "../../public/fog.gif";
+import wimgurl10 from "../../public/snow-rain.gif";
 
 const Weather_Today = ({ results }) => {
   const { main, clouds, weather, name, dt, sys,coord } = results || {};
@@ -52,6 +60,32 @@ const Weather_Today = ({ results }) => {
     };
   };
 
+   //fn to determine the icon
+   function changeWeatherIcon(des) {
+    //console.log("des =",des)
+
+    if(des === "sky is clear" || des === "clear sky" ) return wimgurl1;
+
+    else if(des === "few clouds") return wimgurl2;
+
+    else if(des === "scattered clouds") return wimgurl3;
+
+    else if(des === "broken clouds" || des === "overcast clouds") return wimgurl4;
+
+    else if(des === "shower rain" || des === "light rain" || des === "drizzle" || des === "moderate rain") return wimgurl5;
+
+    else if(des === "rain" || des === "very heavy rain" || des === "heavy intensity rain" || des === "extreme rain"|| des === "heavy intensity shower rain") return wimgurl6;
+
+    else if(des === "thunderstorm" || des === "light thunderstorm"|| des === "heavy thunderstorm" || des === "ragged thunderstorm" || des === "thunderstorm with rain") return wimgurl7;
+
+    else if(des === "snow" || des === "light snow" || des === "heavy snow") return wimgurl8;
+
+    else if(des === "light rain and snow" || des === "rain and snow" || des === "light shower snow") return wimgurl10;
+
+    else if(des === "mist" || des === "fog" || des === "smoke" || des === "haze") return wimgurl9;
+    else return wimgurl9;
+  }
+
   return (
     <>
       <div className="p-3 h-full xl:hidden">
@@ -86,7 +120,7 @@ const Weather_Today = ({ results }) => {
             </div>
             <div className="bg-white p-2 text-center  ">
               <div className="w-14 h-14 p-2">
-                <Image src={imgurl2} layout="intrinsic" alt="temp" />
+                <Image src={wimgurl2} layout="intrinsic" alt="temp" />
               </div>
               <p>{clouds?.all} %</p>
             </div>
@@ -128,7 +162,7 @@ const Weather_Today = ({ results }) => {
           {dateprocessing(dt)?.day} , {dateprocessing(dt)?.date}
         </div>
         <div className="text-center">
-          <Image src={imgurl2} height={220} width={220} alt="mainicon" />
+          <Image src={changeWeatherIcon(weather[0]?.description)} height={220} width={220} alt="mainicon" />
         </div>
         <div className="flex flex-row items-center py-5 xl:py-2 ml-10 md:ml-0 md:justify-center">
           {/* Temp big */}
@@ -161,7 +195,7 @@ const Weather_Today = ({ results }) => {
                 Cloud <br/> Cover
               </div>
               <div className="xl:w-20 xl:h-20 bg-green-300 m-auto">
-                <Image src={imgurl2} layout="intrinsic" alt="temp" />
+                <Image src={wimgurl2} layout="intrinsic" alt="temp" />
               </div>
               <p>{clouds?.all} %</p>
             </div>

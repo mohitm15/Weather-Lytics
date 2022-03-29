@@ -2,7 +2,6 @@ import Head from "next/head";
 import { useEffect } from "react";
 import Image from "next/image";
 import { useState } from "react";
-//import { useRouter } from "next/router";
 import Today_highlight from "./components/Today_highlight";
 import Weather_Today from "./components/Weather_Today";
 import Weather_week from "./components/Weather_week";
