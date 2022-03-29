@@ -162,7 +162,7 @@ const Weather_Today = ({ results }) => {
           {dateprocessing(dt)?.day} , {dateprocessing(dt)?.date}
         </div>
         <div className="text-center">
-          <Image src={changeWeatherIcon(weather[0]?.description)} height={220} width={220} alt="mainicon" />
+          <Image src={wimgurl1 || changeWeatherIcon(weather[0]?.description)} height={220} width={220} alt="mainicon" />
         </div>
         <div className="flex flex-row items-center py-5 xl:py-2 ml-10 md:ml-0 md:justify-center">
           {/* Temp big */}

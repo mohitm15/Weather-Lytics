@@ -93,7 +93,7 @@ const Weather_week = ({ results1 }) => {
                         {dateprocessing(item?.dt).date}
                       </h6>
                       <div className="h-16 w-16 xl:h-20 xl:w-20">
-                      <Image src={changeWeatherIcon(item.weather[0]?.description)} layout="responsive" alt="sunset" />
+                      <Image src={imgurl1 || changeWeatherIcon(item.weather[0]?.description)} layout="responsive" alt="sunset" />
                       </div>
                       <span className="text-base text-gray-800 ">
                         {kelvinToCelcius(item?.temp?.day)} C
