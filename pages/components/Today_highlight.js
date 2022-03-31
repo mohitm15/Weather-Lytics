@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import imgurl2 from "../../public/celsius.gif";
-import imgurl3 from "../../public/compass.gif";
-import imgurl4 from "../../public/rain.gif";
+import imgurl3 from "../../public/visibilty.gif";
+import imgurl4 from "../../public/mildrain.gif";
 import imgurl5 from "../../public/thermo.gif";
 import imgurl6 from "../../public/sunset.gif";
 import imgurl7 from "../../public/wind.gif";
@@ -47,7 +47,8 @@ const Today_highlight = ({ results }) => {
 
   return (
     <>
-      <div className="text-center pt-3 pb-2 font-semibold">
+      {/* mobile view */}
+      <div className="text-center pt-3 pb-2 xl:hidden font-semibold">
         <h3 className="text-2xl"> Today&apos;s Highlights</h3>
       </div>
       <div className="container p-2 m-auto space-y-2 xl:hidden">
@@ -57,7 +58,7 @@ const Today_highlight = ({ results }) => {
             <div className="w-14 h-14 p-2">
               <Image src={imgurl2} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 font-normal text-gray-700 ">
+            <div className="mb-3 text-gray-900 font-[1100] text-md ">
               {main && kelvinToCelcius(main?.temp)}
             </div>
           </div>
@@ -66,7 +67,7 @@ const Today_highlight = ({ results }) => {
             <div className="w-14 h-14 p-2">
               <Image src={imgurl6} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 font-normal text-gray-700 ">
+            <div className="mb-3 text-gray-900 font-[1100] text-md ">
               {dateprocessing(sys?.sunrise).time} AM
               <br />
               {dateprocessing(sys?.sunset).time} PM
@@ -79,8 +80,9 @@ const Today_highlight = ({ results }) => {
             <div className="w-14 h-14 p-2">
               <Image src={imgurl7} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 font-normal text-gray-700 ">
-              {wind && wind?.speed} m/s, {wind && degTodirection(wind?.deg)}
+            <div className="mb-3 text-gray-900 font-[1100] text-md ">
+              {wind && wind?.speed} m/s, <br />
+              {wind && degTodirection(wind?.deg)}
             </div>
           </div>
           {/*  */}
@@ -88,7 +90,7 @@ const Today_highlight = ({ results }) => {
             <div className="w-14 h-14 p-2">
               <Image src={imgurl3} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 font-normal text-gray-700 ">
+            <div className="mb-3 text-gray-900 font-[1100] text-md ">
               {visibility} m
             </div>
           </div>
@@ -100,7 +102,7 @@ const Today_highlight = ({ results }) => {
             <div className="w-14 h-14 p-2">
               <Image src={imgurl4} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 font-normal text-gray-700 ">
+            <div className="mb-3 text-gray-900 font-[1100] text-md ">
               {main && main?.humidity} %
             </div>
           </div>
@@ -109,7 +111,7 @@ const Today_highlight = ({ results }) => {
             <div className="w-14 h-14 p-2">
               <Image src={imgurl5} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 font-normal text-gray-700 ">
+            <div className="mb-3 text-gray-900 font-[1100] text-md ">
               {main && main?.pressure} hPa
             </div>
           </div>
@@ -122,7 +124,6 @@ const Today_highlight = ({ results }) => {
         {/* Today highlights */}
         <div className="text-center xl:mx-5 font-semibold">
           <h3 className="xl:text-5xl 2xl:text-6xl">
-            {" "}
             Today&apos;s <br /> Highlights
           </h3>
         </div>
@@ -136,7 +137,7 @@ const Today_highlight = ({ results }) => {
               <div className="w-20 h-20 p-2 ">
                 <Image src={imgurl2} layout="responsive" alt="temp" />
               </div>
-              <div className=" font-normal text-gray-700 ">
+              <div className=" text-gray-900 font-[1100] text-xl">
                 {main && kelvinToCelcius(main?.temp)}
               </div>
             </div>
@@ -146,7 +147,7 @@ const Today_highlight = ({ results }) => {
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl6} layout="responsive" alt="temp" />
               </div>
-              <div className=" font-normal text-gray-700 ">
+              <div className=" text-gray-900 font-[1100] text-lg ">
                 {dateprocessing(sys?.sunrise).time} AM
                 <br />
                 {dateprocessing(sys?.sunset).time} PM
@@ -158,7 +159,7 @@ const Today_highlight = ({ results }) => {
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl4} layout="responsive" alt="temp" />
               </div>
-              <div className=" font-normal text-gray-700 ">
+              <div className=" text-gray-900 font-[1100] text-xl ">
                 {main && main?.humidity} %
               </div>
             </div>
@@ -170,7 +171,7 @@ const Today_highlight = ({ results }) => {
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl7} layout="responsive" alt="temp" />
               </div>
-              <div className=" font-normal text-gray-700 ">
+              <div className=" text-gray-900 font-[1100] text-xl ">
                 {wind && wind?.speed} m/s, {wind && degTodirection(wind?.deg)}
               </div>
             </div>
@@ -180,7 +181,9 @@ const Today_highlight = ({ results }) => {
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl3} layout="responsive" alt="temp" />
               </div>
-              <div className=" font-normal text-gray-700 ">{visibility} m</div>
+              <div className=" text-gray-900 font-[1100] text-xl ">
+                {visibility} m
+              </div>
             </div>
             {/*  */}
             <div className="flex flex-col items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-48 h-48">
@@ -188,7 +191,7 @@ const Today_highlight = ({ results }) => {
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl5} layout="responsive" alt="temp" />
               </div>
-              <div className=" font-normal text-gray-700 ">
+              <div className=" text-gray-900 font-[1100] text-xl ">
                 {main && main?.pressure} hPa
               </div>
             </div>

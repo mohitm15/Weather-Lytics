@@ -6,6 +6,7 @@ import Today_highlight from "./components/Today_highlight";
 import Weather_Today from "./components/Weather_Today";
 import Weather_week from "./components/Weather_week";
 import searchimageurl from "../public/search.gif";
+import Typed from "react-typed";
 
 const Home = () => {
   //console.log("res1 = ", results1);
@@ -62,48 +63,66 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* input */}
-      <div className="p-3 xl:p-5 flex flex-row justify-center items-center space-x-2 xl:space-x-5 bg-blue-900">
-        <div className=" border-2 border-stone-700 rounded-full ">
-          <input
-            className="w-full rounded-full p-2 xl:p-4 text-base xl:text-3xl text-blue-800 font-bold active:rounded-full "
-            value={city}
-            placeholder="Enter city"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <button className="p-1 m-auto p-auto" onClick={() => handleSubmit()}>
-            <div className="w-14 h-14 xl:w-16 xl:h-16 p-2 rounded-full bg-pink-400 border-2 hover:bg-pink-600 border-white">
-              <Image
-                src={searchimageurl}
-                layout="responsive"
-                alt="Search_icon"
-                className=" rounded-full p-3 bg-blue-900 "
+      <div className="bg-[url('../public/back1.gif')]">
+        {/* input */}
+        <div className="p-3 xl:p-5 flex flex-row justify-center items-center space-x-2 xl:space-x-5 ">
+          <div className=" border-2 border-stone-700 rounded-full ">
+            <Typed
+              strings={[
+                "Search for Delhi",
+                "Search for Tokyo",
+                "Search for California",
+                "Search for Ulaanbaatar",
+              ]}
+              typeSpeed={30}
+              backSpeed={50}
+              attr="placeholder"
+              loop
+            >
+              <input
+                className="w-full rounded-full p-2 xl:p-4 pl-5 xl:pl-10 text-base xl:text-3xl text-blue-800 font-bold active:rounded-full "
+                value={city}
+                type="text"
+                onChange={handleChange}
               />
-            </div>
-          </button>
+            </Typed>
+          </div>
+          <div>
+            <button
+              className="p-1 m-auto p-auto"
+              onClick={() => handleSubmit()}
+            >
+              <div className="w-14 h-14 xl:w-16 xl:h-16 p-2 rounded-full bg-pink-400 border-2 hover:bg-pink-600 border-white">
+                <Image
+                  src={searchimageurl}
+                  layout="responsive"
+                  alt="Search_icon"
+                  className=" rounded-full p-3 bg-blue-900 "
+                />
+              </div>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div className="min-h-full bg-red-200 flex flex-col lg:flex-row justify-evenly">
-        <div className="bg-blue-300 w-full h-full lg:w-1/4 lg:h-full xl:m-4 xl:rounded-3xl">
-          <Weather_Today results={data.day} />
-        </div>
-        <div className=" lg:h-full">
-          <div className="min-h-full flex flex-col">
-            <div className="bg-yellow-400 xl:m-4 xl:rounded-3xl">
-              <Today_highlight results={data.day} />
-            </div>
-            <div className="bg-orange-600 xl:m-4 xl:rounded-3xl">
-              <Weather_week results1={data.week} />
+        <div className="min-h-full  flex flex-col lg:flex-row justify-evenly ">
+          <div className="bg-blue-300/40 xl:bg-blue-300/50 w-full h-full lg:w-1/4 lg:h-full xl:m-4 rounded-lg xl:rounded-3xl">
+            <Weather_Today results={data.day} />
+          </div>
+          <div className=" lg:h-full">
+            <div className="min-h-full flex flex-col">
+              <div className="bg-yellow-400/40 xl:bg-blue-300/50 xl:m-4 xl:rounded-3xl">
+                <Today_highlight results={data.day} />
+              </div>
+              <div className="bg-orange-600/40 xl:bg-blue-300/50 xl:m-4 xl:rounded-3xl">
+                <Weather_week results1={data.week} />
+              </div>
             </div>
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 // export async function getServerSideProps({ query }) {
 //   // if there is no query
