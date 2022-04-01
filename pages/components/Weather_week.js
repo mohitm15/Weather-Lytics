@@ -105,7 +105,7 @@ const Weather_week = ({ results1 }) => {
               return (
                 <div
                   key={String(item?.speed)}
-                  className="bg-pink-200 hover:bg-pink-200/80 rounded-lg border border-gray-200 shadow-md "
+                  className="bg-blue-100 hover:bg-blue-200/80 rounded-lg border border-gray-600 shadow-md "
                 >
                   <div className="flex flex-col w-32 items-center p-3 text-center">
                     <h5 className="mb-1 text-lg font-medium  text-gray-900 uppercase">

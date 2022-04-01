@@ -148,8 +148,8 @@ const Weather_Today = ({ results }) => {
           <div className="bg-gray-300 py-2 text-xl rounded-lg capitalize text-center border-2 border-gray-400 px-3 hover:bg-gray-400 hover:border-gray-500 ">
             {weather && weather[0]?.description}
           </div>
-          <div className="bg-blue-200 flex flex-row justify-evenly text-center p-3 space-x-2 rounded-lg">
-            <div className="bg-gray-100 hover:bg-white p-2">
+          <div className="bg-green-200/60 flex flex-row justify-evenly text-center p-3 space-x-2 rounded-lg">
+            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black ">
               <div className="text-gray-500 leading-tight ">
                 Max.
                 <br /> Temp.
@@ -161,7 +161,7 @@ const Weather_Today = ({ results }) => {
                 {kelvinToCelcius(main?.temp_max) + "°"}
               </p>
             </div>
-            <div className="bg-gray-100 hover:bg-white p-2 text-center  ">
+            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black text-center  ">
               <div className="text-gray-500 leading-tight ">
                 Cloud
                 <br /> Cover
@@ -171,7 +171,7 @@ const Weather_Today = ({ results }) => {
               </div>
               <p className="text-base font-[500]">{clouds?.all} %</p>
             </div>
-            <div className="bg-gray-100 hover:bg-white p-2 text-center">
+            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black text-center">
               <div className="text-gray-500 leading-tight ">
                 Min.
                 <br /> Temp.
@@ -222,7 +222,7 @@ const Weather_Today = ({ results }) => {
             {weather && weather[0]?.description}
           </div>
           <div className="bg-blue-200 flex flex-row justify-evenly items-center p-3 space-x-4 text-center rounded-lg">
-            <div className="bg-gray-100 hover:bg-white p-2 h-full rounded-xl">
+            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black h-full rounded-xl">
               <div className="text-gray-400 leading-tight ">
                 Max.
                 <br /> Temp.
@@ -234,7 +234,7 @@ const Weather_Today = ({ results }) => {
                 {kelvinToCelcius(main?.temp_max) + "°"}
               </p>
             </div>
-            <div className="bg-gray-100 hover:bg-white p-2 h-full rounded-xl">
+            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black h-full rounded-xl">
               <div className="text-gray-400 leading-tight ">
                 Cloud <br /> Cover
               </div>
@@ -243,7 +243,7 @@ const Weather_Today = ({ results }) => {
               </div>
               <p className="text-base font-[500]">{clouds?.all} %</p>
             </div>
-            <div className="bg-gray-100 hover:bg-white p-2 h-full rounded-xl">
+            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black h-full rounded-xl">
               <div className="text-gray-400 leading-tight ">
                 Min. <br /> Temp.
               </div>
@@ -266,7 +266,7 @@ const Weather_Today = ({ results }) => {
             {coord?.lon.toPrecision(3)}
           </div>
         </div>
-        <div className="flex flex-row py-3  justify-center items-center px-3 border-2 border-gray-600 rounded-xl">
+        <div className="flex flex-row py-3  justify-center items-center px-3 border-2 border-gray-600 rounded-xl bg-white hover:bg-gray-200">
           <div className="h-10 w-10 ">
             <Image src={imgurl5} alt="weathericon" layout="responsive" />
           </div>

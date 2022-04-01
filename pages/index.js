@@ -63,7 +63,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="bg-[url('../public/back1.gif')]">
+      <div className="bg-[url('../public/back_small.jpg')] lg:bg-[url('../public/back_big.jpg')] bg-no-repeat">
         {/* input */}
         <div className="p-3 xl:p-5 flex flex-row justify-center items-center space-x-2 xl:space-x-5 ">
           <div className=" border-2 border-stone-700 rounded-full ">
@@ -105,15 +105,15 @@ const Home = () => {
         </div>
 
         <div className="min-h-full  flex flex-col lg:flex-row justify-evenly ">
-          <div className="bg-blue-300/40 xl:bg-blue-300/50 w-full h-full lg:w-1/4 lg:h-full xl:m-4 rounded-lg xl:rounded-3xl">
+          <div className="bg-white/50 xl:bg-white/70  w-full h-full lg:w-1/4 lg:h-full xl:m-4 rounded-lg xl:rounded-3xl">
             <Weather_Today results={data.day} />
           </div>
           <div className=" lg:h-full">
             <div className="min-h-full flex flex-col">
-              <div className="bg-yellow-400/40 xl:bg-blue-300/50 xl:m-4 xl:rounded-3xl">
+              <div className="bg-white/50 xl:bg-white/70 xl:m-4 xl:rounded-3xl">
                 <Today_highlight results={data.day} />
               </div>
-              <div className="bg-orange-600/40 xl:bg-blue-300/50 xl:m-4 xl:rounded-3xl">
+              <div className="bg-white/50 xl:bg-white/70 xl:m-4 xl:rounded-3xl">
                 <Weather_week results1={data.week} />
               </div>
             </div>
