@@ -8,14 +8,11 @@ import Weather_week from "./components/Weather_week";
 import searchimageurl from "../public/search.gif";
 import Typed from "react-typed";
 
-
 const Home = () => {
-
   const [city, setCity] = useState("");
   const [data, setData] = useState({ day: {}, week: {} });
 
-  let weather_desc = "day_sun";
-
+  let weather_desc_array = [{ description: "clear sky" }];
 
   //for the first time
   useEffect(() => {
@@ -35,16 +32,12 @@ const Home = () => {
     })();
   }, []);
 
-
-
   const handleChange = (e) => {
     setCity(e.target.value);
     //console.log(city)
   };
 
   const handleSubmit = async (e) => {
-
-
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
     const res = await fetch(url);
     const data1 = await res.json();
@@ -58,59 +51,64 @@ const Home = () => {
     setData({ day: data1, week: data2 });
   };
 
-
-  weather_desc = data.day.weather[0].description
+  weather_desc_array = data?.day?.weather;
+  // let weather_desc_desc;
+  // if(weather_desc_array!="day_sun") {
+  //   weather_desc_array.map((item)=>{
+  //     weather_desc_desc = item.description
+  //   })
+  // }
 
   function changebackground(des) {
-
-    if (des === "sky is clear" || des === "clear sky") return 'lg:bg-day_sun';
-    else if (des === "few clouds") return 'lg:bg-day_cloud';
-    else if (des === "scattered clouds") return 'lg:bg-day_cloud';
-    else if (des === "broken clouds" || des === "overcast clouds")
-      return 'lg:bg-day_cloud';
-    else if (
-      des === "shower rain" ||
-      des === "light rain" ||
-      des === "drizzle" ||
-      des === "moderate rain"
-    )
-      return 'lg:bg-day_rain';
-    else if (
-      des === "rain" ||
-      des === "very heavy rain" ||
-      des === "heavy intensity rain" ||
-      des === "extreme rain" ||
-      des === "heavy intensity shower rain"||
-      des === "light intensity shower rain"
-    )
-      return 'lg:bg-day_rain';
-    else if (
-      des === "thunderstorm" ||
-      des === "light thunderstorm" ||
-      des === "heavy thunderstorm" ||
-      des === "ragged thunderstorm" ||
-      des === "thunderstorm with rain"
-    )
-      return 'lg:bg-night_thunder';
-    else if (des === "snow" || des === "light snow" || des === "heavy snow")
-      return 'lg:bg-day_snow';
-    else if (
-      des === "light rain and snow" ||
-      des === "rain and snow" ||
-      des === "light shower snow"
-    )
-      return 'lg:bg-night_snow';
-    else if (
-      des === "mist" ||
-      des === "fog" ||
-      des === "smoke" ||
-      des === "haze"
-    )
-      return 'lg:bg-day_rain';
-    else return 'lg:bg-day_sun';
+    //console.log("des found - ", des);
+    if (des !== "clear sky") {
+      des = des[0].description;
+      if (des === "sky is clear" || des === "clear sky") return "lg:bg-day_sun";
+      else if (des === "few clouds") return "lg:bg-day_cloud";
+      else if (des === "scattered clouds") return "lg:bg-day_cloud";
+      else if (des === "broken clouds" || des === "overcast clouds")
+        return "lg:bg-day_cloud";
+      else if (
+        des === "shower rain" ||
+        des === "light rain" ||
+        des === "drizzle" ||
+        des === "moderate rain"
+      )
+        return "lg:bg-day_rain";
+      else if (
+        des === "rain" ||
+        des === "very heavy rain" ||
+        des === "heavy intensity rain" ||
+        des === "extreme rain" ||
+        des === "heavy intensity shower rain" ||
+        des === "light intensity shower rain"
+      )
+        return "lg:bg-day_rain";
+      else if (
+        des === "thunderstorm" ||
+        des === "light thunderstorm" ||
+        des === "heavy thunderstorm" ||
+        des === "ragged thunderstorm" ||
+        des === "thunderstorm with rain"
+      )
+        return "lg:bg-night_thunder";
+      else if (des === "snow" || des === "light snow" || des === "heavy snow")
+        return "lg:bg-day_snow";
+      else if (
+        des === "light rain and snow" ||
+        des === "rain and snow" ||
+        des === "light shower snow"
+      )
+        return "lg:bg-night_snow";
+      else if (
+        des === "mist" ||
+        des === "fog" ||
+        des === "smoke" ||
+        des === "haze"
+      )
+        return "lg:bg-day_rain";
+    } else return "lg:bg-day_sun";
   }
-
-  
 
   return (
     <>
@@ -120,7 +118,11 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={`bg-[url('../public/back_small.jpg')] ${changebackground(weather_desc)} bg-no-repeat`}>
+      <div
+        className={`bg-[url('../public/back_small.jpg')] ${changebackground(
+          weather_desc_array || "clear sky"
+        )} bg-no-repeat`}
+      >
         {/* input */}
         <div className="p-3 xl:p-5 flex flex-row justify-center items-center space-x-2 xl:space-x-5 ">
           <div className=" border-2 border-stone-700 rounded-full ">
