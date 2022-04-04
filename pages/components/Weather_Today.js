@@ -9,7 +9,7 @@ import wimgurl2 from "../../public/cloudyday.gif";
 import wimgurl3 from "../../public/1-cloud.gif";
 import wimgurl4 from "../../public/clouds.gif";
 import wimgurl5 from "../../public/mildrain.gif";
-import wimgurl6 from "../../public/rain.gif";
+import wimgurl6 from "../../public/mildrain.gif";
 import wimgurl7 from "../../public/storm.gif";
 import wimgurl8 from "../../public/snow.gif";
 import wimgurl9 from "../../public/fog.gif";
@@ -84,7 +84,8 @@ const Weather_Today = ({ results }) => {
       des === "very heavy rain" ||
       des === "heavy intensity rain" ||
       des === "extreme rain" ||
-      des === "heavy intensity shower rain"
+      des === "heavy intensity shower rain" ||
+      des === "light intensity shower rain"
     )
       return wimgurl6;
     else if (

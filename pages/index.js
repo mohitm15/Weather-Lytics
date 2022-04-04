@@ -7,23 +7,14 @@ import Weather_Today from "./components/Weather_Today";
 import Weather_week from "./components/Weather_week";
 import searchimageurl from "../public/search.gif";
 import Typed from "react-typed";
-//images
 
-// import day_sun from '../public/back_big.jpg';
-// import day_rain from '../public/dayrain.jpg';
-// import day_cloud from '../public/daycloud2.jpg';
-// import day_snow from '../public/daysnow.jpg';
-// import night_sun from '../public/nightsunny.jpg';
-// import night_snow from '../public/nightsnow.jpg';
-// import night_thunder from '../public/nightthunder.jpg';
 
 const Home = () => {
-  //console.log("res1 = ", results1);
-  //const router = useRouter();
+
   const [city, setCity] = useState("");
   const [data, setData] = useState({ day: {}, week: {} });
 
-  
+  let weather_desc = "day_sun";
 
 
   //for the first time
@@ -45,15 +36,14 @@ const Home = () => {
   }, []);
 
 
+
   const handleChange = (e) => {
     setCity(e.target.value);
     //console.log(city)
   };
 
   const handleSubmit = async (e) => {
-    //console.log("%c ClickSubmit","font-size:12px; color:green; padding:10px;")
-    //console.log("city = ", city);
-    //router.push(`/?term=${city}`);
+
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
     const res = await fetch(url);
@@ -68,34 +58,32 @@ const Home = () => {
     setData({ day: data1, week: data2 });
   };
 
-  //console.log(data);
-  //const weather = data?.day?.weather;
-  
-  //console.log("we - ",weather[0]?.description)
-  //fn to determine the bg
-  function changebackground(des) {
-    //console.log("des =",des)
 
-    if (des === "sky is clear" || des === "clear sky") return 'day_sun';
-    else if (des === "few clouds") return 'day_cloud';
-    else if (des === "scattered clouds") return 'day_cloud';
+  weather_desc = data.day.weather[0].description
+
+  function changebackground(des) {
+
+    if (des === "sky is clear" || des === "clear sky") return 'lg:bg-day_sun';
+    else if (des === "few clouds") return 'lg:bg-day_cloud';
+    else if (des === "scattered clouds") return 'lg:bg-day_cloud';
     else if (des === "broken clouds" || des === "overcast clouds")
-      return 'day_cloud';
+      return 'lg:bg-day_cloud';
     else if (
       des === "shower rain" ||
       des === "light rain" ||
       des === "drizzle" ||
       des === "moderate rain"
     )
-      return 'day_rain';
+      return 'lg:bg-day_rain';
     else if (
       des === "rain" ||
       des === "very heavy rain" ||
       des === "heavy intensity rain" ||
       des === "extreme rain" ||
-      des === "heavy intensity shower rain"
+      des === "heavy intensity shower rain"||
+      des === "light intensity shower rain"
     )
-      return 'day_rain';
+      return 'lg:bg-day_rain';
     else if (
       des === "thunderstorm" ||
       des === "light thunderstorm" ||
@@ -103,26 +91,26 @@ const Home = () => {
       des === "ragged thunderstorm" ||
       des === "thunderstorm with rain"
     )
-      return 'night_thunder';
+      return 'lg:bg-night_thunder';
     else if (des === "snow" || des === "light snow" || des === "heavy snow")
-      return 'day_snow';
+      return 'lg:bg-day_snow';
     else if (
       des === "light rain and snow" ||
       des === "rain and snow" ||
       des === "light shower snow"
     )
-      return 'night_snow';
+      return 'lg:bg-night_snow';
     else if (
       des === "mist" ||
       des === "fog" ||
       des === "smoke" ||
       des === "haze"
     )
-      return 'day_rain';
-    else return 'day_sun';
+      return 'lg:bg-day_rain';
+    else return 'lg:bg-day_sun';
   }
 
-  //console.log(changebackground("snow"),"-> picture")
+  
 
   return (
     <>
@@ -132,8 +120,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <div  className={`lg:bg-${changebackground("snow")} bg-no-repeat`} > */}
-      <div className="bg-[url('../public/back_small.jpg')] lg:bg-[url('../public/back_big.jpg')] bg-no-repeat">
+      <div className={`bg-[url('../public/back_small.jpg')] ${changebackground(weather_desc)} bg-no-repeat`}>
         {/* input */}
         <div className="p-3 xl:p-5 flex flex-row justify-center items-center space-x-2 xl:space-x-5 ">
           <div className=" border-2 border-stone-700 rounded-full ">
