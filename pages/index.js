@@ -109,6 +109,57 @@ const Home = () => {
         return "lg:bg-day_rain";
     } else return "lg:bg-day_sun";
   }
+ 
+  function changeMobilebackground(des) {
+    //console.log("des found - ", des);
+    if (des !== "clear sky") {
+      des = des[0].description;
+      if (des === "sky is clear" || des === "clear sky") return "bg-day_sun_small";
+      else if (des === "few clouds") return "bg-day_cloudy_small";
+      else if (des === "scattered clouds") return "bg-night_cloud_small";
+      else if (des === "broken clouds" || des === "overcast clouds")
+        return "bg-night_cloud_small";
+      else if (
+        des === "shower rain" ||
+        des === "light rain" ||
+        des === "drizzle" ||
+        des === "moderate rain"
+      )
+        return "bg-day_rain_small";
+      else if (
+        des === "rain" ||
+        des === "very heavy rain" ||
+        des === "heavy intensity rain" ||
+        des === "extreme rain" ||
+        des === "heavy intensity shower rain" ||
+        des === "light intensity shower rain"
+      )
+        return "bg-day_rain_small";
+      else if (
+        des === "thunderstorm" ||
+        des === "light thunderstorm" ||
+        des === "heavy thunderstorm" ||
+        des === "ragged thunderstorm" ||
+        des === "thunderstorm with rain"
+      )
+        return "bg-night_rain_small";
+      else if (des === "snow" || des === "light snow" || des === "heavy snow")
+        return "bg-day_snow_small";
+      else if (
+        des === "light rain and snow" ||
+        des === "rain and snow" ||
+        des === "light shower snow"
+      )
+        return "bg-night_snow_small";
+      else if (
+        des === "mist" ||
+        des === "fog" ||
+        des === "smoke" ||
+        des === "haze"
+      )
+        return "bg-haze_small";
+    } else return "bg-day_sun_small";
+  }
 
   return (
     <>
@@ -119,9 +170,7 @@ const Home = () => {
       </Head>
 
       <div
-        className={`bg-[url('../public/back_small.jpg')] ${changebackground(
-          weather_desc_array || "clear sky"
-        )} bg-no-repeat`}
+        className={` ${changeMobilebackground(weather_desc_array || "clear sky")} bg-repeat-y ${changebackground( weather_desc_array || "clear sky")} lg:bg-no-repeat`}
       >
         {/* input */}
         <div className="p-3 xl:p-5 flex flex-row justify-center items-center space-x-2 xl:space-x-5 ">
