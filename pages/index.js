@@ -83,7 +83,7 @@ const Home = () => {
         des === "heavy intensity shower rain" ||
         des === "light intensity shower rain"
       )
-        return "lg:bg-day_rain";
+        return {bgImg:"lg:bg-day_rain",divAll:'bg-[#262d3bc2]',textAll:'text-white'};
       else if (
         des === "thunderstorm" ||
         des === "light thunderstorm" ||
@@ -106,7 +106,7 @@ const Home = () => {
         des === "smoke" ||
         des === "haze"
       )
-        return "lg:bg-day_rain";
+        return {bgImg:"lg:bg-day_rain",divAll:'bg-[#262d3bc2]',textAll:'text-white'};;
     } else return "lg:bg-day_sun";
   }
  
@@ -170,7 +170,7 @@ const Home = () => {
       </Head>
 
       <div
-        className={` ${changeMobilebackground(weather_desc_array || "clear sky")} bg-repeat-y ${changebackground( weather_desc_array || "clear sky")} lg:bg-no-repeat`}
+        className={` ${changeMobilebackground(weather_desc_array || "clear sky")} bg-repeat-y ${changebackground( weather_desc_array || "clear sky").bgImg} lg:bg-no-repeat`}
       >
         {/* input */}
         <div className="p-3 xl:p-5 flex flex-row justify-center items-center space-x-2 xl:space-x-5 ">
@@ -213,15 +213,15 @@ const Home = () => {
         </div>
 
         <div className="min-h-full  flex flex-col lg:flex-row justify-evenly ">
-          <div className="bg-white/50 xl:bg-white/70  w-full h-full lg:w-1/4 lg:h-full xl:m-4 rounded-lg xl:rounded-3xl">
+          <div className={`${changebackground( weather_desc_array || "clear sky").divAll} ${changebackground( weather_desc_array || "clear sky").textAll}  w-full h-full lg:w-1/4 lg:h-full xl:m-4 rounded-lg xl:rounded-3xl`}>
             <Weather_Today results={data.day} />
           </div>
           <div className=" lg:h-full">
             <div className="min-h-full flex flex-col">
-              <div className="bg-white/50 xl:bg-white/70 xl:m-4 xl:rounded-3xl">
+              <div className={` ${changebackground( weather_desc_array || "clear sky").divAll} xl:m-4 xl:rounded-3xl`}>
                 <Today_highlight results={data.day} />
               </div>
-              <div className="bg-white/50 xl:bg-white/70 xl:m-4 xl:rounded-3xl">
+              <div className={` ${changebackground( weather_desc_array || "clear sky").divAll} xl:m-4 xl:rounded-3xl`}>
                 <Weather_week results1={data.week} />
               </div>
             </div>
