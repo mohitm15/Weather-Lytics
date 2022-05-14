@@ -11,7 +11,7 @@ import imgurl8 from "../../public/snow.gif";
 import imgurl9 from "../../public/fog.gif";
 import imgurl10 from "../../public/snow-rain.gif";
 
-const Weather_week = ({ results1 }) => {
+const Weather_week = ({ results1,weather_des }) => {
   //console.log("res111 = ", results1);
 
   const { list } = results1 || {};
@@ -96,6 +96,65 @@ const Weather_week = ({ results1 }) => {
     else return imgurl9;
   }
 
+
+  //feature 1 wali chhez
+  console.log("wea_des main = ",weather_des && weather_des[0].description || "clear sky");
+  function changetheme(des) {
+    //  console.log("des found - ", des);
+    if (des !== "clear sky") 
+    {
+      if (des === "sky is clear" || des === "clear sky") return "lg:bg-day_sun";
+      else if (des === "few clouds") return "lg:bg-day_cloud";
+      else if (des === "scattered clouds") return "lg:bg-day_cloud";
+      else if (des === "broken clouds" || des === "overcast clouds")
+        return "lg:bg-day_cloud";
+      else if (
+        des === "shower rain" ||
+        des === "light rain" ||
+        des === "drizzle" ||
+        des === "moderate rain"
+      )
+        return "lg:bg-day_rain";
+      else if (
+        des === "rain" ||
+        des === "very heavy rain" ||
+        des === "heavy intensity rain" ||
+        des === "extreme rain" ||
+        des === "heavy intensity shower rain" ||
+        des === "light intensity shower rain"
+      )
+        return {text_day:'text-[#53b2f3]',text_date:'text-[#53b2f3]',text_max:'text-[#53b2f3]',text_min:'text-[#53b2f3]'};
+      else if (
+        des === "thunderstorm" ||
+        des === "light thunderstorm" ||
+        des === "heavy thunderstorm" ||
+        des === "ragged thunderstorm" ||
+        des === "thunderstorm with rain"
+      )
+        return "lg:bg-night_thunder";
+      else if (des === "snow" || des === "light snow" || des === "heavy snow")
+        return "lg:bg-day_snow";
+      else if (
+        des === "light rain and snow" ||
+        des === "rain and snow" ||
+        des === "light shower snow"
+      )
+        return "lg:bg-night_snow";
+      else if (
+        des === "mist" ||
+        des === "fog" ||
+        des === "smoke" ||
+        des === "haze"
+      )
+        return {text_day:'text-white',text_date:'text-gray-100',text_max:'text-white',text_min:'text-gray-300',panelback:'bg-[#202631]'};
+    } 
+    else 
+    {
+      return "lg:bg-day_sun";
+    }
+  }
+ 
+
   return (
     <>
       <div className="px-2">
@@ -105,13 +164,13 @@ const Weather_week = ({ results1 }) => {
               return (
                 <div
                   key={String(item?.speed)}
-                  className="bg-blue-100 hover:bg-blue-200/80 rounded-lg border border-gray-600 shadow-md "
+                  className="bg-black/40 hover:bg-white/5 rounded-lg border border-gray-600 shadow-md "
                 >
-                  <div className="flex flex-col w-32 items-center p-3 text-center">
-                    <h5 className="mb-1 text-lg font-medium  text-gray-900 uppercase">
+                  <div className="flex flex-col  w-32 items-center p-3 text-center">
+                    <h5 className={`${changetheme(weather_des && weather_des[0].description || "clear sky").text_day} mb-1 text-lg font-medium uppercase`}>
                       {dateprocessing(item?.dt).day}
                     </h5>
-                    <h6 className="mb-1 text-sm  text-gray-600 font-light">
+                    <h6 className={`${changetheme(weather_des && weather_des[0].description || "clear sky").text_date} mb-1 text-sm font-light`}>
                       {dateprocessing(item?.dt).date}
                     </h6>
                     <div className="h-16 w-16 xl:h-20 xl:w-20">
@@ -121,15 +180,15 @@ const Weather_week = ({ results1 }) => {
                         alt="sunset"
                       />
                     </div>
-                    <span className="text-base text-gray-800 ">
+                    <span className={`text-base ${changetheme(weather_des && weather_des[0].description || "clear sky").text_max} `}>
                       {kelvinToCelcius(item?.temp?.day)} C
                     </span>
-                    <span className="text-base text-gray-600 ">
+                    <span className={`${changetheme(weather_des && weather_des[0].description || "clear sky").text_min} text-base `}>
                       {kelvinToCelcius(item?.temp?.night)} C
                     </span>
 
                     <div className="flex mt-4 lg:mt-2">
-                      <a className="inline-flex items-center py-2 px-4 text-base font-medium text-center text-gray-900 bg-gray-100 rounded-lg border border-gray-300 hover:bg-white focus:ring-4 focus:outline-none focus:ring-gray-200 capitalize">
+                      <a className={`${changetheme(weather_des && weather_des[0].description || "clear sky").panelback} ${changetheme(weather_des && weather_des[0].description || "clear sky").text_day} inline-flex items-center py-2 px-4 text-base font-medium text-center  rounded-lg border border-gray-300 hover:bg-white/5 focus:ring-4 focus:outline-none focus:ring-gray-200 capitalize`}>
                         {item.weather[0]?.description}
                         {/* {item.weather[0]?.main} */}
                       </a>

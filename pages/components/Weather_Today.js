@@ -87,7 +87,7 @@ const Weather_Today = ({ results }) => {
       des === "heavy intensity shower rain" ||
       des === "light intensity shower rain"
     )
-      return wimgurl6;
+      return {icon:wimgurl6,panelback:'bg-[#202631]',tileback:'bg-[#262d3b]'};
     else if (
       des === "thunderstorm" ||
       des === "light thunderstorm" ||
@@ -110,12 +110,17 @@ const Weather_Today = ({ results }) => {
       des === "smoke" ||
       des === "haze"
     )
-      return wimgurl9;
+      return {icon:wimgurl9,panelback:'bg-[#202631]',tileback:'bg-[#262d3b]'};
     else return wimgurl9;
   }
 
+
+  //console.log("icon getting = ", weather && changeWeatherIcon(weather[0]?.description).icon);
+  //console.log(wimgurl9)
+
   return (
     <>
+      {/* for mobile viewpoint */}
       <div className="p-3 h-full xl:hidden">
         <div className="text-4xl text-center font-mono">
           {name}, {sys && sys?.country}
@@ -126,7 +131,7 @@ const Weather_Today = ({ results }) => {
         <div className="text-center">
           <Image
             src={
-              weather ? changeWeatherIcon(weather[0]?.description) : wimgurl4
+              weather ? changeWeatherIcon(weather[0]?.description).icon : wimgurl4
             }
             height={180}
             width={180}
@@ -150,7 +155,7 @@ const Weather_Today = ({ results }) => {
             {weather && weather[0]?.description}
           </div>
           <div className="bg-green-200/60 flex flex-row justify-evenly text-center p-3 space-x-2 rounded-lg">
-            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black ">
+            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-white ">
               <div className="text-gray-500 leading-tight ">
                 Max.
                 <br /> Temp.
@@ -162,7 +167,7 @@ const Weather_Today = ({ results }) => {
                 {kelvinToCelcius(main?.temp_max) + "°"}
               </p>
             </div>
-            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black text-center  ">
+            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-white text-center  ">
               <div className="text-gray-500 leading-tight ">
                 Cloud
                 <br /> Cover
@@ -172,7 +177,7 @@ const Weather_Today = ({ results }) => {
               </div>
               <p className="text-base font-[500]">{clouds?.all} %</p>
             </div>
-            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black text-center">
+            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-white text-center">
               <div className="text-gray-500 leading-tight ">
                 Min.
                 <br /> Temp.
@@ -199,7 +204,7 @@ const Weather_Today = ({ results }) => {
         <div className="text-center">
           <Image
             src={
-              weather ? changeWeatherIcon(weather[0]?.description) : wimgurl4
+              weather ? changeWeatherIcon(weather[0]?.description).icon : wimgurl4
             }
             height={220}
             width={220}
@@ -219,11 +224,11 @@ const Weather_Today = ({ results }) => {
 
         {/* below flex */}
         <div className="flex flex-col space-y-4 justify-center items-center">
-          <div className="bg-gray-300 py-2 text-xl rounded-lg capitalize text-center border-2 border-gray-400 px-3 hover:bg-gray-400 hover:border-gray-500">
+          <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} py-2 text-xl rounded-lg capitalize text-center border-2 border-gray-400 px-3 hover:bg-white/10 hover:border-gray-500`}>
             {weather && weather[0]?.description}
           </div>
-          <div className="bg-blue-200 flex flex-row justify-evenly items-center p-3 space-x-4 text-center rounded-lg">
-            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black h-full rounded-xl">
+          <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} flex flex-row justify-evenly items-center p-3 space-x-4 text-center rounded-lg`}>
+            <div className={`${weather && changeWeatherIcon(weather[0]?.description).tileback} hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}>
               <div className="text-gray-400 leading-tight ">
                 Max.
                 <br /> Temp.
@@ -235,7 +240,7 @@ const Weather_Today = ({ results }) => {
                 {kelvinToCelcius(main?.temp_max) + "°"}
               </p>
             </div>
-            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black h-full rounded-xl">
+            <div className={`${weather && changeWeatherIcon(weather[0]?.description).tileback} hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}>
               <div className="text-gray-400 leading-tight ">
                 Cloud <br /> Cover
               </div>
@@ -244,7 +249,7 @@ const Weather_Today = ({ results }) => {
               </div>
               <p className="text-base font-[500]">{clouds?.all} %</p>
             </div>
-            <div className="bg-gray-100 hover:bg-white p-2 border-[1px] border-black h-full rounded-xl">
+            <div className={`${weather && changeWeatherIcon(weather[0]?.description).tileback} hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}>
               <div className="text-gray-400 leading-tight ">
                 Min. <br /> Temp.
               </div>
@@ -258,16 +263,16 @@ const Weather_Today = ({ results }) => {
           </div>
         </div>
         <div className="flex flex-row py-3 w-full justify-evenly">
-          <div className="bg-gradient-to-r from-blue-300 to-slate-300 p-3">
+          <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} p-3 rounded-xl border-[1px] border-white hover:bg-black/50`} >
             <span className="font-semibold text-base">Latitude : </span>{" "}
             {coord?.lat.toPrecision(3)}
           </div>
-          <div className="bg-gradient-to-r from-blue-300 to-slate-300 p-3">
+          <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} p-3 rounded-xl border-[1px] border-white hover:bg-black/50`}>
             <span className="font-semibold text-base">Longitude : </span>{" "}
             {coord?.lon.toPrecision(3)}
           </div>
         </div>
-        <div className="flex flex-row py-3  justify-center items-center px-3 border-2 border-gray-600 rounded-xl bg-white hover:bg-gray-200">
+        <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} flex flex-row py-3  justify-center items-center px-3 border-2 border-gray-600 rounded-xl  hover:bg-black/50`}>
           <div className="h-10 w-10 ">
             <Image src={imgurl5} alt="weathericon" layout="responsive" />
           </div>

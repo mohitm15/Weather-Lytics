@@ -12,7 +12,7 @@ const Home = () => {
   const [city, setCity] = useState("");
   const [data, setData] = useState({ day: {}, week: {} });
 
-  let weather_desc_array = [{ description: "clear sky" }];
+  let weather_array = [{ description: "clear sky" }];
 
   //for the first time
   useEffect(() => {
@@ -51,15 +51,15 @@ const Home = () => {
     setData({ day: data1, week: data2 });
   };
 
-  weather_desc_array = data?.day?.weather;
+  weather_array = data?.day?.weather;
   // let weather_desc_desc;
-  // if(weather_desc_array!="day_sun") {
-  //   weather_desc_array.map((item)=>{
+  // if(weather_array!="day_sun") {
+  //   weather_array.map((item)=>{
   //     weather_desc_desc = item.description
   //   })
   // }
 
-  function changebackground(des) {
+  function changetheme(des) {
     //console.log("des found - ", des);
     if (des !== "clear sky") {
       des = des[0].description;
@@ -170,7 +170,7 @@ const Home = () => {
       </Head>
 
       <div
-        className={` ${changeMobilebackground(weather_desc_array || "clear sky")} bg-repeat-y ${changebackground( weather_desc_array || "clear sky").bgImg} lg:bg-no-repeat`}
+        className={` ${changeMobilebackground(weather_array || "clear sky")} bg-repeat-y ${changetheme( weather_array || "clear sky").bgImg} lg:bg-no-repeat`}
       >
         {/* input */}
         <div className="p-3 xl:p-5 flex flex-row justify-center items-center space-x-2 xl:space-x-5 ">
@@ -213,16 +213,16 @@ const Home = () => {
         </div>
 
         <div className="min-h-full  flex flex-col lg:flex-row justify-evenly ">
-          <div className={`${changebackground( weather_desc_array || "clear sky").divAll} ${changebackground( weather_desc_array || "clear sky").textAll}  w-full h-full lg:w-1/4 lg:h-full xl:m-4 rounded-lg xl:rounded-3xl`}>
+          <div className={`${changetheme( weather_array || "clear sky").divAll} ${changetheme( weather_array || "clear sky").textAll}  w-full h-full lg:w-1/4 lg:h-full xl:m-4 rounded-lg xl:rounded-3xl`}>
             <Weather_Today results={data.day} />
           </div>
           <div className=" lg:h-full">
             <div className="min-h-full flex flex-col">
-              <div className={` ${changebackground( weather_desc_array || "clear sky").divAll} xl:m-4 xl:rounded-3xl`}>
-                <Today_highlight results={data.day} />
+              <div className={` ${changetheme( weather_array || "clear sky").divAll} ${changetheme( weather_array || "clear sky").textAll} xl:m-4 xl:rounded-3xl`}>
+                <Today_highlight results={data.day} weather_des={weather_array } />
               </div>
-              <div className={` ${changebackground( weather_desc_array || "clear sky").divAll} xl:m-4 xl:rounded-3xl`}>
-                <Weather_week results1={data.week} />
+              <div className={` ${changetheme( weather_array || "clear sky").divAll} xl:m-4 xl:rounded-3xl`}>
+                <Weather_week results1={data.week} weather_des={ weather_array } />
               </div>
             </div>
           </div>
@@ -232,27 +232,11 @@ const Home = () => {
   );
 };
 
-// export async function getServerSideProps({ query }) {
-//   // if there is no query
-//   if (!query.term) query.term = "Bhopal";
-
-//   //api-1
-//   const url = `https://api.openweathermap.org/data/2.5/weather?q=${query.term}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
-//   const res = await fetch(url);
-//   const data = await res.json();
-//   //console.log(data);
-
-//   //api-2
-//   const url1 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${query.term}&appid=${process.env.NEXT_PUBLIC_API_KEY_1}`;
-//   const res1 = await fetch(url1);
-//   const data1 = await res1.json();
-//   //console.log(data1);
-
-//   return {
-//     props: {
-//       results: data,
-//       results1: data1,
-//     },
-//   };
-// }
 export default Home;
+
+
+// theme: {
+//   bgImg:"lg:bg-day_rain",
+//   divAll:'bg-[#262d3bc2]',
+//   textAll:'text-white',
+// }
