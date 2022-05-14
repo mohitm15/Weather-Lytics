@@ -103,18 +103,17 @@ const Weather_week = ({ results1,weather_des }) => {
     //  console.log("des found - ", des);
     if (des !== "clear sky") 
     {
-      if (des === "sky is clear" || des === "clear sky") return "lg:bg-day_sun";
-      else if (des === "few clouds") return "lg:bg-day_cloud";
-      else if (des === "scattered clouds") return "lg:bg-day_cloud";
-      else if (des === "broken clouds" || des === "overcast clouds")
-        return "lg:bg-day_cloud";
+      if (des === "sky is clear" || des === "clear sky") 
+        return "lg:bg-day_sun";
+      else if (des === "broken clouds" || des === "overcast clouds" || des === "scattered clouds" || des === "few clouds")
+        return {text_day:'text-white',text_date:'text-gray-100',text_max:'text-white',text_min:'text-gray-300',panelback:'bg-[#060693]'};
       else if (
         des === "shower rain" ||
         des === "light rain" ||
         des === "drizzle" ||
         des === "moderate rain"
       )
-        return "lg:bg-day_rain";
+        return {text_day:'text-[#53b2f3]',text_date:'text-[#53b2f3]',text_max:'text-[#53b2f3]',text_min:'text-[#53b2f3]'};
       else if (
         des === "rain" ||
         des === "very heavy rain" ||
@@ -146,7 +145,7 @@ const Weather_week = ({ results1,weather_des }) => {
         des === "smoke" ||
         des === "haze"
       )
-        return {text_day:'text-white',text_date:'text-gray-100',text_max:'text-white',text_min:'text-gray-300',panelback:'bg-[#202631]'};
+        return {text_day:'text-white',text_date:'text-gray-100',text_max:'text-white',text_min:'text-gray-300',panelback:'bg-[#060693]'};
     } 
     else 
     {
@@ -164,7 +163,7 @@ const Weather_week = ({ results1,weather_des }) => {
               return (
                 <div
                   key={String(item?.speed)}
-                  className="bg-black/40 hover:bg-white/5 rounded-lg border border-gray-600 shadow-md "
+                  className="bg-black/30 hover:bg-white/5 rounded-lg border border-gray-300 shadow-md "
                 >
                   <div className="flex flex-col  w-32 items-center p-3 text-center">
                     <h5 className={`${changetheme(weather_des && weather_des[0].description || "clear sky").text_day} mb-1 text-lg font-medium uppercase`}>

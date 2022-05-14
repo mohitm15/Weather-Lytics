@@ -20,11 +20,10 @@ const Today_highlight = ({ results, weather_des }) => {
     //  console.log("des found - ", des);
     if (des !== "clear sky") 
     {
-      if (des === "sky is clear" || des === "clear sky") return "lg:bg-day_sun";
-      else if (des === "few clouds") return "lg:bg-day_cloud";
-      else if (des === "scattered clouds") return "lg:bg-day_cloud";
-      else if (des === "broken clouds" || des === "overcast clouds")
-        return "lg:bg-day_cloud";
+      if (des === "sky is clear" || des === "clear sky") 
+        return "lg:bg-day_sun";
+      else if (des === "broken clouds" || des === "overcast clouds" || des === "scattered clouds" || des === "few clouds")
+        return {panelback:'bg-blue-900/70',text_heading:'text-white'};
       else if (
         des === "shower rain" ||
         des === "light rain" ||
@@ -63,7 +62,7 @@ const Today_highlight = ({ results, weather_des }) => {
         des === "smoke" ||
         des === "haze"
       )
-        return {panelback:'bg-black/30',text_heading:'text-[#53b2f3]'};;
+        return {panelback:'bg-blue-900/70',text_heading:'text-white'};
     } 
     else 
     {

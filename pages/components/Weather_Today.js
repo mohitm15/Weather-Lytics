@@ -67,18 +67,17 @@ const Weather_Today = ({ results }) => {
   function changeWeatherIcon(des) {
     //console.log("des =",des)
 
-    if (des === "sky is clear" || des === "clear sky") return wimgurl1;
-    else if (des === "few clouds") return wimgurl2;
-    else if (des === "scattered clouds") return wimgurl3;
-    else if (des === "broken clouds" || des === "overcast clouds")
-      return wimgurl4;
+    if (des === "sky is clear" || des === "clear sky") 
+      return wimgurl1;
+    else if (des === "broken clouds" || des === "overcast clouds" || des === "scattered clouds" || des === "few clouds")
+      return {icon:wimgurl4,panelback:'bg-[#060693bf]',tileback:'bg-[#060693]'};
     else if (
       des === "shower rain" ||
       des === "light rain" ||
       des === "drizzle" ||
       des === "moderate rain"
     )
-      return wimgurl5;
+      return {icon:wimgurl5,panelback:'bg-[#202631]',tileback:'bg-[#262d3b]'};
     else if (
       des === "rain" ||
       des === "very heavy rain" ||
@@ -110,7 +109,7 @@ const Weather_Today = ({ results }) => {
       des === "smoke" ||
       des === "haze"
     )
-      return {icon:wimgurl9,panelback:'bg-[#202631]',tileback:'bg-[#262d3b]'};
+      return {icon:wimgurl9,panelback:'bg-[#060693bf]',tileback:'bg-[#060693]'};
     else return wimgurl9;
   }
 
@@ -272,7 +271,7 @@ const Weather_Today = ({ results }) => {
             {coord?.lon.toPrecision(3)}
           </div>
         </div>
-        <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} flex flex-row py-3  justify-center items-center px-3 border-2 border-gray-600 rounded-xl  hover:bg-black/50`}>
+        <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} flex flex-row py-3  justify-center items-center px-3 border-2 border-white/70 rounded-xl  hover:bg-black/50`}>
           <div className="h-10 w-10 ">
             <Image src={imgurl5} alt="weathericon" layout="responsive" />
           </div>

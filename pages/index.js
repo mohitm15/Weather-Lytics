@@ -63,18 +63,17 @@ const Home = () => {
     //console.log("des found - ", des);
     if (des !== "clear sky") {
       des = des[0].description;
-      if (des === "sky is clear" || des === "clear sky") return "lg:bg-day_sun";
-      else if (des === "few clouds") return "lg:bg-day_cloud";
-      else if (des === "scattered clouds") return "lg:bg-day_cloud";
-      else if (des === "broken clouds" || des === "overcast clouds")
-        return "lg:bg-day_cloud";
+      if (des === "sky is clear" || des === "clear sky") 
+        return "lg:bg-day_sun";
+      else if (des === "broken clouds" || des === "overcast clouds" || des === "scattered clouds" || des === "few clouds")
+        return {bgImg:"lg:bg-day_cloud",divAll:'bg-blue-600/80',textAll:'text-white'};
       else if (
         des === "shower rain" ||
         des === "light rain" ||
         des === "drizzle" ||
         des === "moderate rain"
       )
-        return "lg:bg-day_rain";
+        return {bgImg:"lg:bg-day_rain",divAll:'bg-[#262d3bc2]',textAll:'text-white'};
       else if (
         des === "rain" ||
         des === "very heavy rain" ||
@@ -106,7 +105,7 @@ const Home = () => {
         des === "smoke" ||
         des === "haze"
       )
-        return {bgImg:"lg:bg-day_rain",divAll:'bg-[#262d3bc2]',textAll:'text-white'};;
+        return {bgImg:"lg:bg-day_cloud",divAll:'bg-blue-600/80',textAll:'text-white'};
     } else return "lg:bg-day_sun";
   }
  
