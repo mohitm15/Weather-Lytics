@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import imgurl2 from "../../public/celsius.gif";
 import imgurl3 from "../../public/visibilty.gif";
@@ -15,22 +15,23 @@ const Today_highlight = ({ results, weather_des }) => {
   // useEffect(() => {
   //   changetheme(weather_des && weather_des[0].description);
   // }, [])
-  
+
   function changetheme(des) {
     //  console.log("des found - ", des);
-    if (des !== "clear sky") 
-    {
-      if (des === "sky is clear" || des === "clear sky") 
-        return "lg:bg-day_sun";
-      else if (des === "broken clouds" || des === "overcast clouds" || des === "scattered clouds" || des === "few clouds")
-        return {panelback:'bg-blue-900/70',text_heading:'text-white'};
+    if (des !== "clear sky") {
+      if (des === "sky is clear" || des === "clear sky")
+        return { panelback: "bg-white/30", text_heading: "text-black" };
+      else if (des === "scattered clouds" || des === "few clouds")
+        return { panelback: "bg-blue-600/30", text_heading: "text-black" };
+      else if (des === "broken clouds" || des === "overcast clouds")
+        return { panelback: "bg-blue-900/70", text_heading: "text-white" };
       else if (
         des === "shower rain" ||
         des === "light rain" ||
         des === "drizzle" ||
         des === "moderate rain"
       )
-        return "lg:bg-day_rain";
+        return { panelback: "bg-[#202631]", text_heading: "text-[#53b2f3]" };
       else if (
         des === "rain" ||
         des === "very heavy rain" ||
@@ -39,7 +40,7 @@ const Today_highlight = ({ results, weather_des }) => {
         des === "heavy intensity shower rain" ||
         des === "light intensity shower rain"
       )
-        return {panelback:'bg-[#202631]',text_heading:'text-[#53b2f3]'};
+        return { panelback: "bg-[#073151f0]/50", text_heading: "text-white" };
       else if (
         des === "thunderstorm" ||
         des === "light thunderstorm" ||
@@ -47,31 +48,30 @@ const Today_highlight = ({ results, weather_des }) => {
         des === "ragged thunderstorm" ||
         des === "thunderstorm with rain"
       )
-        return "lg:bg-night_thunder";
+        return { panelback: "bg-slate-900/50", text_heading: "text-white" };
       else if (des === "snow" || des === "light snow" || des === "heavy snow")
-        return "lg:bg-day_snow";
+        return { panelback: "bg-slate-900/30", text_heading: "text-white" };
       else if (
         des === "light rain and snow" ||
         des === "rain and snow" ||
         des === "light shower snow"
-      )
-        return "lg:bg-night_snow";
-      else if (
-        des === "mist" ||
-        des === "fog" ||
-        des === "smoke" ||
-        des === "haze"
-      )
-        return {panelback:'bg-blue-900/70',text_heading:'text-white'};
-    } 
-    else 
-    {
-      return "lg:bg-day_sun";
+      ) {
+        return { panelback: "bg-slate-900/30", text_heading: "text-white" };
+      } else if (des === "haze" || des === "dust") {
+        return { panelback: "bg-orange-400/30", text_heading: "text-black" };
+        //return { panelback: "bg-slate-900/30", text_heading: "text-white" };
+      } else if (des === "fog") {
+        return { panelback: "bg-stone-400/30", text_heading: "text-black" };
+      } else if (des === "mist") {
+        return { panelback: "bg-slate-400/30", text_heading: "text-gray-200" };
+      } else if (des === "smoke")
+        return { panelback: "bg-gray-400/30", text_heading: "text-gray-200" };
+    } else {
+      return { panelback: "bg-white/30", text_heading: "text-black" };
     }
   }
- 
- 
 
+  //night-sky : {panelback:'bg-gray-400/30',text_heading:'text-gray-200'};
 
   //fn to convert temperature from kelvin to celcius
   const kelvinToCelcius = (temp) => {
@@ -118,7 +118,8 @@ const Today_highlight = ({ results, weather_des }) => {
         {/* first */}
         <div className="flex flex-row space-x-2 items-center justify-center">
           <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 ">
-          1<div className="w-14 h-14 p-2">
+            1
+            <div className="w-14 h-14 p-2">
               <Image src={imgurl2} layout="responsive" alt="temp" />
             </div>
             <div className="mb-3 text-white font-[1100] text-md ">
@@ -127,7 +128,8 @@ const Today_highlight = ({ results, weather_des }) => {
           </div>
           {/*  */}
           <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20">
-          1<div className="w-14 h-14 p-2">
+            1
+            <div className="w-14 h-14 p-2">
               <Image src={imgurl6} layout="responsive" alt="temp" />
             </div>
             <div className="mb-3 text-white font-[1100] text-md ">
@@ -140,7 +142,8 @@ const Today_highlight = ({ results, weather_des }) => {
         {/* second */}
         <div className="flex flex-row space-x-2 items-center justify-center ">
           <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 ">
-          1<div className="w-14 h-14 p-2">
+            1
+            <div className="w-14 h-14 p-2">
               <Image src={imgurl7} layout="responsive" alt="temp" />
             </div>
             <div className="mb-3 text-white font-[1100] text-md ">
@@ -150,7 +153,8 @@ const Today_highlight = ({ results, weather_des }) => {
           </div>
           {/*  */}
           <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20">
-          1<div className="w-14 h-14 p-2">
+            1
+            <div className="w-14 h-14 p-2">
               <Image src={imgurl3} layout="responsive" alt="temp" />
             </div>
             <div className="mb-3 text-white font-[1100] text-md ">
@@ -162,7 +166,8 @@ const Today_highlight = ({ results, weather_des }) => {
         {/* third */}
         <div className="flex flex-row space-x-2 items-center justify-center lg:hidden">
           <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 ">
-          1<div className="w-14 h-14 p-2">
+            1
+            <div className="w-14 h-14 p-2">
               <Image src={imgurl4} layout="responsive" alt="temp" />
             </div>
             <div className="mb-3 text-white font-[1100] text-md ">
@@ -171,7 +176,8 @@ const Today_highlight = ({ results, weather_des }) => {
           </div>
           {/*  */}
           <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20">
-          1<div className="w-14 h-14 p-2">
+            1
+            <div className="w-14 h-14 p-2">
               <Image src={imgurl5} layout="responsive" alt="temp" />
             </div>
             <div className="mb-3 text-white font-[1100] text-md ">
@@ -195,8 +201,22 @@ const Today_highlight = ({ results, weather_des }) => {
           {/* first */}
           <div className="flex flex-row space-x-5 items-center justify-center">
             {/*  */}
-            <div className={` ${changetheme(weather_des && weather_des[0].description || "clear sky").panelback} flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/40 w-48 h-48`}>
-              <div className={`font-normal ${changetheme(weather_des && weather_des[0].description || "clear sky").text_heading} `}>Avg. Temp</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48`}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                } `}
+              >
+                Avg. Temp
+              </div>
               <div className="w-20 h-20 p-2 ">
                 <Image src={imgurl2} layout="responsive" alt="temp" />
               </div>
@@ -205,8 +225,22 @@ const Today_highlight = ({ results, weather_des }) => {
               </div>
             </div>
             {/*  */}
-            <div className={` ${changetheme(weather_des && weather_des[0].description || "clear sky").panelback} flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/40 w-48 h-48`}>
-              <div className={`font-normal ${changetheme(weather_des && weather_des[0].description || "clear sky").text_heading}`}>Sunrise-Sunset</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48`}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                }`}
+              >
+                Sunrise-Sunset
+              </div>
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl6} layout="responsive" alt="temp" />
               </div>
@@ -217,8 +251,22 @@ const Today_highlight = ({ results, weather_des }) => {
               </div>
             </div>
             {/*  */}
-            <div className={` ${changetheme(weather_des && weather_des[0].description || "clear sky").panelback} flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/40 w-48 h-48 `}>
-              <div className={`font-normal ${changetheme(weather_des && weather_des[0].description || "clear sky").text_heading} `}>Humidity</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48 `}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                } `}
+              >
+                Humidity
+              </div>
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl4} layout="responsive" alt="temp" />
               </div>
@@ -229,8 +277,22 @@ const Today_highlight = ({ results, weather_des }) => {
           </div>
           {/* second */}
           <div className="flex flex-row space-x-5 items-center justify-center ">
-            <div className={` ${changetheme(weather_des && weather_des[0].description || "clear sky").panelback} flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/40 w-48 h-48 `}>
-              <div className={`font-normal ${changetheme(weather_des && weather_des[0].description || "clear sky").text_heading} `}>Wind</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48 `}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                } `}
+              >
+                Wind
+              </div>
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl7} layout="responsive" alt="temp" />
               </div>
@@ -239,8 +301,22 @@ const Today_highlight = ({ results, weather_des }) => {
               </div>
             </div>
             {/*  */}
-            <div className={` ${changetheme(weather_des && weather_des[0].description || "clear sky").panelback} flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/40 w-48 h-48`}>
-              <div className={`font-normal ${changetheme(weather_des && weather_des[0].description || "clear sky").text_heading} `}>Visibility</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48`}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                } `}
+              >
+                Visibility
+              </div>
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl3} layout="responsive" alt="temp" />
               </div>
@@ -249,8 +325,22 @@ const Today_highlight = ({ results, weather_des }) => {
               </div>
             </div>
             {/*  */}
-            <div className={` ${changetheme(weather_des && weather_des[0].description || "clear sky").panelback} flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/40 w-48 h-48`}>
-              <div className={`font-normal ${changetheme(weather_des && weather_des[0].description || "clear sky").text_heading} `}>Pressure</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48`}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                } `}
+              >
+                Pressure
+              </div>
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl5} layout="responsive" alt="temp" />
               </div>

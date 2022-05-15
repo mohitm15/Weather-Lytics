@@ -60,20 +60,38 @@ const Home = () => {
   // }
 
   function changetheme(des) {
-    //console.log("des found - ", des);
+    console.log("des found - ", des);
     if (des !== "clear sky") {
       des = des[0].description;
-      if (des === "sky is clear" || des === "clear sky") 
-        return "lg:bg-day_sun";
-      else if (des === "broken clouds" || des === "overcast clouds" || des === "scattered clouds" || des === "few clouds")
-        return {bgImg:"lg:bg-day_cloud",divAll:'bg-blue-600/80',textAll:'text-white'};
+      if (des === "sky is clear" || des === "clear sky")
+        return {
+          bgImg: "lg:bg-day_sun",
+          divAll: "bg-white/50",
+          textAll: "text-black",
+        };
+      else if (des === "scattered clouds" || des === "few clouds")
+        return {
+          bgImg: "lg:bg-day_fewcloud",
+          divAll: "bg-blue-500/50",
+          textAll: "text-black",
+        };
+      else if (des === "broken clouds" || des === "overcast clouds")
+        return {
+          bgImg: "lg:bg-day_cloud",
+          divAll: "bg-blue-600/80",
+          textAll: "text-white",
+        };
       else if (
         des === "shower rain" ||
         des === "light rain" ||
         des === "drizzle" ||
         des === "moderate rain"
       )
-        return {bgImg:"lg:bg-day_rain",divAll:'bg-[#262d3bc2]',textAll:'text-white'};
+        return {
+          bgImg: "lg:bg-day_rain",
+          divAll: "bg-[#262d3bc2]",
+          textAll: "text-white",
+        };
       else if (
         des === "rain" ||
         des === "very heavy rain" ||
@@ -82,7 +100,11 @@ const Home = () => {
         des === "heavy intensity shower rain" ||
         des === "light intensity shower rain"
       )
-        return {bgImg:"lg:bg-day_rain",divAll:'bg-[#262d3bc2]',textAll:'text-white'};
+        return {
+          bgImg: "lg:bg-day_heavy_rain",
+          divAll: "bg-[#013052de]",
+          textAll: "text-white",
+        };
       else if (
         des === "thunderstorm" ||
         des === "light thunderstorm" ||
@@ -90,30 +112,72 @@ const Home = () => {
         des === "ragged thunderstorm" ||
         des === "thunderstorm with rain"
       )
-        return "lg:bg-night_thunder";
+        return {
+          bgImg: "lg:bg-day_thunder",
+          divAll: "bg-slate-900/80",
+          textAll: "text-white",
+        };
       else if (des === "snow" || des === "light snow" || des === "heavy snow")
-        return "lg:bg-day_snow";
+        return {
+          bgImg: "lg:bg-day_snow",
+          divAll: "bg-slate-900/30",
+          textAll: "text-black",
+        };
       else if (
         des === "light rain and snow" ||
         des === "rain and snow" ||
         des === "light shower snow"
       )
-        return "lg:bg-night_snow";
-      else if (
-        des === "mist" ||
-        des === "fog" ||
-        des === "smoke" ||
-        des === "haze"
-      )
-        return {bgImg:"lg:bg-day_cloud",divAll:'bg-blue-600/80',textAll:'text-white'};
-    } else return "lg:bg-day_sun";
+        return {
+          bgImg: "lg:bg-day_snow",
+          divAll: "bg-slate-900/30",
+          textAll: "text-black",
+        };
+      else if (des === "haze" || des === "dust") {
+        return {
+          bgImg: "lg:bg-day_haze",
+          divAll: "bg-orange-300/50",
+          textAll: "text-black",
+        };
+        // return {
+        //   bgImg: "lg:bg-day_snow",
+        //   divAll: "bg-slate-900/30",
+        //   textAll: "text-black",
+        // };
+      } else if (des === "fog") {
+        return {
+          bgImg: "lg:bg-day_fog",
+          divAll: "bg-stone-600/50",
+          textAll: "text-gray-300",
+        };
+      } else if (des === "mist") {
+        return {
+          bgImg: "lg:bg-day_mist",
+          divAll: "bg-slate-600/50",
+          textAll: "text-white",
+        };
+      } else if (des === "smoke")
+        return {
+          bgImg: "lg:bg-night_sun",
+          divAll: "bg-gray-600/50",
+          textAll: "text-white",
+        };
+    } else
+    return {
+      bgImg: "lg:bg-day_sun",
+      divAll: "bg-white/50",
+      textAll: "text-black",
+    };
   }
- 
+
+  //night-sky : {  bgImg: "lg:bg-night_sun",divAll: "bg-gray-600/50",textAll: "text-white"};
+
   function changeMobilebackground(des) {
     //console.log("des found - ", des);
     if (des !== "clear sky") {
       des = des[0].description;
-      if (des === "sky is clear" || des === "clear sky") return "bg-day_sun_small";
+      if (des === "sky is clear" || des === "clear sky")
+        return "bg-day_sun_small";
       else if (des === "few clouds") return "bg-day_cloudy_small";
       else if (des === "scattered clouds") return "bg-night_cloud_small";
       else if (des === "broken clouds" || des === "overcast clouds")
@@ -169,7 +233,11 @@ const Home = () => {
       </Head>
 
       <div
-        className={` ${changeMobilebackground(weather_array || "clear sky")} bg-repeat-y ${changetheme( weather_array || "clear sky").bgImg} lg:bg-no-repeat`}
+        className={` ${changeMobilebackground(
+          weather_array || "clear sky"
+        )} bg-repeat-y ${
+          changetheme(weather_array || "clear sky").bgImg
+        } lg:bg-no-repeat`}
       >
         {/* input */}
         <div className="p-3 xl:p-5 flex flex-row justify-center items-center space-x-2 xl:space-x-5 ">
@@ -212,16 +280,36 @@ const Home = () => {
         </div>
 
         <div className="min-h-full  flex flex-col lg:flex-row justify-evenly ">
-          <div className={`${changetheme( weather_array || "clear sky").divAll} ${changetheme( weather_array || "clear sky").textAll}  w-full h-full lg:w-1/4 lg:h-full xl:m-4 rounded-lg xl:rounded-3xl`}>
+          <div
+            className={`${changetheme(weather_array || "clear sky").divAll} ${
+              changetheme(weather_array || "clear sky").textAll
+            }  w-full h-full lg:w-1/4 lg:h-full xl:m-4 rounded-lg xl:rounded-3xl`}
+          >
             <Weather_Today results={data.day} />
           </div>
           <div className=" lg:h-full">
             <div className="min-h-full flex flex-col">
-              <div className={` ${changetheme( weather_array || "clear sky").divAll} ${changetheme( weather_array || "clear sky").textAll} xl:m-4 xl:rounded-3xl`}>
-                <Today_highlight results={data.day} weather_des={weather_array } />
+              <div
+                className={` ${
+                  changetheme(weather_array || "clear sky").divAll
+                } ${
+                  changetheme(weather_array || "clear sky").textAll
+                } xl:m-4 xl:rounded-3xl`}
+              >
+                <Today_highlight
+                  results={data.day}
+                  weather_des={weather_array}
+                />
               </div>
-              <div className={` ${changetheme( weather_array || "clear sky").divAll} xl:m-4 xl:rounded-3xl`}>
-                <Weather_week results1={data.week} weather_des={ weather_array } />
+              <div
+                className={` ${
+                  changetheme(weather_array || "clear sky").divAll
+                } xl:m-4 xl:rounded-3xl`}
+              >
+                <Weather_week
+                  results1={data.week}
+                  weather_des={weather_array}
+                />
               </div>
             </div>
           </div>
@@ -232,7 +320,6 @@ const Home = () => {
 };
 
 export default Home;
-
 
 // theme: {
 //   bgImg:"lg:bg-day_rain",

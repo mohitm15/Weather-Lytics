@@ -11,7 +11,7 @@ import imgurl8 from "../../public/snow.gif";
 import imgurl9 from "../../public/fog.gif";
 import imgurl10 from "../../public/snow-rain.gif";
 
-const Weather_week = ({ results1,weather_des }) => {
+const Weather_week = ({ results1, weather_des }) => {
   //console.log("res111 = ", results1);
 
   const { list } = results1 || {};
@@ -96,24 +96,50 @@ const Weather_week = ({ results1,weather_des }) => {
     else return imgurl9;
   }
 
-
   //feature 1 wali chhez
-  console.log("wea_des main = ",weather_des && weather_des[0].description || "clear sky");
+  console.log(
+    "wea_des main = ",
+    (weather_des && weather_des[0].description) || "clear sky"
+  );
   function changetheme(des) {
     //  console.log("des found - ", des);
-    if (des !== "clear sky") 
-    {
-      if (des === "sky is clear" || des === "clear sky") 
-        return "lg:bg-day_sun";
-      else if (des === "broken clouds" || des === "overcast clouds" || des === "scattered clouds" || des === "few clouds")
-        return {text_day:'text-white',text_date:'text-gray-100',text_max:'text-white',text_min:'text-gray-300',panelback:'bg-[#060693]'};
+    if (des !== "clear sky") {
+      if (des === "sky is clear" || des === "clear sky")
+        return {
+          text_day: "text-black",
+          text_date: "text-gray-800",
+          text_max: "text-black",
+          text_min: "text-gray-900",
+          panelback: "bg-gray-100",
+        };
+      else if (des === "scattered clouds" || des === "few clouds")
+        return {
+          text_day: "text-black",
+          text_date: "text-gray-900",
+          text_max: "text-black",
+          text_min: "text-gray-900",
+          panelback: "bg-blue-300/70",
+        };
+      else if (des === "broken clouds" || des === "overcast clouds")
+        return {
+          text_day: "text-white",
+          text_date: "text-gray-100",
+          text_max: "text-white",
+          text_min: "text-gray-300",
+          panelback: "bg-[#060693]",
+        };
       else if (
         des === "shower rain" ||
         des === "light rain" ||
         des === "drizzle" ||
         des === "moderate rain"
       )
-        return {text_day:'text-[#53b2f3]',text_date:'text-[#53b2f3]',text_max:'text-[#53b2f3]',text_min:'text-[#53b2f3]'};
+        return {
+          text_day: "text-white",
+          text_date: "text-[#53b2f3]",
+          text_max: "text-white",
+          text_min: "text-gray-300  ",
+        };
       else if (
         des === "rain" ||
         des === "very heavy rain" ||
@@ -122,7 +148,13 @@ const Weather_week = ({ results1,weather_des }) => {
         des === "heavy intensity shower rain" ||
         des === "light intensity shower rain"
       )
-        return {text_day:'text-[#53b2f3]',text_date:'text-[#53b2f3]',text_max:'text-[#53b2f3]',text_min:'text-[#53b2f3]'};
+        return {
+          text_day: "text-white",
+          text_date: "text-gray-100",
+          text_max: "text-white",
+          text_min: "text-gray-100",
+          panelback: "bg-[#073151f0]",
+        };
       else if (
         des === "thunderstorm" ||
         des === "light thunderstorm" ||
@@ -130,29 +162,84 @@ const Weather_week = ({ results1,weather_des }) => {
         des === "ragged thunderstorm" ||
         des === "thunderstorm with rain"
       )
-        return "lg:bg-night_thunder";
+        return {
+          text_day: "text-white",
+          text_date: "text-gray-100",
+          text_max: "text-white",
+          text_min: "text-gray-100",
+          panelback: "bg-slate-800",
+        };
       else if (des === "snow" || des === "light snow" || des === "heavy snow")
-        return "lg:bg-day_snow";
+        return {
+          text_day: "text-black",
+          text_date: "text-gray-900",
+          text_max: "text-black",
+          text_min: "text-gray-900",
+          panelback: "bg-slate-800/40",
+        };
       else if (
         des === "light rain and snow" ||
         des === "rain and snow" ||
         des === "light shower snow"
       )
-        return "lg:bg-night_snow";
-      else if (
-        des === "mist" ||
-        des === "fog" ||
-        des === "smoke" ||
-        des === "haze"
-      )
-        return {text_day:'text-white',text_date:'text-gray-100',text_max:'text-white',text_min:'text-gray-300',panelback:'bg-[#060693]'};
-    } 
-    else 
-    {
-      return "lg:bg-day_sun";
+        return {
+          text_day: "text-black",
+          text_date: "text-gray-900",
+          text_max: "text-black",
+          text_min: "text-gray-900",
+          panelback: "bg-slate-800/40",
+        };  
+      else if (des === "haze" || des === "dust") {
+        return {
+          text_day: "text-black",
+          text_date: "text-gray-800",
+          text_max: "text-black",
+          text_min: "text-gray-900",
+          panelback: "bg-orange-300/70",
+        };
+        // return {
+        //   text_day: "text-black",
+        //   text_date: "text-gray-900",
+        //   text_max: "text-black",
+        //   text_min: "text-gray-900",
+        //   panelback: "bg-slate-800/40",
+        // };
+      } else if (des === "fog") {
+        return {
+          text_day: "text-white",
+          text_date: "text-gray-200",
+          text_max: "text-white",
+          text_min: "text-gray-200",
+          panelback: "bg-stone-300/40",
+        };
+      } else if (des === "mist") {
+        return {
+          text_day: "text-white",
+          text_date: "text-gray-200",
+          text_max: "text-white",
+          text_min: "text-gray-200",
+          panelback: "bg-slate-600/60",
+        };
+      } else if (des === "smoke")
+        return {
+          text_day: "text-white",
+          text_date: "text-gray-200",
+          text_max: "text-white",
+          text_min: "text-gray-200",
+          panelback: "bg-gray-600/60",
+        };
+    } else {
+      return {
+        text_day: "text-black",
+        text_date: "text-gray-800",
+        text_max: "text-black",
+        text_min: "text-gray-900",
+        panelback: "bg-gray-100",
+      };
     }
   }
- 
+
+  //night-sky : {text_day:'text-white',text_date:'text-gray-100',text_max:'text-white',text_min:'text-gray-300',panelback:'bg-[#060693]'};
 
   return (
     <>
@@ -163,13 +250,27 @@ const Weather_week = ({ results1,weather_des }) => {
               return (
                 <div
                   key={String(item?.speed)}
-                  className="bg-black/30 hover:bg-white/5 rounded-lg border border-gray-300 shadow-md "
+                  className="bg-white/5 hover:bg-black/5 rounded-lg border border-gray-300 shadow-md "
                 >
                   <div className="flex flex-col  w-32 items-center p-3 text-center">
-                    <h5 className={`${changetheme(weather_des && weather_des[0].description || "clear sky").text_day} mb-1 text-lg font-medium uppercase`}>
+                    <h5
+                      className={`${
+                        changetheme(
+                          (weather_des && weather_des[0].description) ||
+                            "clear sky"
+                        ).text_day
+                      } mb-1 text-lg font-medium uppercase`}
+                    >
                       {dateprocessing(item?.dt).day}
                     </h5>
-                    <h6 className={`${changetheme(weather_des && weather_des[0].description || "clear sky").text_date} mb-1 text-sm font-light`}>
+                    <h6
+                      className={`${
+                        changetheme(
+                          (weather_des && weather_des[0].description) ||
+                            "clear sky"
+                        ).text_date
+                      } mb-1 text-sm font-light`}
+                    >
                       {dateprocessing(item?.dt).date}
                     </h6>
                     <div className="h-16 w-16 xl:h-20 xl:w-20">
@@ -179,15 +280,41 @@ const Weather_week = ({ results1,weather_des }) => {
                         alt="sunset"
                       />
                     </div>
-                    <span className={`text-base ${changetheme(weather_des && weather_des[0].description || "clear sky").text_max} `}>
+                    <span
+                      className={`text-base ${
+                        changetheme(
+                          (weather_des && weather_des[0].description) ||
+                            "clear sky"
+                        ).text_max
+                      } `}
+                    >
                       {kelvinToCelcius(item?.temp?.day)} C
                     </span>
-                    <span className={`${changetheme(weather_des && weather_des[0].description || "clear sky").text_min} text-base `}>
+                    <span
+                      className={`${
+                        changetheme(
+                          (weather_des && weather_des[0].description) ||
+                            "clear sky"
+                        ).text_min
+                      } text-base `}
+                    >
                       {kelvinToCelcius(item?.temp?.night)} C
                     </span>
 
                     <div className="flex mt-4 lg:mt-2">
-                      <a className={`${changetheme(weather_des && weather_des[0].description || "clear sky").panelback} ${changetheme(weather_des && weather_des[0].description || "clear sky").text_day} inline-flex items-center py-2 px-4 text-base font-medium text-center  rounded-lg border border-gray-300 hover:bg-white/5 focus:ring-4 focus:outline-none focus:ring-gray-200 capitalize`}>
+                      <a
+                        className={`${
+                          changetheme(
+                            (weather_des && weather_des[0].description) ||
+                              "clear sky"
+                          ).panelback
+                        } ${
+                          changetheme(
+                            (weather_des && weather_des[0].description) ||
+                              "clear sky"
+                          ).text_day
+                        } inline-flex items-center py-2 px-4 text-base font-medium text-center  rounded-lg border border-gray-300 hover:bg-white/5 focus:ring-4 focus:outline-none focus:ring-gray-200 capitalize`}
+                      >
                         {item.weather[0]?.description}
                         {/* {item.weather[0]?.main} */}
                       </a>

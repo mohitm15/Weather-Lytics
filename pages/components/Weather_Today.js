@@ -9,7 +9,7 @@ import wimgurl2 from "../../public/cloudyday.gif";
 import wimgurl3 from "../../public/1-cloud.gif";
 import wimgurl4 from "../../public/clouds.gif";
 import wimgurl5 from "../../public/mildrain.gif";
-import wimgurl6 from "../../public/mildrain.gif";
+import wimgurl6 from "../../public/rain.gif";
 import wimgurl7 from "../../public/storm.gif";
 import wimgurl8 from "../../public/snow.gif";
 import wimgurl9 from "../../public/fog.gif";
@@ -67,17 +67,35 @@ const Weather_Today = ({ results }) => {
   function changeWeatherIcon(des) {
     //console.log("des =",des)
 
-    if (des === "sky is clear" || des === "clear sky") 
-      return wimgurl1;
-    else if (des === "broken clouds" || des === "overcast clouds" || des === "scattered clouds" || des === "few clouds")
-      return {icon:wimgurl4,panelback:'bg-[#060693bf]',tileback:'bg-[#060693]'};
+    if (des === "sky is clear" || des === "clear sky")
+      return {
+        icon: wimgurl1,
+        panelback: "bg-white/40",
+        tileback: "bg-white/70",
+      };
+    else if (des === "broken clouds" || des === "overcast clouds")
+      return {
+        icon: wimgurl4,
+        panelback: "bg-[#060693bf]",
+        tileback: "bg-[#060693]",
+      };
+    else if (des === "scattered clouds" || des === "few clouds")
+      return {
+        icon: wimgurl3,
+        panelback: "bg-blue-500/80",
+        tileback: "bg-blue-900/10",
+      };
     else if (
       des === "shower rain" ||
       des === "light rain" ||
       des === "drizzle" ||
       des === "moderate rain"
     )
-      return {icon:wimgurl5,panelback:'bg-[#202631]',tileback:'bg-[#262d3b]'};
+      return {
+        icon: wimgurl6,
+        panelback: "bg-[#202631]",
+        tileback: "bg-[#262d3b]",
+      };
     else if (
       des === "rain" ||
       des === "very heavy rain" ||
@@ -86,7 +104,11 @@ const Weather_Today = ({ results }) => {
       des === "heavy intensity shower rain" ||
       des === "light intensity shower rain"
     )
-      return {icon:wimgurl6,panelback:'bg-[#202631]',tileback:'bg-[#262d3b]'};
+      return {
+        icon: wimgurl6,
+        panelback: "bg-[#073151f0]",
+        tileback: "bg-[#073151]",
+      };
     else if (
       des === "thunderstorm" ||
       des === "light thunderstorm" ||
@@ -94,28 +116,68 @@ const Weather_Today = ({ results }) => {
       des === "ragged thunderstorm" ||
       des === "thunderstorm with rain"
     )
-      return wimgurl7;
+      return {
+        icon: wimgurl7,
+        panelback: "bg-slate-900/50",
+        tileback: "bg-slate-900",
+      };
     else if (des === "snow" || des === "light snow" || des === "heavy snow")
-      return wimgurl8;
+      return {
+        icon: wimgurl8,
+        panelback: "bg-gray-900/30",
+        tileback: "bg-black/20",
+      };
     else if (
       des === "light rain and snow" ||
       des === "rain and snow" ||
       des === "light shower snow"
     )
-      return wimgurl10;
-    else if (
-      des === "mist" ||
-      des === "fog" ||
-      des === "smoke" ||
-      des === "haze"
-    )
-      return {icon:wimgurl9,panelback:'bg-[#060693bf]',tileback:'bg-[#060693]'};
-    else return wimgurl9;
+      return {
+        icon: wimgurl10,
+        panelback: "bg-[#efa95c]",
+        tileback: "bg-orange-300/70",
+      };
+    else if (des === "haze" || des === "dust") {
+      return {
+        icon: wimgurl9,
+        panelback: "bg-[#efa95c]",
+        tileback: "bg-orange-300/70",
+      };
+      // return {
+      //   icon: wimgurl9,
+      //   panelback: "bg-gray-900/30",
+      //   tileback: "bg-black/20",
+      // };
+    } else if (des === "fog") {
+      return {
+        icon: wimgurl9,
+        panelback: "bg-stone-700/40",
+        tileback: "bg-stone-800/40",
+      };
+    } else if (des === "mist") {
+      return {
+        icon: wimgurl9,
+        panelback: "bg-slate-700/80",
+        tileback: "bg-slate-800/40",
+      };
+    } else if (des === "smoke")
+      return {
+        icon: wimgurl9,
+        panelback: "bg-gray-700/40",
+        tileback: "bg-gray-800/40",
+      };
+    else {
+      return {
+        icon: wimgurl1,
+        panelback: "bg-white/40",
+        tileback: "bg-white/70",
+      };
+    }
   }
 
-
   //console.log("icon getting = ", weather && changeWeatherIcon(weather[0]?.description).icon);
-  //console.log(wimgurl9)
+
+  //night-sky : {icon:wimgurl9,panelback:'bg-[#060693bf]',tileback:'bg-[#060693]'};
 
   return (
     <>
@@ -130,7 +192,9 @@ const Weather_Today = ({ results }) => {
         <div className="text-center">
           <Image
             src={
-              weather ? changeWeatherIcon(weather[0]?.description).icon : wimgurl4
+              weather
+                ? changeWeatherIcon(weather[0]?.description).icon
+                : wimgurl4
             }
             height={180}
             width={180}
@@ -203,7 +267,9 @@ const Weather_Today = ({ results }) => {
         <div className="text-center">
           <Image
             src={
-              weather ? changeWeatherIcon(weather[0]?.description).icon : wimgurl4
+              weather
+                ? changeWeatherIcon(weather[0]?.description).icon
+                : wimgurl4
             }
             height={220}
             width={220}
@@ -223,11 +289,23 @@ const Weather_Today = ({ results }) => {
 
         {/* below flex */}
         <div className="flex flex-col space-y-4 justify-center items-center">
-          <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} py-2 text-xl rounded-lg capitalize text-center border-2 border-gray-400 px-3 hover:bg-white/10 hover:border-gray-500`}>
+          <div
+            className={`${
+              weather && changeWeatherIcon(weather[0]?.description).panelback
+            } py-2 text-xl rounded-lg capitalize text-center border-2 border-gray-400 px-3 hover:bg-white/10 hover:border-gray-500`}
+          >
             {weather && weather[0]?.description}
           </div>
-          <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} flex flex-row justify-evenly items-center p-3 space-x-4 text-center rounded-lg`}>
-            <div className={`${weather && changeWeatherIcon(weather[0]?.description).tileback} hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}>
+          <div
+            className={`${
+              weather && changeWeatherIcon(weather[0]?.description).panelback
+            } flex flex-row justify-evenly items-center p-3 space-x-4 text-center rounded-lg`}
+          >
+            <div
+              className={`${
+                weather && changeWeatherIcon(weather[0]?.description).tileback
+              } hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}
+            >
               <div className="text-gray-400 leading-tight ">
                 Max.
                 <br /> Temp.
@@ -239,7 +317,11 @@ const Weather_Today = ({ results }) => {
                 {kelvinToCelcius(main?.temp_max) + "°"}
               </p>
             </div>
-            <div className={`${weather && changeWeatherIcon(weather[0]?.description).tileback} hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}>
+            <div
+              className={`${
+                weather && changeWeatherIcon(weather[0]?.description).tileback
+              } hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}
+            >
               <div className="text-gray-400 leading-tight ">
                 Cloud <br /> Cover
               </div>
@@ -248,7 +330,11 @@ const Weather_Today = ({ results }) => {
               </div>
               <p className="text-base font-[500]">{clouds?.all} %</p>
             </div>
-            <div className={`${weather && changeWeatherIcon(weather[0]?.description).tileback} hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}>
+            <div
+              className={`${
+                weather && changeWeatherIcon(weather[0]?.description).tileback
+              } hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}
+            >
               <div className="text-gray-400 leading-tight ">
                 Min. <br /> Temp.
               </div>
@@ -262,16 +348,28 @@ const Weather_Today = ({ results }) => {
           </div>
         </div>
         <div className="flex flex-row py-3 w-full justify-evenly">
-          <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} p-3 rounded-xl border-[1px] border-white hover:bg-black/50`} >
+          <div
+            className={`${
+              weather && changeWeatherIcon(weather[0]?.description).panelback
+            } p-3 rounded-xl border-[1px] border-white hover:bg-black/50`}
+          >
             <span className="font-semibold text-base">Latitude : </span>{" "}
             {coord?.lat.toPrecision(3)}
           </div>
-          <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} p-3 rounded-xl border-[1px] border-white hover:bg-black/50`}>
+          <div
+            className={`${
+              weather && changeWeatherIcon(weather[0]?.description).panelback
+            } p-3 rounded-xl border-[1px] border-white hover:bg-black/50`}
+          >
             <span className="font-semibold text-base">Longitude : </span>{" "}
             {coord?.lon.toPrecision(3)}
           </div>
         </div>
-        <div className={`${weather && changeWeatherIcon(weather[0]?.description).panelback} flex flex-row py-3  justify-center items-center px-3 border-2 border-white/70 rounded-xl  hover:bg-black/50`}>
+        <div
+          className={`${
+            weather && changeWeatherIcon(weather[0]?.description).panelback
+          } flex flex-row py-3  justify-center items-center px-3 border-2 border-white/70 rounded-xl  hover:bg-black/50`}
+        >
           <div className="h-10 w-10 ">
             <Image src={imgurl5} alt="weathericon" layout="responsive" />
           </div>
