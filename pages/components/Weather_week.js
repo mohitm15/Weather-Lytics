@@ -198,11 +198,11 @@ const Weather_week = ({ results1, weather_des }) => {
           panelback: "bg-orange-300/70",
         };
         // return {
-        //   text_day: "text-black",
-        //   text_date: "text-gray-900",
-        //   text_max: "text-black",
-        //   text_min: "text-gray-900",
-        //   panelback: "bg-slate-800/40",
+        //   text_day: "text-white",
+        //   text_date: "text-gray-100",
+        //   text_max: "text-white",
+        //   text_min: "text-gray-100",
+        //   panelback: "bg-slate-800",
         // };
       } else if (des === "fog") {
         return {
