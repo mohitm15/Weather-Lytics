@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import imgurl2 from "../../public/celsius.gif";
 import imgurl3 from "../../public/visibilty.gif";
@@ -7,8 +7,10 @@ import imgurl5 from "../../public/thermo.gif";
 import imgurl6 from "../../public/sunset.gif";
 import imgurl7 from "../../public/wind.gif";
 
-const Today_highlight = ({ results }) => {
-  const { main, sys, wind, visibility } = results || {};
+const Today_highlight = ({ results, weather_des }) => {
+  const { main, sys, wind, visibility, dt } = results || {};
+
+  //console.log("wea_des = ",weather_des && weather_des[0].description || "clear sky");
 
   //fn to convert temperature from kelvin to celcius
   const kelvinToCelcius = (temp) => {
@@ -45,6 +47,187 @@ const Today_highlight = ({ results }) => {
     return arr[val % 16];
   };
 
+  console.log("current time - ", dateprocessing(dt)?.time);
+  console.log("time sunrise - ", dateprocessing(sys?.sunrise).time);
+  console.log("time sunset - ", dateprocessing(sys?.sunset).time);
+
+  let current_time = dateprocessing(dt)?.time;
+  let sunrise_time = dateprocessing(sys?.sunrise).time;
+  let sunset_time = dateprocessing(sys?.sunset).time;
+
+  function changetheme(des) {
+    //  console.log("des found - ", des);
+    if (des !== "clear sky") {
+      if (des === "sky is clear" || des === "clear sky") {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return {
+            panelback: "bg-white/30",
+            text_heading: "text-black",
+            text_value: "text-gray-900",
+          };
+        } else {
+          return {
+            panelback: "bg-white/30",
+            text_heading: "text-black",
+            text_value: "text-gray-900",
+          };
+        }
+      } else if (des === "scattered clouds" || des === "few clouds") {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return {
+            panelback: "bg-blue-600/30",
+            text_heading: "text-black",
+            text_value: "text-white",
+          };
+        } else {
+          return {
+            panelback: "bg-gray-600/30",
+            text_heading: "text-black",
+            text_value: "text-white",
+          };
+        }
+      } else if (des === "broken clouds" || des === "overcast clouds") {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return {
+            panelback: "bg-blue-900/70",
+            text_heading: "text-white",
+            text_value: "text-white",
+          };
+        } else {
+          return {
+            panelback: "bg-gray-300/30",
+            text_heading: "text-black",
+            text_value: "text-white",
+          };
+        }
+      } else if (
+        des === "shower rain" ||
+        des === "light rain" ||
+        des === "drizzle" ||
+        des === "moderate rain"
+      ) {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return {
+            panelback: "bg-[#202631]",
+            text_heading: "text-[#53b2f3]",
+            text_value: "text-white",
+          };
+        } else {
+          return {
+            panelback: "bg-[#202631]",
+            text_heading: "text-[#53b2f3]",
+            text_value: "text-white",
+          };
+        }
+      } else if (
+        des === "rain" ||
+        des === "very heavy rain" ||
+        des === "heavy intensity rain" ||
+        des === "extreme rain" ||
+        des === "heavy intensity shower rain" ||
+        des === "light intensity shower rain"
+      ) {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return {
+            panelback: "bg-[#073151f0]/50",
+            text_heading: "text-white",
+            text_value: "text-white",
+          };
+        } else {
+          return {
+            panelback: "bg-[#073151f0]/50",
+            text_heading: "text-white",
+            text_value: "text-white",
+          };
+        }
+      } else if (
+        des === "thunderstorm" ||
+        des === "light thunderstorm" ||
+        des === "heavy thunderstorm" ||
+        des === "ragged thunderstorm" ||
+        des === "thunderstorm with rain"
+      ) {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return {
+            panelback: "bg-slate-900/50",
+            text_heading: "text-white",
+            text_value: "text-white",
+          };
+        } else {
+          return {
+            panelback: "bg-indigo-900/80",
+            text_heading: "text-white",
+            text_value: "text-white",
+          };
+        }
+      } else if (
+        des === "snow" ||
+        des === "light snow" ||
+        des === "heavy snow"
+      ) {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return {
+            panelback: "bg-slate-900/30",
+            text_heading: "text-white",
+            text_value: "text-black",
+          };
+        } else {
+          return {
+            panelback: "bg-slate-900/30",
+            text_heading: "text-white",
+            text_value: "text-black",
+          };
+        }
+      } else if (
+        des === "light rain and snow" ||
+        des === "rain and snow" ||
+        des === "light shower snow"
+      ) {
+        return {
+          panelback: "bg-slate-900/30",
+          text_heading: "text-white",
+          text_value: "text-black",
+        };
+      } else if (des === "haze" || des === "dust") {
+        return {
+          panelback: "bg-orange-400/30",
+          text_heading: "text-black",
+          text_value: "text-black",
+        };
+        // return {
+        //   panelback: "bg-indigo-900/80",
+        //   text_heading: "text-white",
+        //   text_value: "text-white",
+        // };
+      } else if (des === "fog") {
+        return {
+          panelback: "bg-stone-400/30",
+          text_heading: "text-black",
+          text_value: "text-white",
+        };
+      } else if (des === "mist") {
+        return {
+          panelback: "bg-slate-400/30",
+          text_heading: "text-gray-200",
+          text_value: "text-white",
+        };
+      } else if (des === "smoke")
+        return {
+          panelback: "bg-gray-400/30",
+          text_heading: "text-gray-200",
+          text_value: "text-white",
+        };
+    } else {
+      return {
+        panelback: "bg-white/30",
+        text_heading: "text-black",
+        text_value: "text-black",
+      };
+    }
+  }
+
+  //night-sky : {panelback:'bg-gray-400/30',text_heading:'text-gray-200'};
+
   return (
     <>
       {/* mobile view */}
@@ -54,20 +237,39 @@ const Today_highlight = ({ results }) => {
       <div className="container p-2 m-auto space-y-2 xl:hidden">
         {/* first */}
         <div className="flex flex-row space-x-2 items-center justify-center">
-          <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-full h-20 ">
+          <div
+            className={`${
+              changetheme(
+                (weather_des && weather_des[0].description) || "clear sky"
+              ).panelback
+            } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}
+          >
             <div className="w-14 h-14 p-2">
               <Image src={imgurl2} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 text-gray-900 font-[1100] text-md ">
-              {main && kelvinToCelcius(main?.temp)}
+            <div className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                } mb-3 font-[1100] text-md `}>
+              {main && kelvinToCelcius(main?.temp)} C
             </div>
           </div>
           {/*  */}
-          <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-full h-20">
+          <div className={`${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}>
+            
             <div className="w-14 h-14 p-2">
               <Image src={imgurl6} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 text-gray-900 font-[1100] text-md ">
+            <div className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                } mb-3 font-[1100] text-md `}>
               {dateprocessing(sys?.sunrise).time} AM
               <br />
               {dateprocessing(sys?.sunset).time} PM
@@ -76,21 +278,39 @@ const Today_highlight = ({ results }) => {
         </div>
         {/* second */}
         <div className="flex flex-row space-x-2 items-center justify-center ">
-          <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-full h-20 ">
+          <div className={`${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}>
+            
             <div className="w-14 h-14 p-2">
               <Image src={imgurl7} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 text-gray-900 font-[1100] text-md ">
+            <div className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                } mb-3 font-[1100] text-md `}>
               {wind && wind?.speed} m/s, <br />
               {wind && degTodirection(wind?.deg)}
             </div>
           </div>
           {/*  */}
-          <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-full h-20">
+          <div className={`${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}>
+            
             <div className="w-14 h-14 p-2">
               <Image src={imgurl3} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 text-gray-900 font-[1100] text-md ">
+            <div className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                } mb-3 font-[1100] text-md `}>
               {visibility} m
             </div>
           </div>
@@ -98,20 +318,38 @@ const Today_highlight = ({ results }) => {
 
         {/* third */}
         <div className="flex flex-row space-x-2 items-center justify-center lg:hidden">
-          <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-full h-20 ">
+          <div className={`${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}>
+            
             <div className="w-14 h-14 p-2">
               <Image src={imgurl4} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 text-gray-900 font-[1100] text-md ">
+            <div className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                } mb-3 font-[1100] text-md `}>
               {main && main?.humidity} %
             </div>
           </div>
           {/*  */}
-          <div className="flex flex-row items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-full h-20">
+          <div className={`${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}>
+            
             <div className="w-14 h-14 p-2">
               <Image src={imgurl5} layout="responsive" alt="temp" />
             </div>
-            <div className="mb-3 text-gray-900 font-[1100] text-md ">
+            <div className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                } mb-3 font-[1100] text-md `}>
               {main && main?.pressure} hPa
             </div>
           </div>
@@ -127,71 +365,191 @@ const Today_highlight = ({ results }) => {
             Today&apos;s <br /> Highlights
           </h3>
         </div>
-        <div className="mx-5 bg-black w-1 h-56">.</div>
+        <div className="mx-5 bg-gray-100/50 w-1 h-56">.</div>
         <div className="flex flex-col items-center justify-center space-y-4">
           {/* first */}
           <div className="flex flex-row space-x-5 items-center justify-center">
             {/*  */}
-            <div className="flex flex-col items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-48 h-48">
-              <div className=" font-normal text-gray-500 ">Avg. Temp</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48`}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                } `}
+              >
+                Avg. Temp
+              </div>
               <div className="w-20 h-20 p-2 ">
                 <Image src={imgurl2} layout="responsive" alt="temp" />
               </div>
-              <div className=" text-gray-900 font-[1100] text-xl">
+              <div
+                className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                }  font-[1100] text-xl`}
+              >
                 {main && kelvinToCelcius(main?.temp)}
               </div>
             </div>
             {/*  */}
-            <div className="flex flex-col items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-48 h-48">
-              <div className=" font-normal text-gray-500 ">Sunrise-Sunset</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48`}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                }`}
+              >
+                Sunrise-Sunset
+              </div>
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl6} layout="responsive" alt="temp" />
               </div>
-              <div className=" text-gray-900 font-[1100] text-lg ">
+              <div
+                className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                }  font-[1100] text-xl`}
+              >
                 {dateprocessing(sys?.sunrise).time} AM
                 <br />
                 {dateprocessing(sys?.sunset).time} PM
               </div>
             </div>
             {/*  */}
-            <div className="flex flex-col items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-48 h-48 ">
-              <div className=" font-normal text-gray-500 ">Humidity</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48 `}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                } `}
+              >
+                Humidity
+              </div>
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl4} layout="responsive" alt="temp" />
               </div>
-              <div className=" text-gray-900 font-[1100] text-xl ">
+              <div
+                className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                }  font-[1100] text-xl`}
+              >
                 {main && main?.humidity} %
               </div>
             </div>
           </div>
           {/* second */}
           <div className="flex flex-row space-x-5 items-center justify-center ">
-            <div className="flex flex-col items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-48 h-48 ">
-              <div className=" font-normal text-gray-500 ">Wind</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48 `}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                } `}
+              >
+                Wind
+              </div>
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl7} layout="responsive" alt="temp" />
               </div>
-              <div className=" text-gray-900 font-[1100] text-xl ">
+              <div
+                className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                }  font-[1100] text-xl`}
+              >
                 {wind && wind?.speed} m/s, {wind && degTodirection(wind?.deg)}
               </div>
             </div>
             {/*  */}
-            <div className="flex flex-col items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-48 h-48">
-              <div className=" font-normal text-gray-500 ">Visibility</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48`}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                } `}
+              >
+                Visibility
+              </div>
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl3} layout="responsive" alt="temp" />
               </div>
-              <div className=" text-gray-900 font-[1100] text-xl ">
+              <div
+                className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                }  font-[1100] text-xl`}
+              >
                 {visibility} m
               </div>
             </div>
             {/*  */}
-            <div className="flex flex-col items-center justify-center bg-white rounded-lg border shadow-md  hover:bg-gray-100 w-48 h-48">
-              <div className=" font-normal text-gray-500 ">Pressure</div>
+            <div
+              className={` ${
+                changetheme(
+                  (weather_des && weather_des[0].description) || "clear sky"
+                ).panelback
+              } flex flex-col items-center justify-center  rounded-lg border shadow-md  hover:bg-black/5 w-48 h-48`}
+            >
+              <div
+                className={`font-normal ${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_heading
+                } `}
+              >
+                Pressure
+              </div>
               <div className="w-20 h-20 p-2">
                 <Image src={imgurl5} layout="responsive" alt="temp" />
               </div>
-              <div className=" text-gray-900 font-[1100] text-xl ">
+              <div
+                className={`${
+                  changetheme(
+                    (weather_des && weather_des[0].description) || "clear sky"
+                  ).text_value
+                }  font-[1100] text-xl`}
+              >
                 {main && main?.pressure} hPa
               </div>
             </div>
