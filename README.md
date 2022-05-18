@@ -60,6 +60,21 @@
 ![Screenshot from 2022-04-02 18-41-26](https://user-images.githubusercontent.com/35539313/161384928-9d3872aa-4081-45ad-9e12-1d74963e0428.png)
 
 
+- View : **Day Themes**
+
+![Screenshot from 2022-05-18 18-03-22](https://user-images.githubusercontent.com/35539313/169039861-4dab0d81-231f-438a-8ca9-5a583513b26e.png)
+
+
+- View : **Night Themes**
+
+![Screenshot from 2022-05-18 16-50-16](https://user-images.githubusercontent.com/35539313/169039978-f7310a02-f2fa-43b4-8753-cf66dd9dae62.png)
+
+
+
+- View : **More Themes**
+
+![Screenshot from 2022-05-18 16-53-52](https://user-images.githubusercontent.com/35539313/169040057-2183eead-faaa-497c-9d38-54d8fbd751b4.png)
+
 
 
 <!-- GETTING STARTED -->
