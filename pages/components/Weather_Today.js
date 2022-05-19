@@ -2,13 +2,14 @@ import React from "react";
 import Image from "next/image";
 import imgurl1 from "../../public/temperature.gif";
 import imgurl3 from "../../public/coldtemp.gif";
-import imgurl4 from "../../public/celsiusbold.gif";
+import imgurl4b from "../../public/celsiusbold.gif";
+import imgurl4w from "../../public/mildrain.gif";
 import imgurl5 from "../../public/rainnight.gif";
+
 import wimgurl1 from "../../public/sunfi.gif";
 import wimgurl2 from "../../public/cloudyday.gif";
 import wimgurl3 from "../../public/1-cloud.gif";
 import wimgurl4 from "../../public/clouds.gif";
-//import wimgurl5 from "../../public/mildrain.gif";
 import wimgurl6 from "../../public/rain.gif";
 import wimgurl7 from "../../public/storm.gif";
 import wimgurl8 from "../../public/snow.gif";
@@ -87,6 +88,7 @@ const Weather_Today = ({ results }) => {
         tileback: "bg-white/70",
         border: "border-black",
         tilehead: "text-gray-700",
+        celcius:imgurl4b,
       };}
       else {
         return {
@@ -94,7 +96,9 @@ const Weather_Today = ({ results }) => {
         panelback: "bg-white/40",
         tileback: "bg-white/70",
         border: "border-black",
-        tilehead: "text-gray-700"}
+        tilehead: "text-gray-700",
+        celcius:imgurl4b,
+      }
       }}
     else if (des === "broken clouds" || des === "overcast clouds") {
       if (sunrise_time <= current_time && current_time <= sunset_time) {
@@ -104,6 +108,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-[#060693]",
           border: "border-white",
           tilehead: "text-gray-100",
+          celcius:imgurl4w,
         };
       } else {
         return {
@@ -112,6 +117,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-black/10",
           border: "border-white",
           tilehead: "text-gray-100",
+          celcius:imgurl4w,
         };
       }
     } else if (des === "scattered clouds" || des === "few clouds") {
@@ -122,6 +128,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-blue-900/10",
           border: "border-black",
           tilehead: "text-gray-900",
+          celcius:imgurl4b,
         };
       } else {
         return {
@@ -130,6 +137,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-black/10",
           border: "border-white",
           tilehead: "text-gray-100",
+          celcius:imgurl4w,
         };
       }
     } else if (
@@ -145,6 +153,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-[#262d3b]",
           border: "border-white",
           tilehead: "text-gray-200",
+          celcius:imgurl4w,
         };
       } else {
         return {
@@ -153,6 +162,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-[#262d3b]",
           border: "border-white",
           tilehead: "text-gray-200",
+          celcius:imgurl4w,
         };
       }
     } else if (
@@ -170,6 +180,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-[#073151]",
           border: "border-white",
           tilehead: "text-gray-200",
+          celcius:imgurl4w,
         };
       } else {
         return {
@@ -178,6 +189,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-[#073151]",
           border: "border-white",
           tilehead: "text-gray-200",
+          celcius:imgurl4w,
         };
       }
     } else if (
@@ -194,6 +206,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-slate-900",
           border: "border-white",
           tilehead: "text-gray-200",
+          celcius:imgurl4w,
         };
       } else {
         return {
@@ -202,6 +215,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-indigo-900",
           border: "border-white",
           tilehead: "text-gray-100",
+          celcius:imgurl4w,
         };
       }
     } else if (des === "snow" || des === "light snow" || des === "heavy snow") {
@@ -212,6 +226,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-black/20",
           border: "border-black",
           tilehead: "text-gray-800",
+          celcius:imgurl4b,
         };
       } else {
         return {
@@ -220,6 +235,7 @@ const Weather_Today = ({ results }) => {
           tileback: "bg-black/20",
           border: "border-black",
           tilehead: "text-gray-800",
+          celcius:imgurl4b,
         };
       }
     } else if (
@@ -233,6 +249,7 @@ const Weather_Today = ({ results }) => {
         tileback: "bg-orange-300/70",
         border: "border-black",
         tilehead: "text-gray-800",
+        celcius:imgurl4b,
       };
     else if (des === "haze" || des === "dust") {
       return {
@@ -241,6 +258,7 @@ const Weather_Today = ({ results }) => {
         tileback: "bg-orange-300/70",
         border: "border-white",
         tilehead: "text-gray-800",
+        celcius:imgurl4b,
       };
       // return {
       //   icon: wimgurl7,
@@ -256,6 +274,7 @@ const Weather_Today = ({ results }) => {
         tileback: "bg-stone-800/40",
         border: "border-white",
         tilehead: "text-gray-200",
+        celcius:imgurl4w,
       };
     } else if (des === "mist") {
       return {
@@ -264,6 +283,7 @@ const Weather_Today = ({ results }) => {
         tileback: "bg-slate-800/40",
         border: "border-white",
         tilehead: "text-gray-200",
+        celcius:imgurl4w,
       };
     } else if (des === "smoke")
       return {
@@ -272,6 +292,7 @@ const Weather_Today = ({ results }) => {
         tileback: "bg-gray-800/40",
         border: "border-white",
         tilehead: "text-gray-200",
+        celcius:imgurl4b,
       };
     else {
       return {
@@ -280,6 +301,7 @@ const Weather_Today = ({ results }) => {
         tileback: "bg-white/70",
         border: "border-black",
         tilehead: "text-gray-800",
+        celcius:imgurl4b,
       };
     }
   }
@@ -313,9 +335,9 @@ const Weather_Today = ({ results }) => {
           <div className="text-6xl font-semibold">
             {main && kelvinToCelcius(main?.temp)}
           </div>
-          {/* weather icon */}
+          {/* celcius icon */}
           <div className=" w-24 h-24 ">
-            <Image src={imgurl4} alt="sunset" />
+            <Image src={imgurl4b} alt="sunset" />
           </div>
         </div>
 
@@ -400,9 +422,9 @@ const Weather_Today = ({ results }) => {
           <div className="text-7xl font-semibold">
             {main && kelvinToCelcius(main?.temp)}
           </div>
-          {/* weather icon */}
+          {/* celcius icon */}
           <div className=" w-24 h-24 ">
-            <Image src={imgurl4} alt="sunset" />
+            <Image src={imgurl4b} alt="sunset" />
           </div>
         </div>
 
