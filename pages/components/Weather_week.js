@@ -97,49 +97,131 @@ const Weather_week = ({ results1, weather_des }) => {
   }
 
   //feature 1 wali chhez
-  console.log(
-    "wea_des main = ",
-    (weather_des && weather_des[0].description) || "clear sky"
-  );
+  // console.log(
+  //   "wea_des main = ",
+  //   (weather_des && weather_des[0].description) || "clear sky"
+  // );
+
+  const return_data = [
+    {
+      //0
+      text_day: "text-black",
+      text_date: "text-gray-800",
+      text_max: "text-black",
+      text_min: "text-gray-900",
+      panelback: "bg-gray-100",
+    },
+    {
+      //1
+      text_day: "text-black",
+      text_date: "text-gray-900",
+      text_max: "text-black",
+      text_min: "text-gray-900",
+      panelback: "bg-blue-300/70",
+    },
+    {
+      //2
+      text_day: "text-white",
+      text_date: "text-gray-100",
+      text_max: "text-white",
+      text_min: "text-gray-300",
+      panelback: "bg-[#060693]",
+    },
+    {
+      //3
+      text_day: "text-white",
+      text_date: "text-[#53b2f3]",
+      text_max: "text-white",
+      text_min: "text-gray-300  ",
+    },
+    {
+      //4
+      text_day: "text-white",
+      text_date: "text-gray-100",
+      text_max: "text-white",
+      text_min: "text-gray-100",
+      panelback: "bg-[#073151f0]",
+    },
+    {
+      //5
+      text_day: "text-white",
+      text_date: "text-gray-100",
+      text_max: "text-white",
+      text_min: "text-gray-100",
+      panelback: "bg-slate-800",
+    },
+    {
+      //6
+      text_day: "text-black",
+      text_date: "text-gray-900",
+      text_max: "text-black",
+      text_min: "text-gray-900",
+      panelback: "bg-slate-800/40",
+    },
+    {
+      //7
+      text_day: "text-black",
+      text_date: "text-gray-900",
+      text_max: "text-black",
+      text_min: "text-gray-900",
+      panelback: "bg-slate-800/40",
+    },
+    {
+      //8
+      text_day: "text-black",
+      text_date: "text-gray-800",
+      text_max: "text-black",
+      text_min: "text-gray-900",
+      panelback: "bg-orange-300/70",
+    },
+    {
+      //9
+      text_day: "text-white",
+      text_date: "text-gray-200",
+      text_max: "text-white",
+      text_min: "text-gray-200",
+      panelback: "bg-stone-300/40",
+    },
+    {
+      //10
+      text_day: "text-white",
+      text_date: "text-gray-200",
+      text_max: "text-white",
+      text_min: "text-gray-200",
+      panelback: "bg-slate-600/60",
+    },
+    {
+      //11
+      text_day: "text-white",
+      text_date: "text-gray-200",
+      text_max: "text-white",
+      text_min: "text-gray-200",
+      panelback: "bg-gray-600/60",
+    },
+    {
+      //12
+      text_day: "text-black",
+      text_date: "text-gray-800",
+      text_max: "text-black",
+      text_min: "text-gray-900",
+      panelback: "bg-gray-100",
+    }
+  ];
   function changetheme(des) {
     //  console.log("des found - ", des);
     if (des !== "clear sky") {
-      if (des === "sky is clear" || des === "clear sky")
-        return {
-          text_day: "text-black",
-          text_date: "text-gray-800",
-          text_max: "text-black",
-          text_min: "text-gray-900",
-          panelback: "bg-gray-100",
-        };
+      if (des === "sky is clear" || des === "clear sky") return return_data[0];
       else if (des === "scattered clouds" || des === "few clouds")
-        return {
-          text_day: "text-black",
-          text_date: "text-gray-900",
-          text_max: "text-black",
-          text_min: "text-gray-900",
-          panelback: "bg-blue-300/70",
-        };
+        return return_data[1];
       else if (des === "broken clouds" || des === "overcast clouds")
-        return {
-          text_day: "text-white",
-          text_date: "text-gray-100",
-          text_max: "text-white",
-          text_min: "text-gray-300",
-          panelback: "bg-[#060693]",
-        };
+        return return_data[2];
       else if (
         des === "shower rain" ||
         des === "light rain" ||
         des === "drizzle" ||
         des === "moderate rain"
       )
-        return {
-          text_day: "text-white",
-          text_date: "text-[#53b2f3]",
-          text_max: "text-white",
-          text_min: "text-gray-300  ",
-        };
+        return return_data[3];
       else if (
         des === "rain" ||
         des === "very heavy rain" ||
@@ -148,13 +230,7 @@ const Weather_week = ({ results1, weather_des }) => {
         des === "heavy intensity shower rain" ||
         des === "light intensity shower rain"
       )
-        return {
-          text_day: "text-white",
-          text_date: "text-gray-100",
-          text_max: "text-white",
-          text_min: "text-gray-100",
-          panelback: "bg-[#073151f0]",
-        };
+        return return_data[4];
       else if (
         des === "thunderstorm" ||
         des === "light thunderstorm" ||
@@ -162,41 +238,17 @@ const Weather_week = ({ results1, weather_des }) => {
         des === "ragged thunderstorm" ||
         des === "thunderstorm with rain"
       )
-        return {
-          text_day: "text-white",
-          text_date: "text-gray-100",
-          text_max: "text-white",
-          text_min: "text-gray-100",
-          panelback: "bg-slate-800",
-        };
+        return return_data[5];
       else if (des === "snow" || des === "light snow" || des === "heavy snow")
-        return {
-          text_day: "text-black",
-          text_date: "text-gray-900",
-          text_max: "text-black",
-          text_min: "text-gray-900",
-          panelback: "bg-slate-800/40",
-        };
+        return return_data[6];
       else if (
         des === "light rain and snow" ||
         des === "rain and snow" ||
         des === "light shower snow"
       )
-        return {
-          text_day: "text-black",
-          text_date: "text-gray-900",
-          text_max: "text-black",
-          text_min: "text-gray-900",
-          panelback: "bg-slate-800/40",
-        };  
+        return return_data[7];
       else if (des === "haze" || des === "dust") {
-        return {
-          text_day: "text-black",
-          text_date: "text-gray-800",
-          text_max: "text-black",
-          text_min: "text-gray-900",
-          panelback: "bg-orange-300/70",
-        };
+        return return_data[8];
         // return {
         //   text_day: "text-white",
         //   text_date: "text-gray-100",
@@ -205,37 +257,12 @@ const Weather_week = ({ results1, weather_des }) => {
         //   panelback: "bg-slate-800",
         // };
       } else if (des === "fog") {
-        return {
-          text_day: "text-white",
-          text_date: "text-gray-200",
-          text_max: "text-white",
-          text_min: "text-gray-200",
-          panelback: "bg-stone-300/40",
-        };
+        return return_data[9];
       } else if (des === "mist") {
-        return {
-          text_day: "text-white",
-          text_date: "text-gray-200",
-          text_max: "text-white",
-          text_min: "text-gray-200",
-          panelback: "bg-slate-600/60",
-        };
-      } else if (des === "smoke")
-        return {
-          text_day: "text-white",
-          text_date: "text-gray-200",
-          text_max: "text-white",
-          text_min: "text-gray-200",
-          panelback: "bg-gray-600/60",
-        };
+        return return_data[10];
+      } else if (des === "smoke") return return_data[11];
     } else {
-      return {
-        text_day: "text-black",
-        text_date: "text-gray-800",
-        text_max: "text-black",
-        text_min: "text-gray-900",
-        panelback: "bg-gray-100",
-      };
+      return return_data[12];
     }
   }
 

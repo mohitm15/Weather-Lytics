@@ -52,12 +52,6 @@ const Home = () => {
   };
 
   weather_array = data?.day?.weather;
-  // let weather_desc_desc;
-  // if(weather_array!="day_sun") {
-  //   weather_array.map((item)=>{
-  //     weather_desc_desc = item.description
-  //   })
-  // }
 
   const dateprocessing = (ts) => {
     let ress = new Date(ts * 1000);
@@ -65,13 +59,139 @@ const Home = () => {
     return { time: time };
   };
 
-  // console.log("current time - ", dateprocessing(data?.day?.dt).time);
-  // console.log("time sunrise - ", dateprocessing(data?.day?.sys?.sunrise).time);
-  // console.log("time sunset - ", dateprocessing(data?.day?.sys?.sunset).time);
-
   let current_time = dateprocessing(data?.day?.dt).time;
   let sunrise_time = dateprocessing(data?.day?.sys?.sunrise).time;
   let sunset_time = dateprocessing(data?.day?.sys?.sunset).time;
+
+  const return_data = [
+    {
+      //"0:clearskyday"
+      bgImg: "lg:bg-day_sun",
+      divAll: "bg-white/50",
+      textAll: "text-black",
+    },
+    {
+      //"1:clearskynight"
+      bgImg: "lg:bg-night_sun",
+      divAll: "bg-white/40",
+      textAll: "text-black",
+    },
+    {
+      //2:fewclouds
+      bgImg: "lg:bg-day_fewcloud",
+      divAll: "bg-blue-500/50",
+      textAll: "text-black",
+    },
+    {
+      //3
+      bgImg: "lg:bg-night_cloud",
+      divAll: "bg-white/50",
+      textAll: "text-black",
+    },
+    {
+      //4:heavyclouds
+      bgImg: "lg:bg-day_cloud",
+      divAll: "bg-blue-600/80",
+      textAll: "text-white",
+    },
+    {
+      //5
+      bgImg: "lg:bg-night_cloud",
+      divAll: "bg-white/40",
+      textAll: "text-white",
+    },
+    {
+      //6rain
+      bgImg: "lg:bg-day_rain",
+      divAll: "bg-[#262d3bc2]",
+      textAll: "text-white",
+    },
+    {
+      //7
+      bgImg: "lg:bg-night_rain",
+      divAll: "bg-[#262d3bc2]",
+      textAll: "text-white",
+    },
+
+    {
+      //8heavyRain
+      bgImg: "lg:bg-day_heavy_rain",
+      divAll: "bg-[#013052de]",
+      textAll: "text-white",
+    },
+    {
+      //9
+      bgImg: "lg:bg-night_rain",
+      divAll: "bg-[#262d3bc2]",
+      textAll: "text-white",
+    },
+    {
+      //10thunderstorm
+      bgImg: "lg:bg-day_thunder",
+      divAll: "bg-slate-900/80",
+      textAll: "text-white",
+    },
+    {
+      //11
+      bgImg: "lg:bg-night_thunder",
+      divAll: "bg-indigo-900/60",
+      textAll: "text-white",
+    },
+    {
+      //12snow
+      bgImg: "lg:bg-day_snow",
+      divAll: "bg-slate-900/30",
+      textAll: "text-black",
+    },
+    {
+      //13
+      bgImg: "lg:bg-night_snow",
+      divAll: "bg-slate-900/30",
+      textAll: "text-black",
+    },
+    {
+      //14rain&snow
+      bgImg: "lg:bg-day_snow",
+      divAll: "bg-slate-900/30",
+      textAll: "text-black",
+    },
+    //15haze
+    {
+      bgImg: "lg:bg-day_haze",
+      divAll: "bg-orange-300/50",
+      textAll: "text-black",
+    },
+    {
+      //16fog
+      bgImg: "lg:bg-day_fog",
+      divAll: "bg-stone-600/50",
+      textAll: "text-gray-300",
+    },
+    {
+      //17mist
+      bgImg: "lg:bg-day_mist",
+      divAll: "bg-slate-600/50",
+      textAll: "text-white",
+    },
+    {
+      //18smoke
+      bgImg: "lg:bg-night_sun",
+      divAll: "bg-gray-600/50",
+      textAll: "text-white",
+    },
+    {
+      //19else
+      bgImg: "lg:bg-day_sun",
+      divAll: "bg-white/50",
+      textAll: "text-black",
+    },
+    {
+      //20
+      bgImg: "lg:bg-night_sun",
+      divAll: "bg-white/40",
+      textAll: "text-black",
+    },
+  ];
 
   function changetheme(des) {
     //console.log("des found - ", des);
@@ -79,45 +199,21 @@ const Home = () => {
       des = des[0].description;
       if (des === "sky is clear" || des === "clear sky") {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          return {
-            bgImg: "lg:bg-day_sun",
-            divAll: "bg-white/50",
-            textAll: "text-black",
-          };
+          return return_data[0];
         } else {
-          return {
-            bgImg: "lg:bg-night_sun",
-            divAll: "bg-white/40",
-            textAll: "text-black",
-          };
+          return return_data[1];
         }
       } else if (des === "scattered clouds" || des === "few clouds") {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          return {
-            bgImg: "lg:bg-day_fewcloud",
-            divAll: "bg-blue-500/50",
-            textAll: "text-black",
-          };
+          return return_data[2];
         } else {
-          return {
-            bgImg: "lg:bg-night_cloud",
-            divAll: "bg-white/50",
-            textAll: "text-black",
-          };
+          return return_data[3];
         }
       } else if (des === "broken clouds" || des === "overcast clouds") {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          return {
-            bgImg: "lg:bg-day_cloud",
-            divAll: "bg-blue-600/80",
-            textAll: "text-white",
-          };
+          return return_data[4];
         } else {
-          return {
-            bgImg: "lg:bg-night_cloud",
-            divAll: "bg-white/40",
-            textAll: "text-white",
-          };
+          return return_data[5];
         }
       } else if (
         des === "shower rain" ||
@@ -126,17 +222,9 @@ const Home = () => {
         des === "moderate rain"
       ) {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          return {
-            bgImg: "lg:bg-day_rain",
-            divAll: "bg-[#262d3bc2]",
-            textAll: "text-white",
-          };
+          return return_data[6];
         } else {
-          return {
-            bgImg: "lg:bg-night_rain",
-            divAll: "bg-[#262d3bc2]",
-            textAll: "text-white",
-          };
+          return return_data[7];
         }
       } else if (
         des === "rain" ||
@@ -147,17 +235,9 @@ const Home = () => {
         des === "light intensity shower rain"
       ) {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          return {
-            bgImg: "lg:bg-day_heavy_rain",
-            divAll: "bg-[#013052de]",
-            textAll: "text-white",
-          };
+          return return_data[8];
         } else {
-          return {
-            bgImg: "lg:bg-night_rain",
-            divAll: "bg-[#262d3bc2]",
-            textAll: "text-white",
-          };
+          return return_data[9];
         }
       } else if (
         des === "thunderstorm" ||
@@ -167,17 +247,9 @@ const Home = () => {
         des === "thunderstorm with rain"
       ) {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          return {
-            bgImg: "lg:bg-day_thunder",
-            divAll: "bg-slate-900/80",
-            textAll: "text-white",
-          };
+          return return_data[10];
         } else {
-          return {
-            bgImg: "lg:bg-night_thunder",
-            divAll: "bg-indigo-900/60",
-            textAll: "text-white",
-          };
+          return return_data[11];
         }
       } else if (
         des === "snow" ||
@@ -185,70 +257,33 @@ const Home = () => {
         des === "heavy snow"
       ) {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          return {
-            bgImg: "lg:bg-day_snow",
-            divAll: "bg-slate-900/30",
-            textAll: "text-black",
-          };
+          return return_data[12];
         } else {
-          return {
-            bgImg: "lg:bg-night_snow",
-            divAll: "bg-slate-900/30",
-            textAll: "text-black",
-          };
+          return return_data[13];
         }
       } else if (
         des === "light rain and snow" ||
         des === "rain and snow" ||
         des === "light shower snow"
       )
-        return {
-          bgImg: "lg:bg-day_snow",
-          divAll: "bg-slate-900/30",
-          textAll: "text-black",
-        };
+        return return_data[14];
       else if (des === "haze" || des === "dust") {
-        return {
-          bgImg: "lg:bg-day_haze",
-          divAll: "bg-orange-300/50",
-          textAll: "text-black",
-        };
+        return return_data[15];
         // return {
         //   bgImg: "lg:bg-night_thunder",
         //   divAll: "bg-indigo-900/60",
         //   textAll: "text-white",
         // };
       } else if (des === "fog") {
-        return {
-          bgImg: "lg:bg-day_fog",
-          divAll: "bg-stone-600/50",
-          textAll: "text-gray-300",
-        };
+        return return_data[16];
       } else if (des === "mist") {
-        return {
-          bgImg: "lg:bg-day_mist",
-          divAll: "bg-slate-600/50",
-          textAll: "text-white",
-        };
-      } else if (des === "smoke")
-        return {
-          bgImg: "lg:bg-night_sun",
-          divAll: "bg-gray-600/50",
-          textAll: "text-white",
-        };
+        return return_data[17];
+      } else if (des === "smoke") return return_data[18];
     } else {
       if (sunrise_time <= current_time && current_time <= sunset_time) {
-        return {
-          bgImg: "lg:bg-day_sun",
-          divAll: "bg-white/50",
-          textAll: "text-black",
-        };
+        return return_data[19];
       } else {
-        return {
-          bgImg: "lg:bg-night_sun",
-          divAll: "bg-white/40",
-          textAll: "text-black",
-        };
+        return return_data[20];
       }
     }
   }

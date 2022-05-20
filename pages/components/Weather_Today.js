@@ -76,69 +76,210 @@ const Weather_Today = ({ results }) => {
   let sunrise_time = dateprocessing(sys?.sunrise).time;
   let sunset_time = dateprocessing(sys?.sunset).time;
 
+  const return_data = [
+    {
+      //0
+      icon: wimgurl1,
+      panelback: "bg-white/40",
+      tileback: "bg-white/70",
+      border: "border-black",
+      tilehead: "text-gray-700",
+      celcius: imgurl4b,
+    },
+    {
+      //1
+      icon: wimgurl14,
+      panelback: "bg-white/40",
+      tileback: "bg-white/70",
+      border: "border-black",
+      tilehead: "text-gray-700",
+      celcius: imgurl4b,
+    },
+    {
+      //2
+      icon: wimgurl4,
+      panelback: "bg-[#060693bf]",
+      tileback: "bg-[#060693]",
+      border: "border-white",
+      tilehead: "text-gray-100",
+      celcius: imgurl4w,
+    },
+    {
+      //3
+      icon: wimgurl11,
+      panelback: "bg-white/5",
+      tileback: "bg-black/10",
+      border: "border-white",
+      tilehead: "text-gray-100",
+      celcius: imgurl4w,
+    },
+    {
+      //4
+      icon: wimgurl3,
+      panelback: "bg-blue-500/80",
+      tileback: "bg-blue-900/10",
+      border: "border-black",
+      tilehead: "text-gray-900",
+      celcius: imgurl4b,
+    },
+    {
+      //5
+      icon: wimgurl11,
+      panelback: "bg-white/5",
+      tileback: "bg-black/10",
+      border: "border-white",
+      tilehead: "text-gray-100",
+      celcius: imgurl4w,
+    },
+    {
+      //6
+      icon: wimgurl6,
+      panelback: "bg-[#202631]",
+      tileback: "bg-[#262d3b]",
+      border: "border-white",
+      tilehead: "text-gray-200",
+      celcius: imgurl4w,
+    },
+    {
+      //7
+      icon: wimgurl12,
+      panelback: "bg-[#202631]",
+      tileback: "bg-[#262d3b]",
+      border: "border-white",
+      tilehead: "text-gray-200",
+      celcius: imgurl4w,
+    },
+    {
+      //8
+      icon: wimgurl6,
+      panelback: "bg-[#073151f0]",
+      tileback: "bg-[#073151]",
+      border: "border-white",
+      tilehead: "text-gray-200",
+      celcius: imgurl4w,
+    },
+    {
+      //9
+      icon: wimgurl12,
+      panelback: "bg-[#073151f0]",
+      tileback: "bg-[#073151]",
+      border: "border-white",
+      tilehead: "text-gray-200",
+      celcius: imgurl4w,
+    },
+    {
+      //10
+      icon: wimgurl7,
+      panelback: "bg-slate-900/50",
+      tileback: "bg-slate-900",
+      border: "border-white",
+      tilehead: "text-gray-200",
+      celcius: imgurl4w,
+    },
+    {
+      //11
+      icon: wimgurl7,
+      panelback: "bg-indigo-900/50",
+      tileback: "bg-indigo-900",
+      border: "border-white",
+      tilehead: "text-gray-100",
+      celcius: imgurl4w,
+    },
+    {
+      //12
+      icon: wimgurl8,
+      panelback: "bg-gray-900/30",
+      tileback: "bg-black/20",
+      border: "border-black",
+      tilehead: "text-gray-800",
+      celcius: imgurl4b,
+    },
+    {
+      //13
+      icon: wimgurl13,
+      panelback: "bg-gray-900/30",
+      tileback: "bg-black/20",
+      border: "border-black",
+      tilehead: "text-gray-800",
+      celcius: imgurl4b,
+    },
+    {
+      //14
+      icon: wimgurl10,
+      panelback: "bg-[#efa95c]",
+      tileback: "bg-orange-300/70",
+      border: "border-black",
+      tilehead: "text-gray-800",
+      celcius: imgurl4b,
+    },
+    {
+      //15
+      icon: wimgurl9,
+      panelback: "bg-[#efa95c]",
+      tileback: "bg-orange-300/70",
+      border: "border-white",
+      tilehead: "text-gray-800",
+      celcius: imgurl4b,
+    },
+    {
+      //16
+      icon: wimgurl9,
+      panelback: "bg-stone-700/40",
+      tileback: "bg-stone-800/40",
+      border: "border-white",
+      tilehead: "text-gray-200",
+      celcius: imgurl4w,
+    },
+    {
+      //17
+      icon: wimgurl9,
+      panelback: "bg-slate-700/80",
+      tileback: "bg-slate-800/40",
+      border: "border-white",
+      tilehead: "text-gray-200",
+      celcius: imgurl4w,
+    },
+    {
+      //18
+      icon: wimgurl9,
+      panelback: "bg-gray-700/40",
+      tileback: "bg-gray-800/40",
+      border: "border-white",
+      tilehead: "text-gray-200",
+      celcius: imgurl4b,
+    },
+    {
+      //19
+      icon: wimgurl1,
+      panelback: "bg-white/40",
+      tileback: "bg-white/70",
+      border: "border-black",
+      tilehead: "text-gray-800",
+      celcius: imgurl4b,
+    },
+  ];
+
   //fn to determine the icon
   function changeWeatherIcon(des) {
     //console.log("des =",des)
 
     if (des === "sky is clear" || des === "clear sky") {
       if (sunrise_time <= current_time && current_time <= sunset_time) {
-      return {
-        icon: wimgurl1,
-        panelback: "bg-white/40",
-        tileback: "bg-white/70",
-        border: "border-black",
-        tilehead: "text-gray-700",
-        celcius:imgurl4b,
-      };}
-      else {
-        return {
-        icon: wimgurl14,
-        panelback: "bg-white/40",
-        tileback: "bg-white/70",
-        border: "border-black",
-        tilehead: "text-gray-700",
-        celcius:imgurl4b,
-      }
-      }}
-    else if (des === "broken clouds" || des === "overcast clouds") {
-      if (sunrise_time <= current_time && current_time <= sunset_time) {
-        return {
-          icon: wimgurl4,
-          panelback: "bg-[#060693bf]",
-          tileback: "bg-[#060693]",
-          border: "border-white",
-          tilehead: "text-gray-100",
-          celcius:imgurl4w,
-        };
+        return return_data[0];
       } else {
-        return {
-          icon: wimgurl11,
-          panelback: "bg-white/5",
-          tileback: "bg-black/10",
-          border: "border-white",
-          tilehead: "text-gray-100",
-          celcius:imgurl4w,
-        };
+        return return_data[1];
+      }
+    } else if (des === "broken clouds" || des === "overcast clouds") {
+      if (sunrise_time <= current_time && current_time <= sunset_time) {
+        return return_data[2];
+      } else {
+        return return_data[3];
       }
     } else if (des === "scattered clouds" || des === "few clouds") {
       if (sunrise_time <= current_time && current_time <= sunset_time) {
-        return {
-          icon: wimgurl3,
-          panelback: "bg-blue-500/80",
-          tileback: "bg-blue-900/10",
-          border: "border-black",
-          tilehead: "text-gray-900",
-          celcius:imgurl4b,
-        };
+        return return_data[4];
       } else {
-        return {
-          icon: wimgurl11,
-          panelback: "bg-white/5",
-          tileback: "bg-black/10",
-          border: "border-white",
-          tilehead: "text-gray-100",
-          celcius:imgurl4w,
-        };
+        return return_data[5];
       }
     } else if (
       des === "shower rain" ||
@@ -147,23 +288,9 @@ const Weather_Today = ({ results }) => {
       des === "moderate rain"
     ) {
       if (sunrise_time <= current_time && current_time <= sunset_time) {
-        return {
-          icon: wimgurl6,
-          panelback: "bg-[#202631]",
-          tileback: "bg-[#262d3b]",
-          border: "border-white",
-          tilehead: "text-gray-200",
-          celcius:imgurl4w,
-        };
+        return return_data[6];
       } else {
-        return {
-          icon: wimgurl12,
-          panelback: "bg-[#202631]",
-          tileback: "bg-[#262d3b]",
-          border: "border-white",
-          tilehead: "text-gray-200",
-          celcius:imgurl4w,
-        };
+        return return_data[7];
       }
     } else if (
       des === "rain" ||
@@ -174,23 +301,9 @@ const Weather_Today = ({ results }) => {
       des === "light intensity shower rain"
     ) {
       if (sunrise_time <= current_time && current_time <= sunset_time) {
-        return {
-          icon: wimgurl6,
-          panelback: "bg-[#073151f0]",
-          tileback: "bg-[#073151]",
-          border: "border-white",
-          tilehead: "text-gray-200",
-          celcius:imgurl4w,
-        };
+        return return_data[8];
       } else {
-        return {
-          icon: wimgurl12,
-          panelback: "bg-[#073151f0]",
-          tileback: "bg-[#073151]",
-          border: "border-white",
-          tilehead: "text-gray-200",
-          celcius:imgurl4w,
-        };
+        return return_data[9];
       }
     } else if (
       des === "thunderstorm" ||
@@ -200,66 +313,24 @@ const Weather_Today = ({ results }) => {
       des === "thunderstorm with rain"
     ) {
       if (sunrise_time <= current_time && current_time <= sunset_time) {
-        return {
-          icon: wimgurl7,
-          panelback: "bg-slate-900/50",
-          tileback: "bg-slate-900",
-          border: "border-white",
-          tilehead: "text-gray-200",
-          celcius:imgurl4w,
-        };
+        return return_data[10];
       } else {
-        return {
-          icon: wimgurl7,
-          panelback: "bg-indigo-900/50",
-          tileback: "bg-indigo-900",
-          border: "border-white",
-          tilehead: "text-gray-100",
-          celcius:imgurl4w,
-        };
+        return return_data[11];
       }
     } else if (des === "snow" || des === "light snow" || des === "heavy snow") {
       if (sunrise_time <= current_time && current_time <= sunset_time) {
-        return {
-          icon: wimgurl8,
-          panelback: "bg-gray-900/30",
-          tileback: "bg-black/20",
-          border: "border-black",
-          tilehead: "text-gray-800",
-          celcius:imgurl4b,
-        };
+        return return_data[12];
       } else {
-        return {
-          icon: wimgurl13,
-          panelback: "bg-gray-900/30",
-          tileback: "bg-black/20",
-          border: "border-black",
-          tilehead: "text-gray-800",
-          celcius:imgurl4b,
-        };
+        return return_data[13];
       }
     } else if (
       des === "light rain and snow" ||
       des === "rain and snow" ||
       des === "light shower snow"
     )
-      return {
-        icon: wimgurl10,
-        panelback: "bg-[#efa95c]",
-        tileback: "bg-orange-300/70",
-        border: "border-black",
-        tilehead: "text-gray-800",
-        celcius:imgurl4b,
-      };
+      return return_data[14];
     else if (des === "haze" || des === "dust") {
-      return {
-        icon: wimgurl9,
-        panelback: "bg-[#efa95c]",
-        tileback: "bg-orange-300/70",
-        border: "border-white",
-        tilehead: "text-gray-800",
-        celcius:imgurl4b,
-      };
+      return return_data[15];
       // return {
       //   icon: wimgurl7,
       //   panelback: "bg-indigo-900/50",
@@ -268,41 +339,12 @@ const Weather_Today = ({ results }) => {
       //   tilehead: "text-gray-100",
       // };
     } else if (des === "fog") {
-      return {
-        icon: wimgurl9,
-        panelback: "bg-stone-700/40",
-        tileback: "bg-stone-800/40",
-        border: "border-white",
-        tilehead: "text-gray-200",
-        celcius:imgurl4w,
-      };
+      return return_data[16];
     } else if (des === "mist") {
-      return {
-        icon: wimgurl9,
-        panelback: "bg-slate-700/80",
-        tileback: "bg-slate-800/40",
-        border: "border-white",
-        tilehead: "text-gray-200",
-        celcius:imgurl4w,
-      };
-    } else if (des === "smoke")
-      return {
-        icon: wimgurl9,
-        panelback: "bg-gray-700/40",
-        tileback: "bg-gray-800/40",
-        border: "border-white",
-        tilehead: "text-gray-200",
-        celcius:imgurl4b,
-      };
+      return return_data[17];
+    } else if (des === "smoke") return return_data[18];
     else {
-      return {
-        icon: wimgurl1,
-        panelback: "bg-white/40",
-        tileback: "bg-white/70",
-        border: "border-black",
-        tilehead: "text-gray-800",
-        celcius:imgurl4b,
-      };
+      return return_data[19];
     }
   }
 
@@ -337,25 +379,38 @@ const Weather_Today = ({ results }) => {
           </div>
           {/* celcius icon */}
           <div className=" w-24 h-24 ">
-            <Image src={imgurl4b} alt="sunset" />
+            <Image
+              src={
+                weather
+                  ? changeWeatherIcon(weather[0]?.description).celcius
+                  : imgurl4b
+              }
+              alt="sunset"
+            />
           </div>
         </div>
 
         {/* below flex */}
         <div className="flex flex-col space-y-3">
-          <div className={`${
+          <div
+            className={`${
               weather && changeWeatherIcon(weather[0]?.description).panelback
             } py-2 text-xl rounded-lg capitalize text-center border-2 border-gray-400 px-3 hover:bg-gray-400 hover:border-gray-500 ${
               weather && changeWeatherIcon(weather[0]?.description).border
-            } `}>
+            } `}
+          >
             {weather && weather[0]?.description}
           </div>
-          <div className={`${
+          <div
+            className={`${
               weather && changeWeatherIcon(weather[0]?.description).panelback
-            } flex flex-row justify-evenly text-center p-3 space-x-2 rounded-lg`}>
-            <div className={`${
+            } flex flex-row justify-evenly text-center p-3 space-x-2 rounded-lg`}
+          >
+            <div
+              className={`${
                 weather && changeWeatherIcon(weather[0]?.description).tileback
-              } hover:bg-white p-2 border-[1px] border-white rounded-lg`}>
+              } hover:bg-white p-2 border-[1px] border-white rounded-lg`}
+            >
               <div className="text-gray-500 leading-tight ">
                 Max.
                 <br /> Temp.
@@ -367,9 +422,11 @@ const Weather_Today = ({ results }) => {
                 {kelvinToCelcius(main?.temp_max) + "°"}
               </p>
             </div>
-            <div className={`${
+            <div
+              className={`${
                 weather && changeWeatherIcon(weather[0]?.description).tileback
-              } hover:bg-white p-2 border-[1px] border-white rounded-lg`}>
+              } hover:bg-white p-2 border-[1px] border-white rounded-lg`}
+            >
               <div className="text-gray-500 leading-tight ">
                 Cloud
                 <br /> Cover
@@ -379,9 +436,11 @@ const Weather_Today = ({ results }) => {
               </div>
               <p className="text-base font-[500]">{clouds?.all} %</p>
             </div>
-            <div className={`${
+            <div
+              className={`${
                 weather && changeWeatherIcon(weather[0]?.description).tileback
-              } hover:bg-white p-2 border-[1px] border-white rounded-lg `}>
+              } hover:bg-white p-2 border-[1px] border-white rounded-lg `}
+            >
               <div className="text-gray-500 leading-tight ">
                 Min.
                 <br /> Temp.
@@ -424,7 +483,14 @@ const Weather_Today = ({ results }) => {
           </div>
           {/* celcius icon */}
           <div className=" w-24 h-24 ">
-            <Image src={imgurl4b} alt="sunset" />
+            <Image
+              src={
+                weather
+                  ? changeWeatherIcon(weather[0]?.description).celcius
+                  : imgurl4b
+              }
+              alt="sunset"
+            />
           </div>
         </div>
 
