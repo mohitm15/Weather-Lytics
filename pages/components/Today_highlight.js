@@ -20,7 +20,7 @@ const Today_highlight = ({ results, weather_des }) => {
   //fn to return time  from unix timestamp
   const dateprocessing = (ts) => {
     let ress = new Date(ts * 1000);
-    let time = ress.toLocaleTimeString("en-US").slice(0, 4);
+    let time = ress.toLocaleTimeString("en-US",{hour12:false}).slice(0,5);
     return { time: time };
   };
 
@@ -48,9 +48,9 @@ const Today_highlight = ({ results, weather_des }) => {
     return arr[val % 16];
   };
 
-  console.log("current time - ", dateprocessing(dt)?.time);
-  console.log("time sunrise - ", dateprocessing(sys?.sunrise).time);
-  console.log("time sunset - ", dateprocessing(sys?.sunset).time);
+  // console.log("current time - ", dateprocessing(dt)?.time);
+  // console.log("time sunrise - ", dateprocessing(sys?.sunrise).time);
+  // console.log("time sunset - ", dateprocessing(sys?.sunset).time);
 
   let current_time = dateprocessing(dt)?.time;
   let sunrise_time = dateprocessing(sys?.sunrise).time;
@@ -178,6 +178,7 @@ const Today_highlight = ({ results, weather_des }) => {
       text_value: "text-black",
     },
   ];
+
   function changetheme(des) {
     //  console.log("des found - ", des);
     if (des !== "clear sky") {
@@ -317,9 +318,9 @@ const Today_highlight = ({ results, weather_des }) => {
                 ).text_value
               } mb-3 font-[1100] text-md `}
             >
-              {dateprocessing(sys?.sunrise).time} AM
+              {dateprocessing(sys?.sunrise).time} 
               <br />
-              {dateprocessing(sys?.sunset).time} PM
+              {dateprocessing(sys?.sunset).time} 
             </div>
           </div>
         </div>
@@ -485,9 +486,9 @@ const Today_highlight = ({ results, weather_des }) => {
                   ).text_value
                 }  font-[1100] text-xl`}
               >
-                {dateprocessing(sys?.sunrise).time} AM
+                {dateprocessing(sys?.sunrise).time} 
                 <br />
-                {dateprocessing(sys?.sunset).time} PM
+                {dateprocessing(sys?.sunset).time} 
               </div>
             </div>
             {/*  */}

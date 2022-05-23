@@ -60,7 +60,7 @@ const Weather_Today = ({ results }) => {
     let month = months[ress.getMonth()];
     let date = ress.getDate();
     let dayofweek = dayname[ress.getDay()];
-    let time = ress.toLocaleTimeString("en-US");
+    let time = ress.toLocaleTimeString("en-US",{hour12:false});
     return {
       date: date + " " + month + " " + year,
       time: time,

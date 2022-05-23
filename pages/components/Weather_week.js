@@ -96,12 +96,6 @@ const Weather_week = ({ results1, weather_des }) => {
     else return imgurl9;
   }
 
-  //feature 1 wali chhez
-  // console.log(
-  //   "wea_des main = ",
-  //   (weather_des && weather_des[0].description) || "clear sky"
-  // );
-
   const return_data = [
     {
       //0

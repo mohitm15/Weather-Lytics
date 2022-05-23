@@ -55,13 +55,17 @@ const Home = () => {
 
   const dateprocessing = (ts) => {
     let ress = new Date(ts * 1000);
-    let time = ress.toLocaleTimeString("en-US");
+    let time = ress.toLocaleTimeString("en-US",{hour12:false});
     return { time: time };
   };
 
   let current_time = dateprocessing(data?.day?.dt).time;
   let sunrise_time = dateprocessing(data?.day?.sys?.sunrise).time;
   let sunset_time = dateprocessing(data?.day?.sys?.sunset).time;
+
+  //console.log("current = ",current_time);
+  //console.log("sunrise = ",sunrise_time);
+  //console.log("sunset = ",sunset_time);
 
   const return_data = [
     {
@@ -296,8 +300,10 @@ const Home = () => {
       des = des[0].description;
       if (des === "sky is clear" || des === "clear sky") {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
+          console.log("day")
           return "bg-day_sun_small";
         } else {
+          console.log("night")
           return "bg-night_sun_small";
         }
       } else if (
