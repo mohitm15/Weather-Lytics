@@ -3,7 +3,7 @@ import Image from "next/image";
 import imgurl1 from "../../public/temperature.gif";
 import imgurl3 from "../../public/coldtemp.gif";
 import imgurl4b from "../../public/celsiusbold.gif";
-import imgurl4w from "../../public/mildrain.gif";
+import imgurl4w from "../../public/celciuswhite.png";
 import imgurl5 from "../../public/rainnight.gif";
 
 import wimgurl1 from "../../public/sunfi.gif";
