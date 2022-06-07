@@ -29,6 +29,11 @@ module.exports = {
         'night_cloud_small' : "url('../public/night_cloud_small.jpeg')",
         'night_thunder' : "url('../public/nightthunder.jpg')",
         'day_thunder' : "url('../public/day_thunder2.jpg')",
+      },
+      fontFamily: {
+        Indie:["Indie Flower","cursive"],
+        Sawarabi:["Sawarabi Mincho", "serif"],
+        Dancing:["Dancing Script","cursive"],
       }
     },
   },

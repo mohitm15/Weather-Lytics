@@ -354,7 +354,7 @@ const Weather_Today = ({ results }) => {
     <>
       {/* for mobile viewpoint */}
       <div className="p-3 h-full xl:hidden">
-        <div className="text-4xl text-center font-mono">
+        <div className="text-4xl text-center font-Sawarabi">
           {name}, {sys && sys?.country}
         </div>
         <div className="text-base text-center ">
@@ -397,7 +397,7 @@ const Weather_Today = ({ results }) => {
               weather && changeWeatherIcon(weather[0]?.description).panelback
             } py-2 text-xl rounded-lg capitalize text-center border-2 border-gray-400 px-3 hover:bg-gray-400 hover:border-gray-500 ${
               weather && changeWeatherIcon(weather[0]?.description).border
-            } `}
+            } font-Sawarabi font-bold `}
           >
             {weather && weather[0]?.description}
           </div>
@@ -458,7 +458,7 @@ const Weather_Today = ({ results }) => {
 
       {/* for desktop screen greather than lg breakpoint */}
       <div className="px-8 py-5 h-full hidden xl:block">
-        <div className="text-5xl text-center pb-2 font-mono">
+        <div className="text-5xl text-center pb-2 font-Sawarabi">
           {name}, {sys && sys?.country}
         </div>
         <div className="text-lg text-center ">
@@ -501,7 +501,7 @@ const Weather_Today = ({ results }) => {
               weather && changeWeatherIcon(weather[0]?.description).panelback
             } py-2 text-xl rounded-lg capitalize text-center border-2 ${
               weather && changeWeatherIcon(weather[0]?.description).border
-            } px-3 hover:bg-white/10 hover:border-gray-500`}
+            } px-3 hover:bg-white/10 hover:border-gray-500 font-Sawarabi font-bold`}
           >
             {weather && weather[0]?.description}
           </div>
@@ -518,7 +518,7 @@ const Weather_Today = ({ results }) => {
               <div
                 className={`${
                   weather && changeWeatherIcon(weather[0]?.description).tilehead
-                } leading-tight `}
+                } leading-tight font-Sawarabi`}
               >
                 Max.
                 <br /> Temp.
@@ -538,7 +538,7 @@ const Weather_Today = ({ results }) => {
               <div
                 className={`${
                   weather && changeWeatherIcon(weather[0]?.description).tilehead
-                } leading-tight`}
+                } leading-tight font-Sawarabi`}
               >
                 Cloud <br /> Cover
               </div>
@@ -555,7 +555,7 @@ const Weather_Today = ({ results }) => {
               <div
                 className={`${
                   weather && changeWeatherIcon(weather[0]?.description).tilehead
-                } leading-tight `}
+                } leading-tight font-Sawarabi`}
               >
                 Min. <br /> Temp.
               </div>
@@ -595,7 +595,7 @@ const Weather_Today = ({ results }) => {
             <Image src={imgurl5} alt="weathericon" layout="responsive" />
           </div>
           <div className=" p-3">
-            <h3 className="font-light text-lg">
+            <h3 className="font-Dancing text-xl font-bold">
               Presented &nbsp; By &nbsp; Weather-Lytics
             </h3>
           </div>

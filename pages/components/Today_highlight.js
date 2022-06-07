@@ -275,7 +275,7 @@ const Today_highlight = ({ results, weather_des }) => {
     <>
       {/* mobile view */}
       <div className="text-center pt-3 pb-2 xl:hidden font-semibold">
-        <h3 className="text-2xl"> Today&apos;s Highlights</h3>
+        <h3 className="text-2xl font-Indie"> Today&apos;s Highlights</h3>
       </div>
       <div className="container p-2 m-auto space-y-2 xl:hidden">
         {/* first */}
@@ -421,7 +421,7 @@ const Today_highlight = ({ results, weather_des }) => {
       <div className="container p-4 m-auto hidden xl:flex xl:flex-row items-center ">
         {/* Today highlights */}
         <div className="text-center xl:mx-5 font-semibold">
-          <h3 className="xl:text-5xl 2xl:text-6xl">
+          <h3 className="xl:text-5xl 2xl:text-6xl font-Indie tracking-wide">
             Today&apos;s <br /> Highlights
           </h3>
         </div>
