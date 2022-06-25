@@ -1,30 +1,14 @@
 import React from "react";
 import Image from "next/image";
-import imgurl1 from "../../public/temperature.gif";
-import imgurl3 from "../../public/coldtemp.gif";
-import imgurl4b from "../../public/celsiusbold.gif";
-import imgurl4w from "../../public/celciuswhite.png";
-import imgurl5 from "../../public/rainnight.gif";
 
-import wimgurl1 from "../../public/sunfi.gif";
-import wimgurl2 from "../../public/cloudyday.gif";
-import wimgurl3 from "../../public/1-cloud.gif";
-import wimgurl4 from "../../public/clouds.gif";
-import wimgurl6 from "../../public/rain.gif";
-import wimgurl7 from "../../public/storm.gif";
-import wimgurl8 from "../../public/snow.gif";
-import wimgurl9 from "../../public/fog.gif";
-import wimgurl10 from "../../public/snow-rain.gif";
-import wimgurl11 from "../../public/moon.gif";
-import wimgurl12 from "../../public/rainnight.gif";
-import wimgurl13 from "../../public/snownight.gif";
-import wimgurl14 from "../../public/night_sky.gif";
+import images from "../constants/images"
 
 const Weather_Today = ({ results }) => {
   const { main, clouds, weather, name, dt, sys, coord } = results || {
     weather: [{ description: "Haze" }],
   };
 
+  //console.log("ima = ",images)
   //fn to convert temperature from kelvin to celcius
   const kelvinToCelcius = (temp) => {
     return (temp - 273.15).toPrecision(3);
@@ -60,7 +44,7 @@ const Weather_Today = ({ results }) => {
     let month = months[ress.getMonth()];
     let date = ress.getDate();
     let dayofweek = dayname[ress.getDay()];
-    let time = ress.toLocaleTimeString("en-US",{hour12:false});
+    let time = ress.toLocaleTimeString("en-US", { hour12: false });
     return {
       date: date + " " + month + " " + year,
       time: time,
@@ -79,183 +63,183 @@ const Weather_Today = ({ results }) => {
   const return_data = [
     {
       //0
-      icon: wimgurl1,
+      icon:  images.wimgurl1,
       panelback: "bg-white/40",
       tileback: "bg-white/70",
       border: "border-black",
       tilehead: "text-gray-700",
-      celcius: imgurl4b,
+      celcius: images.imgurl4b,
     },
     {
       //1
-      icon: wimgurl14,
+      icon:  images.wimgurl14,
       panelback: "bg-white/40",
       tileback: "bg-white/70",
       border: "border-black",
       tilehead: "text-gray-700",
-      celcius: imgurl4b,
+      celcius: images.imgurl4b,
     },
     {
       //2
-      icon: wimgurl4,
+      icon:  images.wimgurl4,
       panelback: "bg-[#060693bf]",
       tileback: "bg-[#060693]",
       border: "border-white",
       tilehead: "text-gray-100",
-      celcius: imgurl4w,
+      celcius: images.imgurl4w,
     },
     {
       //3
-      icon: wimgurl11,
+      icon:  images.wimgurl11,
       panelback: "bg-white/5",
       tileback: "bg-black/10",
       border: "border-white",
       tilehead: "text-gray-100",
-      celcius: imgurl4w,
+      celcius: images.imgurl4w,
     },
     {
       //4
-      icon: wimgurl3,
+      icon:  images.wimgurl3,
       panelback: "bg-blue-500/80",
       tileback: "bg-blue-900/10",
       border: "border-black",
       tilehead: "text-gray-900",
-      celcius: imgurl4b,
+      celcius: images.imgurl4b,
     },
     {
       //5
-      icon: wimgurl11,
+      icon:  images.wimgurl11,
       panelback: "bg-white/5",
       tileback: "bg-black/10",
       border: "border-white",
       tilehead: "text-gray-100",
-      celcius: imgurl4w,
+      celcius: images.imgurl4w,
     },
     {
       //6
-      icon: wimgurl6,
+      icon:  images.wimgurl6,
       panelback: "bg-[#202631]",
       tileback: "bg-[#262d3b]",
       border: "border-white",
       tilehead: "text-gray-200",
-      celcius: imgurl4w,
+      celcius: images.imgurl4w,
     },
     {
       //7
-      icon: wimgurl12,
+      icon:  images.wimgurl12,
       panelback: "bg-[#202631]",
       tileback: "bg-[#262d3b]",
       border: "border-white",
       tilehead: "text-gray-200",
-      celcius: imgurl4w,
+      celcius: images.imgurl4w,
     },
     {
       //8
-      icon: wimgurl6,
+      icon:  images.wimgurl6,
       panelback: "bg-[#073151f0]",
       tileback: "bg-[#073151]",
       border: "border-white",
       tilehead: "text-gray-200",
-      celcius: imgurl4w,
+      celcius: images.imgurl4w,
     },
     {
       //9
-      icon: wimgurl12,
+      icon:  images.wimgurl12,
       panelback: "bg-[#073151f0]",
       tileback: "bg-[#073151]",
       border: "border-white",
       tilehead: "text-gray-200",
-      celcius: imgurl4w,
+      celcius: images.imgurl4w,
     },
     {
       //10
-      icon: wimgurl7,
+      icon:  images.wimgurl7,
       panelback: "bg-slate-900/50",
       tileback: "bg-slate-900",
       border: "border-white",
       tilehead: "text-gray-200",
-      celcius: imgurl4w,
+      celcius: images.imgurl4w,
     },
     {
       //11
-      icon: wimgurl7,
+      icon:  images.wimgurl7,
       panelback: "bg-indigo-900/50",
       tileback: "bg-indigo-900",
       border: "border-white",
       tilehead: "text-gray-100",
-      celcius: imgurl4w,
+      celcius: images.imgurl4w,
     },
     {
       //12
-      icon: wimgurl8,
+      icon:  images.wimgurl8,
       panelback: "bg-gray-900/30",
       tileback: "bg-black/20",
       border: "border-black",
       tilehead: "text-gray-800",
-      celcius: imgurl4b,
+      celcius: images.imgurl4b,
     },
     {
       //13
-      icon: wimgurl13,
+      icon:  images.wimgurl13,
       panelback: "bg-gray-900/30",
       tileback: "bg-black/20",
       border: "border-black",
       tilehead: "text-gray-800",
-      celcius: imgurl4b,
+      celcius: images.imgurl4b,
     },
     {
       //14
-      icon: wimgurl10,
+      icon:  images.wimgurl10,
       panelback: "bg-[#efa95c]",
       tileback: "bg-orange-300/70",
       border: "border-black",
       tilehead: "text-gray-800",
-      celcius: imgurl4b,
+      celcius: images.imgurl4b,
     },
     {
       //15
-      icon: wimgurl9,
+      icon:  images.wimgurl9,
       panelback: "bg-[#E1DBD5]",
       tileback: "bg-[#D2CECA]-300/70",
       border: "border-black",
       tilehead: "text-black",
-      celcius: imgurl4b,
+      celcius: images.imgurl4b,
     },
     {
       //16
-      icon: wimgurl9,
+      icon:  images.wimgurl9,
       panelback: "bg-stone-700/40",
       tileback: "bg-stone-800/40",
       border: "border-white",
       tilehead: "text-gray-200",
-      celcius: imgurl4w,
+      celcius: images.imgurl4w,
     },
     {
       //17
-      icon: wimgurl9,
+      icon:  images.wimgurl9,
       panelback: "bg-slate-700/80",
       tileback: "bg-slate-800/40",
       border: "border-white",
       tilehead: "text-gray-200",
-      celcius: imgurl4w,
+      celcius: images.imgurl4w,
     },
     {
       //18
-      icon: wimgurl9,
+      icon:  images.wimgurl9,
       panelback: "bg-gray-700/40",
       tileback: "bg-gray-800/40",
       border: "border-white",
       tilehead: "text-gray-200",
-      celcius: imgurl4b,
+      celcius: images.imgurl4b,
     },
     {
       //19
-      icon: wimgurl1,
+      icon:  images.wimgurl1,
       panelback: "bg-white/40",
       tileback: "bg-white/70",
       border: "border-black",
       tilehead: "text-gray-800",
-      celcius: imgurl4b,
+      celcius: images.imgurl4b,
     },
   ];
 
@@ -332,7 +316,7 @@ const Weather_Today = ({ results }) => {
     else if (des === "haze" || des === "dust") {
       return return_data[15];
       // return {
-      //   icon: wimgurl7,
+      //   icon:  images.wimgurl7,
       //   panelback: "bg-indigo-900/50",
       //   tileback: "bg-indigo-900",
       //   border: "border-white",
@@ -365,7 +349,7 @@ const Weather_Today = ({ results }) => {
             src={
               weather
                 ? changeWeatherIcon(weather[0]?.description).icon
-                : wimgurl4
+                : images.wimgurl4
             }
             height={180}
             width={180}
@@ -383,7 +367,7 @@ const Weather_Today = ({ results }) => {
               src={
                 weather
                   ? changeWeatherIcon(weather[0]?.description).celcius
-                  : imgurl4b
+                  : images.imgurl4b
               }
               alt="sunset"
             />
@@ -416,7 +400,7 @@ const Weather_Today = ({ results }) => {
                 <br /> Temp.
               </div>
               <div className="w-14 h-14 p-2">
-                <Image src={imgurl1} layout="responsive" alt="temp" />
+                <Image src={images.imgurl1} layout="responsive" alt="temp" />
               </div>
               <p className="text-base font-[500]">
                 {kelvinToCelcius(main?.temp_max) + "°"}
@@ -432,7 +416,7 @@ const Weather_Today = ({ results }) => {
                 <br /> Cover
               </div>
               <div className="w-14 h-14 p-2">
-                <Image src={wimgurl2} layout="intrinsic" alt="temp" />
+                <Image src={images.wimgurl2} layout="intrinsic" alt="temp" />
               </div>
               <p className="text-base font-[500]">{clouds?.all} %</p>
             </div>
@@ -446,7 +430,7 @@ const Weather_Today = ({ results }) => {
                 <br /> Temp.
               </div>
               <div className="w-14 h-14 p-2">
-                <Image src={imgurl3} layout="responsive" alt="temp" />
+                <Image src={images.imgurl3} layout="responsive" alt="temp" />
               </div>
               <p className="text-base font-[500]">
                 {kelvinToCelcius(main?.temp_min) + "°"}
@@ -469,7 +453,7 @@ const Weather_Today = ({ results }) => {
             src={
               weather
                 ? changeWeatherIcon(weather[0]?.description).icon
-                : wimgurl4
+                : images.wimgurl4
             }
             height={220}
             width={220}
@@ -487,7 +471,7 @@ const Weather_Today = ({ results }) => {
               src={
                 weather
                   ? changeWeatherIcon(weather[0]?.description).celcius
-                  : imgurl4b
+                  : images.imgurl4b
               }
               alt="sunset"
             />
@@ -526,7 +510,7 @@ const Weather_Today = ({ results }) => {
                 <br /> Temp.
               </div>
               <div className="xl:w-20 xl:h-20  m-auto">
-                <Image src={imgurl1} layout="responsive" alt="temp" />
+                <Image src={images.imgurl1} layout="responsive" alt="temp" />
               </div>
               <p className="text-base font-[500]">
                 {kelvinToCelcius(main?.temp_max) + "°"}
@@ -547,7 +531,7 @@ const Weather_Today = ({ results }) => {
                 Cloud <br /> Cover
               </div>
               <div className="xl:w-20 xl:h-20  m-auto">
-                <Image src={wimgurl2} layout="intrinsic" alt="temp" />
+                <Image src={images.wimgurl2} layout="intrinsic" alt="temp" />
               </div>
               <p className="text-base font-[500]">{clouds?.all} %</p>
             </div>
@@ -566,7 +550,7 @@ const Weather_Today = ({ results }) => {
                 Min. <br /> Temp.
               </div>
               <div className="xl:w-20 xl:h-20  m-auto">
-                <Image src={imgurl3} layout="responsive" alt="temp" />
+                <Image src={images.imgurl3} layout="responsive" alt="temp" />
               </div>
               <p className="text-base font-[500]">
                 {kelvinToCelcius(main?.temp_min) + "°"}
@@ -604,7 +588,7 @@ const Weather_Today = ({ results }) => {
           } rounded-xl  hover:bg-black/50`}
         >
           <div className="h-10 w-10 ">
-            <Image src={imgurl5} alt="weathericon" layout="responsive" />
+            <Image src={images.imgurl5} alt="weathericon" layout="responsive" />
           </div>
           <div className=" p-3">
             <h3 className="font-Dancing text-xl font-bold">

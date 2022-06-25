@@ -1,12 +1,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
-import imgurl2 from "../../public/celsius.gif";
-import imgurl3 from "../../public/visibilty.gif";
-import imgurl4 from "../../public/mildrain.gif";
-import imgurl5 from "../../public/thermo.gif";
-import imgurl6 from "../../public/sunset.gif";
-import imgurl7 from "../../public/wind.gif";
-import imgurl8 from "../../public/wind2.gif";
+
+import images from "../constants/images";
 
 const Today_highlight = ({ results, weather_des }) => {
   const { main, sys, wind, visibility, dt } = results || {};
@@ -20,7 +15,7 @@ const Today_highlight = ({ results, weather_des }) => {
   //fn to return time  from unix timestamp
   const dateprocessing = (ts) => {
     let ress = new Date(ts * 1000);
-    let time = ress.toLocaleTimeString("en-US",{hour12:false}).slice(0,5);
+    let time = ress.toLocaleTimeString("en-US", { hour12: false }).slice(0, 5);
     return { time: time };
   };
 
@@ -288,7 +283,7 @@ const Today_highlight = ({ results, weather_des }) => {
             } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}
           >
             <div className="w-14 h-14 p-2">
-              <Image src={imgurl2} layout="responsive" alt="temp" />
+              <Image src={images.timgurl2} layout="responsive" alt="temp" />
             </div>
             <div
               className={`${
@@ -309,7 +304,7 @@ const Today_highlight = ({ results, weather_des }) => {
             } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}
           >
             <div className="w-14 h-14 p-2">
-              <Image src={imgurl6} layout="responsive" alt="temp" />
+              <Image src={images.timgurl6} layout="responsive" alt="temp" />
             </div>
             <div
               className={`${
@@ -318,9 +313,9 @@ const Today_highlight = ({ results, weather_des }) => {
                 ).text_value
               } mb-3 font-[1100] text-md `}
             >
-              {dateprocessing(sys?.sunrise).time} 
+              {dateprocessing(sys?.sunrise).time}
               <br />
-              {dateprocessing(sys?.sunset).time} 
+              {dateprocessing(sys?.sunset).time}
             </div>
           </div>
         </div>
@@ -334,7 +329,7 @@ const Today_highlight = ({ results, weather_des }) => {
             } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}
           >
             <div className="w-14 h-14 p-2">
-              <Image src={imgurl8} layout="responsive" alt="temp" />
+              <Image src={images.timgurl7} layout="responsive" alt="temp" />
             </div>
             <div
               className={`${
@@ -356,7 +351,7 @@ const Today_highlight = ({ results, weather_des }) => {
             } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}
           >
             <div className="w-14 h-14 p-2">
-              <Image src={imgurl3} layout="responsive" alt="temp" />
+              <Image src={images.timgurl3} layout="responsive" alt="temp" />
             </div>
             <div
               className={`${
@@ -380,7 +375,7 @@ const Today_highlight = ({ results, weather_des }) => {
             } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}
           >
             <div className="w-14 h-14 p-2">
-              <Image src={imgurl4} layout="responsive" alt="temp" />
+              <Image src={images.timgurl4} layout="responsive" alt="temp" />
             </div>
             <div
               className={`${
@@ -401,7 +396,7 @@ const Today_highlight = ({ results, weather_des }) => {
             } flex flex-row items-center justify-center rounded-lg border shadow-mslateo6er:bg-gray-100 w-full h-20 `}
           >
             <div className="w-14 h-14 p-2">
-              <Image src={imgurl5} layout="responsive" alt="temp" />
+              <Image src={images.timgurl5} layout="responsive" alt="temp" />
             </div>
             <div
               className={`${
@@ -447,7 +442,7 @@ const Today_highlight = ({ results, weather_des }) => {
                 Avg. Temp
               </div>
               <div className="w-20 h-20 p-2 ">
-                <Image src={imgurl2} layout="responsive" alt="temp" />
+                <Image src={images.timgurl2} layout="responsive" alt="temp" />
               </div>
               <div
                 className={`${
@@ -477,7 +472,7 @@ const Today_highlight = ({ results, weather_des }) => {
                 Sunrise-Sunset
               </div>
               <div className="w-20 h-20 p-2">
-                <Image src={imgurl6} layout="responsive" alt="temp" />
+                <Image src={images.timgurl6} layout="responsive" alt="temp" />
               </div>
               <div
                 className={`${
@@ -486,9 +481,9 @@ const Today_highlight = ({ results, weather_des }) => {
                   ).text_value
                 }  font-[1100] text-xl`}
               >
-                {dateprocessing(sys?.sunrise).time} 
+                {dateprocessing(sys?.sunrise).time}
                 <br />
-                {dateprocessing(sys?.sunset).time} 
+                {dateprocessing(sys?.sunset).time}
               </div>
             </div>
             {/*  */}
@@ -509,7 +504,7 @@ const Today_highlight = ({ results, weather_des }) => {
                 Humidity
               </div>
               <div className="w-20 h-20 p-2">
-                <Image src={imgurl4} layout="responsive" alt="temp" />
+                <Image src={images.timgurl4} layout="responsive" alt="temp" />
               </div>
               <div
                 className={`${
@@ -541,7 +536,7 @@ const Today_highlight = ({ results, weather_des }) => {
                 Wind
               </div>
               <div className="w-20 h-20 p-2">
-                <Image src={imgurl8} layout="responsive" alt="temp" />
+                <Image src={images.timgurl7} layout="responsive" alt="temp" />
               </div>
               <div
                 className={`${
@@ -571,7 +566,7 @@ const Today_highlight = ({ results, weather_des }) => {
                 Visibility
               </div>
               <div className="w-20 h-20 p-2">
-                <Image src={imgurl3} layout="responsive" alt="temp" />
+                <Image src={images.timgurl3} layout="responsive" alt="temp" />
               </div>
               <div
                 className={`${
@@ -601,7 +596,7 @@ const Today_highlight = ({ results, weather_des }) => {
                 Pressure
               </div>
               <div className="w-20 h-20 p-2">
-                <Image src={imgurl5} layout="responsive" alt="temp" />
+                <Image src={images.timgurl5} layout="responsive" alt="temp" />
               </div>
               <div
                 className={`${

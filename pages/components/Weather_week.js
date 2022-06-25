@@ -1,21 +1,24 @@
 import React from "react";
 import Image from "next/image";
-import imgurl1 from "../../public/sunfi.gif";
-import imgurl2 from "../../public/cloudyday.gif";
-import imgurl3 from "../../public/1-cloud.gif";
-import imgurl4 from "../../public/clouds.gif";
-import imgurl5 from "../../public/mildrain.gif";
-import imgurl6 from "../../public/rain.gif";
-import imgurl7 from "../../public/storm.gif";
-import imgurl8 from "../../public/snow.gif";
-import imgurl9 from "../../public/fog.gif";
-import imgurl10 from "../../public/snow-rain.gif";
 
-const Weather_week = ({ results1, weather_des }) => {
+import images from "../constants/images";
+
+const Weather_week = ({
+  results1,
+  weather_des,
+  current_time,
+  sunrise_time,
+  sunset_time,
+}) => {
   //console.log("res111 = ", results1);
 
   const { list } = results1 || {};
   //console.log(  list);
+
+  //accroding to IST
+  // console.log("current = ",current_time);
+  // console.log("sunrise = ",sunrise_time);
+  // console.log("sunset = ",sunset_time);
 
   //fn to convert temperature from kelvin to celcius
   const kelvinToCelcius = (temp) => {
@@ -50,18 +53,18 @@ const Weather_week = ({ results1, weather_des }) => {
   function changeWeatherIcon(des) {
     //console.log("des =",des)
 
-    if (des === "sky is clear" || des === "clear sky") return imgurl1;
-    else if (des === "few clouds") return imgurl2;
-    else if (des === "scattered clouds") return imgurl3;
+    if (des === "sky is clear" || des === "clear sky") return images.wimgurl1 ;
+    else if (des === "few clouds") return images.wimgurl2;
+    else if (des === "scattered clouds") return images.wimgurl3;
     else if (des === "broken clouds" || des === "overcast clouds")
-      return imgurl4;
+      return images.wimgurl4;
     else if (
       des === "shower rain" ||
       des === "light rain" ||
       des === "drizzle" ||
       des === "moderate rain"
     )
-      return imgurl5;
+      return images.timgurl5;
     else if (
       des === "rain" ||
       des === "very heavy rain" ||
@@ -69,7 +72,7 @@ const Weather_week = ({ results1, weather_des }) => {
       des === "extreme rain" ||
       des === "heavy intensity shower rain"
     )
-      return imgurl6;
+      return images.wimgurl6;
     else if (
       des === "thunderstorm" ||
       des === "light thunderstorm" ||
@@ -77,23 +80,23 @@ const Weather_week = ({ results1, weather_des }) => {
       des === "ragged thunderstorm" ||
       des === "thunderstorm with rain"
     )
-      return imgurl7;
+      return images.wimgurl7;
     else if (des === "snow" || des === "light snow" || des === "heavy snow")
-      return imgurl8;
+      return images.wimgurl8;
     else if (
       des === "light rain and snow" ||
       des === "rain and snow" ||
       des === "light shower snow"
     )
-      return imgurl10;
+      return images.wimgurl10;
     else if (
       des === "mist" ||
       des === "fog" ||
       des === "smoke" ||
       des === "haze"
     )
-      return imgurl9;
-    else return imgurl9;
+      return images.wimgurl9;
+    else return images.wimgurl9;
   }
 
   const return_data = [
@@ -199,33 +202,78 @@ const Weather_week = ({ results1, weather_des }) => {
       text_max: "text-black",
       text_min: "text-gray-900",
       panelback: "bg-gray-100",
-    }
+    },
+    {
+      //13 night clear sky
+      text_day: "text-black",
+      text_date: "text-gray-900",
+      text_max: "text-black",
+      text_min: "text-gray-900",
+      panelback: "bg-pink-600",
+    },
+    {
+      //14 night cloud
+      text_day: "text-black",
+      text_date: "text-gray-900",
+      text_max: "text-black",
+      text_min: "text-gray-900",
+      panelback: "bg-stone-300/50",
+    },
+    {
+      //15 night rain
+      text_day: "text-black",
+      text_date: "text-gray-900",
+      text_max: "text-black",
+      text_min: "text-gray-900",
+      panelback: "bg-green-300",
+    },
   ];
   function changetheme(des) {
     //  console.log("des found - ", des);
     if (des !== "clear sky") {
-      if (des === "sky is clear" || des === "clear sky") return return_data[0];
-      else if (des === "scattered clouds" || des === "few clouds")
-        return return_data[1];
-      else if (des === "broken clouds" || des === "overcast clouds")
-        return return_data[2];
-      else if (
+      if (des === "sky is clear" || des === "clear sky") {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return return_data[0];
+        } else {
+          return return_data[13];
+        }
+      } else if (des === "scattered clouds" || des === "few clouds") {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return return_data[1];
+        } else {
+          return return_data[14];
+        }
+      } else if (des === "broken clouds" || des === "overcast clouds") {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return return_data[2];
+        } else {
+          return return_data[14];
+        }
+      } else if (
         des === "shower rain" ||
         des === "light rain" ||
         des === "drizzle" ||
         des === "moderate rain"
-      )
-        return return_data[3];
-      else if (
+      ) {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return return_data[3];
+        } else {
+          return return_data[15];
+        }
+      } else if (
         des === "rain" ||
         des === "very heavy rain" ||
         des === "heavy intensity rain" ||
         des === "extreme rain" ||
         des === "heavy intensity shower rain" ||
         des === "light intensity shower rain"
-      )
-        return return_data[4];
-      else if (
+      ) {
+        if (sunrise_time <= current_time && current_time <= sunset_time) {
+          return return_data[4];
+        } else {
+          return return_data[15];
+        }
+      } else if (
         des === "thunderstorm" ||
         des === "light thunderstorm" ||
         des === "heavy thunderstorm" ||

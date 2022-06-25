@@ -204,26 +204,26 @@ const Home = () => {
       des = des[0].description;
       if (des === "sky is clear" || des === "clear sky") {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          console.log("day")
+          console.log("day");
           return return_data[0];
         } else {
-          console.log("night")
+          console.log("night");
           return return_data[1];
         }
       } else if (des === "scattered clouds" || des === "few clouds") {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          console.log("day cloud")
+          console.log("day cloud");
           return return_data[2];
         } else {
-          console.log("night cloud")
+          console.log("night cloud");
           return return_data[3];
         }
       } else if (des === "broken clouds" || des === "overcast clouds") {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          console.log("day cloud")
+          console.log("day cloud");
           return return_data[4];
         } else {
-          console.log("n cloud")
+          console.log("n cloud");
           return return_data[5];
         }
       } else if (
@@ -233,10 +233,10 @@ const Home = () => {
         des === "moderate rain"
       ) {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          console.log("day rain")
+          console.log("day rain");
           return return_data[6];
         } else {
-          console.log("night rain")
+          console.log("night rain");
           return return_data[7];
         }
       } else if (
@@ -248,10 +248,10 @@ const Home = () => {
         des === "light intensity shower rain"
       ) {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          console.log("day rain")
+          console.log("day rain");
           return return_data[8];
         } else {
-          console.log("night rain")
+          console.log("night rain");
           return return_data[9];
         }
       } else if (
@@ -262,10 +262,10 @@ const Home = () => {
         des === "thunderstorm with rain"
       ) {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          console.log("day thunder")
+          console.log("day thunder");
           return return_data[10];
         } else {
-          console.log("night thunder")
+          console.log("night thunder");
           return return_data[11];
         }
       } else if (
@@ -274,10 +274,10 @@ const Home = () => {
         des === "heavy snow"
       ) {
         if (sunrise_time <= current_time && current_time <= sunset_time) {
-          console.log("day snow")
+          console.log("day snow");
           return return_data[12];
         } else {
-          console.log("night snow")
+          console.log("night snow");
           return return_data[13];
         }
       } else if (
@@ -300,10 +300,10 @@ const Home = () => {
       } else if (des === "smoke") return return_data[18];
     } else {
       if (sunrise_time <= current_time && current_time <= sunset_time) {
-        console.log("day default")
+        console.log("day default");
         return return_data[19];
       } else {
-        console.log("night default")
+        console.log("night default");
         return return_data[20];
       }
     }
@@ -466,6 +466,9 @@ const Home = () => {
                 <Weather_week
                   results1={data.week}
                   weather_des={weather_array}
+                  current_time={current_time}
+                  sunrise_time={sunrise_time}
+                  sunset_time={sunset_time}
                 />
               </div>
             </div>
