@@ -149,7 +149,7 @@ const Today_highlight = ({ results, weather_des }) => {
     },
     {
       //15
-      panelback: "bg-orange-400/30",
+      panelback: "bg-[#E1DBD5]",
       text_heading: "text-black",
       text_value: "text-black",
     },

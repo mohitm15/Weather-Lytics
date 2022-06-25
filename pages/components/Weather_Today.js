@@ -215,10 +215,10 @@ const Weather_Today = ({ results }) => {
     {
       //15
       icon: wimgurl9,
-      panelback: "bg-[#efa95c]",
-      tileback: "bg-orange-300/70",
-      border: "border-white",
-      tilehead: "text-gray-800",
+      panelback: "bg-[#E1DBD5]",
+      tileback: "bg-[#D2CECA]-300/70",
+      border: "border-black",
+      tilehead: "text-black",
       celcius: imgurl4b,
     },
     {
@@ -513,7 +513,9 @@ const Weather_Today = ({ results }) => {
             <div
               className={`${
                 weather && changeWeatherIcon(weather[0]?.description).tileback
-              } hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}
+              } hover:bg-black/5 p-2 border-[1px] ${
+                weather && changeWeatherIcon(weather[0]?.description).border
+              } h-full rounded-xl`}
             >
               <div
                 className={`${
@@ -533,7 +535,9 @@ const Weather_Today = ({ results }) => {
             <div
               className={`${
                 weather && changeWeatherIcon(weather[0]?.description).tileback
-              } hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}
+              } hover:bg-black/5 p-2 border-[1px] ${
+                weather && changeWeatherIcon(weather[0]?.description).border
+              } h-full rounded-xl`}
             >
               <div
                 className={`${
@@ -550,7 +554,9 @@ const Weather_Today = ({ results }) => {
             <div
               className={`${
                 weather && changeWeatherIcon(weather[0]?.description).tileback
-              } hover:bg-black/5 p-2 border-[1px] border-white h-full rounded-xl`}
+              } hover:bg-black/5 p-2 border-[1px] ${
+                weather && changeWeatherIcon(weather[0]?.description).border
+              } h-full rounded-xl`}
             >
               <div
                 className={`${
@@ -572,7 +578,9 @@ const Weather_Today = ({ results }) => {
           <div
             className={`${
               weather && changeWeatherIcon(weather[0]?.description).panelback
-            } p-3 rounded-xl border-[1px] border-white hover:bg-black/50`}
+            } p-3 rounded-xl border-[1px] ${
+              weather && changeWeatherIcon(weather[0]?.description).border
+            } hover:bg-black/50`}
           >
             <span className="font-semibold text-base">Latitude : </span>{" "}
             {coord?.lat.toPrecision(3)}
@@ -580,7 +588,9 @@ const Weather_Today = ({ results }) => {
           <div
             className={`${
               weather && changeWeatherIcon(weather[0]?.description).panelback
-            } p-3 rounded-xl border-[1px] border-white hover:bg-black/50`}
+            } p-3 rounded-xl border-[1px] ${
+              weather && changeWeatherIcon(weather[0]?.description).border
+            } hover:bg-black/50`}
           >
             <span className="font-semibold text-base">Longitude : </span>{" "}
             {coord?.lon.toPrecision(3)}
@@ -589,7 +599,9 @@ const Weather_Today = ({ results }) => {
         <div
           className={`${
             weather && changeWeatherIcon(weather[0]?.description).panelback
-          } flex flex-row py-3  justify-center items-center px-3 border-2 border-white/70 rounded-xl  hover:bg-black/50`}
+          } flex flex-row py-3  justify-center items-center px-3 border-2 ${
+            weather && changeWeatherIcon(weather[0]?.description).border
+          } rounded-xl  hover:bg-black/50`}
         >
           <div className="h-10 w-10 ">
             <Image src={imgurl5} alt="weathericon" layout="responsive" />

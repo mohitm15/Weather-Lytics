@@ -15,7 +15,7 @@ const Weather_week = ({ results1, weather_des }) => {
   //console.log("res111 = ", results1);
 
   const { list } = results1 || {};
-  //console.log(results1.list);
+  //console.log(  list);
 
   //fn to convert temperature from kelvin to celcius
   const kelvinToCelcius = (temp) => {
@@ -166,7 +166,7 @@ const Weather_week = ({ results1, weather_des }) => {
       text_date: "text-gray-800",
       text_max: "text-black",
       text_min: "text-gray-900",
-      panelback: "bg-orange-300/70",
+      panelback: "bg-[#E1DBD5]",
     },
     {
       //9
@@ -267,10 +267,10 @@ const Weather_week = ({ results1, weather_des }) => {
       <div className="px-2">
         <div className="p-4 flex flex-row overflow-x-scroll xl:overflow-x-hidden space-x-2">
           {list &&
-            list.map((item) => {
+            list.map((item, key) => {
               return (
                 <div
-                  key={String(item?.speed)}
+                  key={key}
                   className="bg-white/5 hover:bg-black/5 rounded-lg border border-gray-300 shadow-md "
                 >
                   <div className="flex flex-col  w-32 items-center p-3 text-center">
