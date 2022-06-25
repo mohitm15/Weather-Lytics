@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 
-import images from "../constants/images";
+import images from "../../constants/images";
 
 const Today_highlight = ({ results, weather_des }) => {
   const { main, sys, wind, visibility, dt } = results || {};

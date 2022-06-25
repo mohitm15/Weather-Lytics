@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import images from "../constants/images"
+import images from "../../constants/images"
 
 const Weather_Today = ({ results }) => {
   const { main, clouds, weather, name, dt, sys, coord } = results || {
