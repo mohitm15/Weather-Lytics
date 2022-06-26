@@ -64,7 +64,7 @@ const Weather_week = ({
       des === "drizzle" ||
       des === "moderate rain"
     )
-      return images.timgurl5;
+      return images.timgurl4;
     else if (
       des === "rain" ||
       des === "very heavy rain" ||
