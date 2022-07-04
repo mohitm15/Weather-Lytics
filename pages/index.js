@@ -220,7 +220,7 @@ const Home = () => {
   ];
 
   function changetheme(des) {
-    console.log("des found - ", des);
+    //console.log("des found - ", des);
     if (des !== "clear sky") {
       des = des[0].description;
       if (des === "sky is clear" || des === "clear sky") {
@@ -405,8 +405,6 @@ const Home = () => {
     } else return "bg-day_sun_small";
   }
 
-  console.log("mobilr na = ",
-    changetheme(weather_array || "clear sky").mobImg)
   return (
     <>
       <Head>
