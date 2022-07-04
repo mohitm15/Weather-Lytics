@@ -19,7 +19,7 @@ module.exports = {
         'day_haze' : "url('/day_haze.jpg')",
         'day_fog' : "url('/day_fog.jpg')",
         'day_mist' : "url('/day_mist.jpg')",
-        'haze_small':"url('/haze_small.jpeg)",
+        'haze_small':"url('/haze_small.jpg)",
         'night_sun' : "url('/night_sky.jpg')",
         'night_sun_small' : "url('/night_sun_small.png')",
         'night_rain' : "url('/night_heavy_rain.jpg')",

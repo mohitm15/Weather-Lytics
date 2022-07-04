@@ -71,48 +71,56 @@ const Home = () => {
   const return_data = [
     {
       //"0:clearskyday"
+      mobImg:"bg-day_sun_small",
       bgImg: "lg:bg-day_sun",
       divAll: "bg-white/50",
       textAll: "text-black",
     },
     {
       //"1:clearskynight"
+      mobImg:"bg-night_sun_small",
       bgImg: "lg:bg-night_sun",
       divAll: "bg-white/40",
-      textAll: "text-black",
+      textAll: "text-gray-300",
     },
     {
-      //2:fewclouds
+      //2:fewclouds/scatteredclouds
+      mobImg:"bg-day_cloudy_small",
       bgImg: "lg:bg-day_fewcloud",
       divAll: "bg-blue-500/50",
       textAll: "text-black",
     },
     {
       //3
+      mobImg:"bg-night_cloud_small",
       bgImg: "lg:bg-night_cloud",
       divAll: "bg-white/50",
-      textAll: "text-black",
+      textAll: "text-white",
     },
     {
-      //4:heavyclouds
+      //4:broken clouds/overcast clouds
+      mobImg:"bg-day_cloud",
       bgImg: "lg:bg-day_cloud",
       divAll: "bg-blue-600/80",
       textAll: "text-white",
     },
     {
       //5
+      mobImg:"bg-night_cloud",
       bgImg: "lg:bg-night_cloud",
       divAll: "bg-white/40",
       textAll: "text-white",
     },
     {
       //6rain
+      mobImg:"bg-day_rain_small",
       bgImg: "lg:bg-day_rain",
       divAll: "bg-[#262d3bc2]",
       textAll: "text-white",
     },
     {
       //7
+      mobImg:"bg-night_rain",
       bgImg: "lg:bg-night_rain",
       divAll: "bg-[#262d3bc2]",
       textAll: "text-white",
@@ -120,78 +128,91 @@ const Home = () => {
 
     {
       //8heavyRain
+      mobImg:"bg-day_heavy_rain",
       bgImg: "lg:bg-day_heavy_rain",
       divAll: "bg-[#013052de]",
       textAll: "text-white",
     },
     {
       //9
+      mobImg:"bg-night_rain",
       bgImg: "lg:bg-night_rain",
       divAll: "bg-[#262d3bc2]",
       textAll: "text-white",
     },
     {
       //10thunderstorm
+      mobImg:"bg-day_thunder",
       bgImg: "lg:bg-day_thunder",
       divAll: "bg-slate-900/80",
       textAll: "text-white",
     },
     {
       //11
+      mobImg:"bg-night_thunder",
       bgImg: "lg:bg-night_thunder",
       divAll: "bg-indigo-900/60",
       textAll: "text-white",
     },
     {
       //12snow
+      mobImg:"bg-day_snow_small",
       bgImg: "lg:bg-day_snow",
       divAll: "bg-slate-900/30",
       textAll: "text-black",
     },
     {
       //13
+      mobImg:"bg-night_snow_small",
       bgImg: "lg:bg-night_snow",
       divAll: "bg-slate-900/30",
       textAll: "text-black",
     },
     {
       //14rain&snow
+      mobImg:"bg-day-snow",
       bgImg: "lg:bg-day_snow",
       divAll: "bg-slate-900/30",
       textAll: "text-black",
     },
     //15haze
     {
+      mobImg:"bg-day_haze",
       bgImg: "lg:bg-day_haze",
       divAll: "bg-[#F0E9E2]/50",
       textAll: "text-black",
     },
     {
       //16fog
+      mobImg:"bg-day-fog",
       bgImg: "lg:bg-day_fog",
       divAll: "bg-stone-600/50",
       textAll: "text-gray-300",
     },
     {
       //17mist
+      mobImg:"bg-day_mist",
       bgImg: "lg:bg-day_mist",
       divAll: "bg-slate-600/50",
       textAll: "text-white",
-    },
+    },  
     {
       //18smoke
+      mobImg:"bg-night-sun",
       bgImg: "lg:bg-night_sun",
       divAll: "bg-gray-600/50",
       textAll: "text-white",
     },
     {
       //19else
+      mobImg:"bg-day_sun_small",
       bgImg: "lg:bg-day_sun",
       divAll: "bg-white/50",
       textAll: "text-black",
     },
     {
       //20
+      mobImg:"bg-night_sun_small",
       bgImg: "lg:bg-night_sun",
       divAll: "bg-white/40",
       textAll: "text-black",
@@ -199,7 +220,7 @@ const Home = () => {
   ];
 
   function changetheme(des) {
-    //console.log("des found - ", des);
+    console.log("des found - ", des);
     if (des !== "clear sky") {
       des = des[0].description;
       if (des === "sky is clear" || des === "clear sky") {
@@ -374,13 +395,18 @@ const Home = () => {
       else if (
         des === "mist" ||
         des === "fog" ||
-        des === "smoke" ||
-        des === "haze"
+        des === "smoke"
       )
         return "bg-haze_small";
+      else if (
+        des === "haze"
+      )
+        return "bg-haze-small"
     } else return "bg-day_sun_small";
   }
 
+  console.log("mobilr na = ",
+    changetheme(weather_array || "clear sky").mobImg)
   return (
     <>
       <Head>
@@ -390,9 +416,9 @@ const Home = () => {
       </Head>
 
       <div
-        className={` ${changeMobilebackground(
-          weather_array || "clear sky"
-        )} bg-repeat-y ${
+        className={` ${
+          changetheme(weather_array || "clear sky").mobImg
+        }  bg-repeat-y ${
           changetheme(weather_array || "clear sky").bgImg
         } lg:bg-no-repeat`}
       >
@@ -438,7 +464,7 @@ const Home = () => {
 
         <div className="min-h-full  flex flex-col lg:flex-row justify-evenly ">
           <div
-            className={`${changetheme(weather_array || "clear sky").divAll} ${
+            className={`lg:${changetheme(weather_array || "clear sky").divAll} ${
               changetheme(weather_array || "clear sky").textAll
             }  w-full h-full lg:w-1/4 lg:h-full xl:m-4 rounded-lg xl:rounded-3xl`}
           >

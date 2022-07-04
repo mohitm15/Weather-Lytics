@@ -125,11 +125,12 @@ const Weather_week = ({
       panelback: "bg-[#060693]",
     },
     {
-      //3
+      //moderate rain 
       text_day: "text-white",
       text_date: "text-[#53b2f3]",
       text_max: "text-white",
-      text_min: "text-gray-300  ",
+      text_min: "text-gray-300",
+      panelback: "bg-gray-400"
     },
     {
       //4
@@ -221,13 +222,15 @@ const Weather_week = ({
     },
     {
       //15 night rain
-      text_day: "text-black",
-      text_date: "text-gray-900",
-      text_max: "text-black",
-      text_min: "text-gray-900",
-      panelback: "bg-green-300",
+      text_day: "text-white",
+      text_date: "text-gray-200",
+      text_max: "text-white",
+      text_min: "text-gray-200",
+      panelback: "bg-gray-700",
     },
   ];
+
+
   function changetheme(des) {
     //  console.log("des found - ", des);
     if (des !== "clear sky") {
