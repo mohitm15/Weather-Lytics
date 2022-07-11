@@ -170,7 +170,7 @@ const Home = () => {
     },
     {
       //14rain&snow
-      mobImg:"bg-day-snow",
+      mobImg:"bg-day_snow",
       bgImg: "lg:bg-day_snow",
       divAll: "bg-slate-900/30",
       textAll: "text-black",
@@ -184,7 +184,7 @@ const Home = () => {
     },
     {
       //16fog
-      mobImg:"bg-day-fog",
+      mobImg:"bg-day_fog",
       bgImg: "lg:bg-day_fog",
       divAll: "bg-stone-600/50",
       textAll: "text-gray-300",
@@ -198,7 +198,7 @@ const Home = () => {
     },  
     {
       //18smoke
-      mobImg:"bg-night-sun",
+      mobImg:"bg-night_sun",
       bgImg: "lg:bg-night_sun",
       divAll: "bg-gray-600/50",
       textAll: "text-white",
